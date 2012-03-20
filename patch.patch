@@ -1,0 +1,58 @@
+diff -aurN patch-2.6.1/src/common.h patch-2.6.1-fixed/src/common.h
+--- patch-2.6.1/src/common.h	2009-12-30 04:56:30 -0800
++++ patch-2.6.1-fixed/src/common.h	2012-03-18 04:11:41 -0700
+@@ -247,11 +247,7 @@
+ # define mkdir(name, mode) ((mkdir) (name))
+ #endif
+ 
+-#ifdef HAVE_SETMODE_DOS
+-  XTERN int binary_transput;	/* O_BINARY if binary i/o is desired */
+-#else
+-# define binary_transput 0
+-#endif
++#define binary_transput O_BINARY
+ 
+ /* Disable the CR stripping heuristic?  */
+ XTERN bool no_strip_trailing_cr;
+diff -aurN patch-2.6.1/src/patch.c patch-2.6.1-fixed/src/patch.c
+--- patch-2.6.1/src/patch.c	2009-12-30 04:56:30 -0800
++++ patch-2.6.1-fixed/src/patch.c	2012-03-18 04:11:41 -0700
+@@ -416,7 +416,6 @@
+ 			  if (geteuid () != instat.st_gid)
+ 			    {
+ 			      /* Fails if we are not in group instat.st_gid.  */
+-			      chown (outname, -1, instat.st_gid);
+ 			    }
+ 			  /* FIXME: There may be other attributes to preserve.  */
+ 			}
+@@ -636,7 +635,7 @@
+ "",
+ "  -d DIR  --directory=DIR  Change the working directory to DIR first.",
+ "  --reject-format=FORMAT  Create 'context' or 'unified' rejects.",
+-"  --binary  Read and write data in binary mode.",
++"  --binary  Read and write data in binary mode (no effect on this platform).",
+ "",
+ "  -v  --version  Output version info.",
+ "  --help  Output this help.",
+@@ -817,9 +816,6 @@
+ 		break;
+ 	    case CHAR_MAX + 3:
+ 		no_strip_trailing_cr = true;
+-#if HAVE_SETMODE_DOS
+-		binary_transput = O_BINARY;
+-#endif
+ 		break;
+ 	    case CHAR_MAX + 4:
+ 		usage (stdout, 0);
+diff -aurN patch-2.6.1/src/util.c patch-2.6.1-fixed/src/util.c
+--- patch-2.6.1/src/util.c	2009-11-02 11:09:57 -0800
++++ patch-2.6.1-fixed/src/util.c	2012-03-18 04:11:41 -0700
+@@ -296,7 +296,7 @@
+ 		goto rename_succeeded;
+ 	    }
+ 
+-	  if (errno == EXDEV)
++	  if (errno == EXDEV || errno == EEXIST)
+ 	    {
+ 	      struct stat tost;
+ 	      if (! backup)

@@ -1,0 +1,13 @@
+diff -aurN sed-4.2.1/lib/regex_internal.h sed-4.2.1-fixed/lib/regex_internal.h
+--- sed-4.2.1/lib/regex_internal.h	2009-06-03 12:10:51 -0700
++++ sed-4.2.1-fixed/lib/regex_internal.h	2012-03-18 04:12:04 -0700
+@@ -458,7 +458,9 @@
+ #define re_string_skip_bytes(pstr,idx) ((pstr)->cur_idx += (idx))
+ #define re_string_set_index(pstr,idx) ((pstr)->cur_idx = (idx))
+ 
++#ifdef HAVE_ALLOCA_H
+ #include <alloca.h>
++#endif
+ 
+ #ifndef _LIBC
+ # if HAVE_ALLOCA

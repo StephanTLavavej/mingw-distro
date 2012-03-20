@@ -1,0 +1,78 @@
+diff -aurN pcre-8.30/pcre.h.generic pcre-8.30-fixed/pcre.h.generic
+--- pcre-8.30/pcre.h.generic	2012-02-04 06:36:03 -0800
++++ pcre-8.30-fixed/pcre.h.generic	2012-03-18 04:12:13 -0700
+@@ -46,25 +46,6 @@
+ #define PCRE_PRERELEASE     
+ #define PCRE_DATE           2012-02-04
+ 
+-/* When an application links to a PCRE DLL in Windows, the symbols that are
+-imported have to be identified as such. When building PCRE, the appropriate
+-export setting is defined in pcre_internal.h, which includes this file. So we
+-don't change existing definitions of PCRE_EXP_DECL and PCRECPP_EXP_DECL. */
+-
+-#if defined(_WIN32) && !defined(PCRE_STATIC)
+-#  ifndef PCRE_EXP_DECL
+-#    define PCRE_EXP_DECL  extern __declspec(dllimport)
+-#  endif
+-#  ifdef __cplusplus
+-#    ifndef PCRECPP_EXP_DECL
+-#      define PCRECPP_EXP_DECL  extern __declspec(dllimport)
+-#    endif
+-#    ifndef PCRECPP_EXP_DEFN
+-#      define PCRECPP_EXP_DEFN  __declspec(dllimport)
+-#    endif
+-#  endif
+-#endif
+-
+ /* By default, we use the standard "extern" declarations. */
+ 
+ #ifndef PCRE_EXP_DECL
+diff -aurN pcre-8.30/pcre.h.in pcre-8.30-fixed/pcre.h.in
+--- pcre-8.30/pcre.h.in	2012-01-17 06:10:47 -0800
++++ pcre-8.30-fixed/pcre.h.in	2012-03-18 04:12:13 -0700
+@@ -46,25 +46,6 @@
+ #define PCRE_PRERELEASE     @PCRE_PRERELEASE@
+ #define PCRE_DATE           @PCRE_DATE@
+ 
+-/* When an application links to a PCRE DLL in Windows, the symbols that are
+-imported have to be identified as such. When building PCRE, the appropriate
+-export setting is defined in pcre_internal.h, which includes this file. So we
+-don't change existing definitions of PCRE_EXP_DECL and PCRECPP_EXP_DECL. */
+-
+-#if defined(_WIN32) && !defined(PCRE_STATIC)
+-#  ifndef PCRE_EXP_DECL
+-#    define PCRE_EXP_DECL  extern __declspec(dllimport)
+-#  endif
+-#  ifdef __cplusplus
+-#    ifndef PCRECPP_EXP_DECL
+-#      define PCRECPP_EXP_DECL  extern __declspec(dllimport)
+-#    endif
+-#    ifndef PCRECPP_EXP_DEFN
+-#      define PCRECPP_EXP_DEFN  __declspec(dllimport)
+-#    endif
+-#  endif
+-#endif
+-
+ /* By default, we use the standard "extern" declarations. */
+ 
+ #ifndef PCRE_EXP_DECL
+diff -aurN pcre-8.30/pcreposix.h pcre-8.30-fixed/pcreposix.h
+--- pcre-8.30/pcreposix.h	2011-12-28 08:57:51 -0800
++++ pcre-8.30-fixed/pcreposix.h	2012-03-18 04:12:13 -0700
+@@ -109,16 +109,6 @@
+   regoff_t rm_eo;
+ } regmatch_t;
+ 
+-/* When an application links to a PCRE DLL in Windows, the symbols that are
+-imported have to be identified as such. When building PCRE, the appropriate
+-export settings are needed, and are set in pcreposix.c before including this
+-file. */
+-
+-#if defined(_WIN32) && !defined(PCRE_STATIC) && !defined(PCREPOSIX_EXP_DECL)
+-#  define PCREPOSIX_EXP_DECL  extern __declspec(dllimport)
+-#  define PCREPOSIX_EXP_DEFN  __declspec(dllimport)
+-#endif
+-
+ /* By default, we use the standard "extern" declarations. */
+ 
+ #ifndef PCREPOSIX_EXP_DECL

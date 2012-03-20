@@ -1,0 +1,12 @@
+diff -aurN boost_1_49_0/bootstrap.sh boost_1_49_0-fixed/bootstrap.sh
+--- boost_1_49_0/bootstrap.sh	2012-01-30 18:30:03 -0800
++++ boost_1_49_0-fixed/bootstrap.sh	2012-03-18 03:31:25 -0700
+@@ -215,7 +215,7 @@
+ if test "x$BJAM" = x; then
+   echo -n "Building Boost.Build engine with toolset $TOOLSET... "
+   pwd=`pwd`
+-  (cd "$my_dir/tools/build/v2/engine" && ./build.sh "$TOOLSET") > bootstrap.log 2>&1
++  (cd "$my_dir/tools/build/v2/engine" && ./build.sh mingw) > bootstrap.log 2>&1
+   if [ $? -ne 0 ]; then
+       echo
+       echo "Failed to build Boost.Build build engine" 

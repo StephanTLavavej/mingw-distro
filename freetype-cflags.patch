@@ -1,0 +1,12 @@
+diff -aurN freetype-2.4.9/builds/unix/configure freetype-2.4.9-fixed/builds/unix/configure
+--- freetype-2.4.9/builds/unix/configure	2012-03-08 12:09:13 -0800
++++ freetype-2.4.9-fixed/builds/unix/configure	2012-03-18 04:10:33 -0700
+@@ -3208,7 +3208,7 @@
+   CFLAGS=$ac_save_CFLAGS
+ elif test $ac_cv_prog_cc_g = yes; then
+   if test "$GCC" = yes; then
+-    CFLAGS="-g -O2"
++    CFLAGS="-Os -fomit-frame-pointer"
+   else
+     CFLAGS="-g"
+   fi

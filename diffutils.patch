@@ -1,0 +1,38 @@
+diff -aurN diffutils-3.2/src/dir.c diffutils-3.2-fixed/src/dir.c
+--- diffutils-3.2/src/dir.c	2011-08-14 08:58:59 -0700
++++ diffutils-3.2-fixed/src/dir.c	2012-03-18 04:10:16 -0700
+@@ -203,14 +203,6 @@
+   int volatile val = EXIT_SUCCESS;
+   int i;
+ 
+-  if ((cmp->file[0].desc == -1 || dir_loop (cmp, 0))
+-      && (cmp->file[1].desc == -1 || dir_loop (cmp, 1)))
+-    {
+-      error (0, 0, _("%s: recursive directory loop"),
+-	     cmp->file[cmp->file[0].desc == -1].name);
+-      return EXIT_TROUBLE;
+-    }
+-
+   /* Get contents of both dirs.  */
+   for (i = 0; i < 2; i++)
+     if (! dir_read (&cmp->file[i], &dirdata[i]))
+diff -aurN diffutils-3.2/src/sdiff.c diffutils-3.2-fixed/src/sdiff.c
+--- diffutils-3.2/src/sdiff.c	2011-08-14 22:24:38 -0700
++++ diffutils-3.2-fixed/src/sdiff.c	2012-03-18 04:10:16 -0700
+@@ -574,7 +574,7 @@
+       diffarg (argv[optind]);
+       diffarg (argv[optind + 1]);
+       diffarg (0);
+-      execvp (diffargv[0], (char **) diffargv);
++      execvp (diffargv[0], diffargv);
+       perror_fatal (diffargv[0]);
+     }
+   else
+@@ -814,7 +814,6 @@
+ 
+       /* Yield an exit status indicating that a signal was received.  */
+       untrapsig (s);
+-      kill (getpid (), s);
+ 
+       /* That didn't work, so exit with error status.  */
+       exit (EXIT_TROUBLE);

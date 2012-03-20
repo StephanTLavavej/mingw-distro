@@ -1,0 +1,47 @@
+diff -aurN glew-1.7.0/include/GL/glew.h glew-1.7.0-fixed/include/GL/glew.h
+--- glew-1.7.0/include/GL/glew.h	2011-08-25 07:17:55 -0700
++++ glew-1.7.0-fixed/include/GL/glew.h	2012-03-18 04:11:15 -0700
+@@ -171,20 +171,7 @@
+ #define GLAPIENTRY APIENTRY
+ #endif
+ 
+-/*
+- * GLEW_STATIC is defined for static library.
+- * GLEW_BUILD  is defined for building the DLL library.
+- */
+-
+-#ifdef GLEW_STATIC
+ #  define GLEWAPI extern
+-#else
+-#  ifdef GLEW_BUILD
+-#    define GLEWAPI extern __declspec(dllexport)
+-#  else
+-#    define GLEWAPI extern __declspec(dllimport)
+-#  endif
+-#endif
+ 
+ #else /* _UNIX */
+ 
+diff -aurN glew-1.7.0/include/GL/wglew.h glew-1.7.0-fixed/include/GL/wglew.h
+--- glew-1.7.0/include/GL/wglew.h	2011-08-25 07:17:55 -0700
++++ glew-1.7.0-fixed/include/GL/wglew.h	2012-03-18 04:11:15 -0700
+@@ -70,19 +70,7 @@
+ #  undef WIN32_LEAN_AND_MEAN
+ #endif
+ 
+-/*
+- * GLEW_STATIC needs to be set when using the static version.
+- * GLEW_BUILD is set when building the DLL version.
+- */
+-#ifdef GLEW_STATIC
+ #  define GLEWAPI extern
+-#else
+-#  ifdef GLEW_BUILD
+-#    define GLEWAPI extern __declspec(dllexport)
+-#  else
+-#    define GLEWAPI extern __declspec(dllimport)
+-#  endif
+-#endif
+ 
+ #ifdef __cplusplus
+ extern "C" {
