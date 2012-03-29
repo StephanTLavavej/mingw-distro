@@ -44,8 +44,7 @@ cd build
 # make 3.82 doesn't have a job server on Windows.
 ../src/configure --prefix=/c/temp/gcc/dest --enable-case-insensitive-file-system --disable-job-server --disable-nls --disable-rpath || { echo make - EPIC FAIL ; exit 1; }
 sed -e "s/#define PATH_SEPARATOR_CHAR ':'/#define PATH_SEPARATOR_CHAR ';'/" config.h > config.fixed
-rm config.h
-mv config.fixed config.h
+mv -f config.fixed config.h
 make "CFLAGS=-Os -fomit-frame-pointer" "LDFLAGS=-s" || { echo make - EPIC FAIL ; exit 1; }
 mv make.exe ../dest/bin
 cd /c/temp/gcc

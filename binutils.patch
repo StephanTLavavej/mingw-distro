@@ -1,0 +1,12 @@
+diff -aurN binutils-2.22/binutils/stabs.c binutils-2.22-fixed/binutils/stabs.c
+--- binutils-2.22/binutils/stabs.c	2011-03-25 10:46:07 -0700
++++ binutils-2.22-fixed/binutils/stabs.c	2012-03-26 00:10:57 -0700
+@@ -2593,7 +2593,7 @@
+ 	  bfd_boolean constp, volatilep, staticp;
+ 	  bfd_vma voffset;
+ 	  debug_type context;
+-	  const char *physname;
++	  const char *physname = 0;
+ 	  bfd_boolean varargs;
+ 
+ 	  if (look_ahead_type != DEBUG_TYPE_NULL)

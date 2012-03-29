@@ -7,6 +7,8 @@ source 0_append_distro_path.sh
 
 7za x '-oC:\Temp\gcc' binutils-2.22.tar > NUL || { echo binutils-2.22.tar - EPIC FAIL ; exit 1; }
 
+patch -d /c/temp/gcc/binutils-2.22 -p1 < binutils.patch
+
 cd /c/temp/gcc
 mv binutils-2.22 src
 mkdir build dest

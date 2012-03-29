@@ -1,7 +1,7 @@
-diff -aurN gcc-4.6.3/gcc/c-family/c-common.c gcc-4.6.3-fixed/gcc/c-family/c-common.c
---- gcc-4.6.3/gcc/c-family/c-common.c	2011-11-04 14:49:49 -0700
-+++ gcc-4.6.3-fixed/gcc/c-family/c-common.c	2012-03-18 04:12:53 -0700
-@@ -250,9 +250,9 @@
+diff -aurN gcc-4.7.0/gcc/c-family/c-common.c gcc-4.7.0-fixed/gcc/c-family/c-common.c
+--- gcc-4.7.0/gcc/c-family/c-common.c	2012-02-13 12:12:54 -0800
++++ gcc-4.7.0-fixed/gcc/c-family/c-common.c	2012-03-24 18:12:31 -0700
+@@ -251,9 +251,9 @@
  
  int flag_use_repository;
  
@@ -9,19 +9,19 @@ diff -aurN gcc-4.6.3/gcc/c-family/c-common.c gcc-4.6.3-fixed/gcc/c-family/c-comm
 +/* The C++ dialect being used. C++11 is the default.  */
  
 -enum cxx_dialect cxx_dialect = cxx98;
-+enum cxx_dialect cxx_dialect = cxx0x;
++enum cxx_dialect cxx_dialect = cxx11;
  
  /* Maximum template instantiation depth.  This limit exists to limit the
-    time it takes to notice infinite template instantiations; the default
-diff -aurN gcc-4.6.3/gcc/c-family/c-opts.c gcc-4.6.3-fixed/gcc/c-family/c-opts.c
---- gcc-4.6.3/gcc/c-family/c-opts.c	2011-01-25 22:48:04 -0800
-+++ gcc-4.6.3-fixed/gcc/c-family/c-opts.c	2012-03-18 04:12:53 -0700
-@@ -208,7 +208,7 @@
+    time it takes to notice excessively recursive template instantiations.
+diff -aurN gcc-4.7.0/gcc/c-family/c-opts.c gcc-4.7.0-fixed/gcc/c-family/c-opts.c
+--- gcc-4.7.0/gcc/c-family/c-opts.c	2012-01-18 05:10:40 -0800
++++ gcc-4.7.0-fixed/gcc/c-family/c-opts.c	2012-03-24 18:12:31 -0700
+@@ -213,7 +213,7 @@
    unsigned int i;
    struct cpp_callbacks *cb;
  
 -  parse_in = cpp_create_reader (c_dialect_cxx () ? CLK_GNUCXX: CLK_GNUC89,
-+  parse_in = cpp_create_reader (c_dialect_cxx () ? CLK_GNUCXX0X : CLK_GNUC89,
++  parse_in = cpp_create_reader (c_dialect_cxx () ? CLK_GNUCXX11 : CLK_GNUC89,
  				ident_hash, line_table);
    cb = cpp_get_callbacks (parse_in);
    cb->error = c_cpp_error;

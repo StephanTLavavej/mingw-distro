@@ -20,8 +20,7 @@ mv .libs/libjpeg.a ../libjpeg-8d/lib
 cd /c/temp/gcc
 patch -d libjpeg-8d -p1 < jpeg-8d/libjpeg.patch
 sed -re 's/\b(boolean|FALSE|TRUE)\b/JPEG_\1/g' libjpeg-8d/include/jpeglib.h > libjpeg-8d/include/jpeglib.h.fixed
-rm libjpeg-8d/include/jpeglib.h
-mv libjpeg-8d/include/jpeglib.h.fixed libjpeg-8d/include/jpeglib.h
+mv -f libjpeg-8d/include/jpeglib.h.fixed libjpeg-8d/include/jpeglib.h
 rm -rf jpeg-8d
 cd libjpeg-8d
 find -name "*.exe" -type f -print -exec strip -s {} ";"
