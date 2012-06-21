@@ -16,7 +16,7 @@ mv boost_1_49_0 src
 mkdir -p dest/include
 cd src
 bootstrap.sh || { echo boost - EPIC FAIL ; exit 1; }
-echo "using gcc : : : <compileflags>-fomit-frame-pointer <compileflags>-Wno-attributes <compileflags>-Wno-long-long ;" >> tools/build/v2/user-config.jam
+echo "using gcc : : : <compileflags>-fomit-frame-pointer <compileflags>-Wno-attributes ;" >> tools/build/v2/user-config.jam
 b2 -j$NUMBER_OF_PROCESSORS variant=release link=static runtime-link=static --stagedir=/c/temp/gcc/dest stage -sNO_BZIP2 -sBZIP2_BINARY=bz2 -sBZIP2_INCLUDE=/c/mingw/include -sBZIP2_LIBPATH=/c/mingw/lib -sNO_ZLIB -sZLIB_BINARY=z -sZLIB_INCLUDE=/c/mingw/include -sZLIB_LIBPATH=/c/mingw/lib || { echo boost - EPIC FAIL ; exit 1; }
 cd /c/temp/gcc/dest/lib
 for i in *.a; do mv $i ${i%-mgw*.a}.a; done

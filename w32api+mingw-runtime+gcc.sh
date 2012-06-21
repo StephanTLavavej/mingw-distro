@@ -8,8 +8,8 @@ source 0_append_distro_path.sh
 # Extract vanilla sources.
 7za x '-oC:\Temp\gcc' w32api-3.17-2-mingw32-src.tar > NUL || { echo w32api-3.17-2-mingw32-src.tar - EPIC FAIL ; exit 1; }
 7za x '-oC:\Temp\gcc' mingwrt-3.20-mingw32-src.tar > NUL || { echo mingwrt-3.20-mingw32-src.tar - EPIC FAIL ; exit 1; }
-7za x '-oC:\Temp\gcc' gcc-4.7.0.tar > NUL || { echo gcc-4.7.0.tar - EPIC FAIL ; exit 1; }
-7za x '-oC:\Temp\gcc' gmp-5.0.4.tar > NUL || { echo gmp-5.0.4.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' gcc-4.7.1.tar > NUL || { echo gcc-4.7.1.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' gmp-5.0.5.tar > NUL || { echo gmp-5.0.5.tar - EPIC FAIL ; exit 1; }
 7za x '-oC:\Temp\gcc' mpfr-3.1.0.tar > NUL || { echo mpfr-3.1.0.tar - EPIC FAIL ; exit 1; }
 7za x '-oC:\Temp\gcc' mpc-0.9.tar > NUL || { echo mpc-0.9.tar - EPIC FAIL ; exit 1; }
 
@@ -22,18 +22,16 @@ patch -Z -d /c/temp/gcc/mpfr-3.1.0 -p1 < mpfr.patch
 patch -d /c/temp/gcc/mingwrt-3.20-mingw32 -p1 < mingw-runtime.patch
 
 # Change the default mode to C++11.
-patch -d /c/temp/gcc/gcc-4.7.0 -p1 < gcc.patch
+patch -d /c/temp/gcc/gcc-4.7.1 -p1 < gcc.patch
 
-echo Cleaning spurious user-defined literals...
-X_REGEX='"(HOST_WIDE_INT_PRINT|HOST_WIDEST_INT_PRINT|PLUGIN_COND|SHARED_LIBGCC_SPEC)'
-X_FORMAT='" \1'
-for X_FILE in $(grep -rEl "${X_REGEX}" /c/temp/gcc/gcc-4.7.0) ; do echo Cleaning: ${X_FILE} && sed -r -e "s/${X_REGEX}/${X_FORMAT}/g" ${X_FILE} > ${X_FILE}.meow && mv -f ${X_FILE}.meow ${X_FILE} ; done
-echo Done cleaning.
+# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=52538
+# http://gcc.gnu.org/git/?p=gcc.git;a=commitdiff;h=76d340ac07ad50937aa1ecbfdf0475b010a5700a
+patch -d /c/temp/gcc/gcc-4.7.1 -p1 < gcc-pr52538.patch
 
 cd /c/temp/gcc
 
 # Build gmp.
-mv gmp-5.0.4 src
+mv gmp-5.0.5 src
 mkdir build dest
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared || { echo gmp configure - EPIC FAIL ; exit 1; }
@@ -93,7 +91,7 @@ cp -r w32api/* /mingw
 cp -r mingw-runtime/* /mingw
 
 # Configure.
-mv gcc-4.7.0 src
+mv gcc-4.7.1 src
 mkdir build dest
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --with-gmp=/c/temp/gcc/gmp --with-mpfr=/c/temp/gcc/mpfr --with-mpc=/c/temp/gcc/mpc --enable-languages=c,c++ --with-arch=i686 --with-tune=generic --disable-libstdcxx-pch --disable-nls --disable-shared --disable-sjlj-exceptions --disable-win32-registry --enable-checking=release --enable-lto || { echo gcc configure - EPIC FAIL ; exit 1; }

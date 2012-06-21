@@ -7,7 +7,7 @@ source 0_append_distro_path.sh
 
 7za x '-oC:\Temp\gcc' SDL-1.2.15.tar > NUL || { echo SDL-1.2.15.tar - EPIC FAIL ; exit 1; }
 7za x '-oC:\Temp\gcc' libogg-1.3.0.tar > NUL || { echo libogg-1.3.0.tar - EPIC FAIL ; exit 1; }
-7za x '-oC:\Temp\gcc' libvorbis-1.3.2.tar > NUL || { echo libvorbis-1.3.2.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' libvorbis-1.3.3.tar > NUL || { echo libvorbis-1.3.3.tar - EPIC FAIL ; exit 1; }
 7za x '-oC:\Temp\gcc' SDL_mixer-1.2.12.tar > NUL || { echo SDL_mixer-1.2.12.tar - EPIC FAIL ; exit 1; }
 7za x '-oC:\Temp\gcc' vorbis-tools-1.4.0.tar > NUL || { echo vorbis-tools-1.4.0.tar - EPIC FAIL ; exit 1; }
 
@@ -32,7 +32,7 @@ make all install "CFLAGS=-s -Os -fomit-frame-pointer" || { echo libogg - EPIC FA
 cd /c/temp/gcc
 rm -rf build src
 
-mv libvorbis-1.3.2 src
+mv libvorbis-1.3.3 src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared || { echo libvorbis - EPIC FAIL ; exit 1; }

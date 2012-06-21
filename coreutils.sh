@@ -5,12 +5,12 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' coreutils-8.15.tar > NUL || { echo coreutils-8.15.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' coreutils-8.17.tar > NUL || { echo coreutils-8.17.tar - EPIC FAIL ; exit 1; }
 
-patch -d /c/temp/gcc/coreutils-8.15 -p1 < coreutils.patch
+patch -d /c/temp/gcc/coreutils-8.17 -p1 < coreutils.patch
 
 cd /c/temp/gcc
-mv coreutils-8.15 src
+mv coreutils-8.17 src
 mkdir -p build dest/bin
 
 # Missing <sys/wait.h>.
@@ -27,8 +27,8 @@ cd src
 mv sha1sum.exe sha256sum.exe sha512sum.exe sort.exe uniq.exe wc.exe ../../dest/bin || { echo coreutils - EPIC FAIL ; exit 1; }
 cd /c/temp/gcc
 rm -rf build src
-mv dest coreutils-8.15
-cd coreutils-8.15
+mv dest coreutils-8.17
+cd coreutils-8.17
 find -name "*.exe" -type f -print -exec strip -s {} ";"
 
-7za -mx0 a ../coreutils-8.15.7z *
+7za -mx0 a ../coreutils-8.17.7z *
