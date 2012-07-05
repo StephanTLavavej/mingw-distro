@@ -1,7 +1,7 @@
-diff -aurN boost_1_49_0/boost/thread/detail/config.hpp boost_1_49_0-fixed/boost/thread/detail/config.hpp
---- boost_1_49_0/boost/thread/detail/config.hpp	2012-01-07 12:52:57 -0800
-+++ boost_1_49_0-fixed/boost/thread/detail/config.hpp	2012-03-18 03:16:16 -0700
-@@ -45,19 +45,7 @@
+diff -aurN boost_1_50_0/boost/thread/detail/config.hpp boost_1_50_0-fixed/boost/thread/detail/config.hpp
+--- boost_1_50_0/boost/thread/detail/config.hpp	2012-06-16 14:10:08 -0700
++++ boost_1_50_0-fixed/boost/thread/detail/config.hpp	2012-07-05 00:24:17 -0700
+@@ -150,19 +150,7 @@
  #elif defined(BOOST_THREAD_USE_DLL)   //Use dll
  #elif defined(BOOST_THREAD_USE_LIB)   //Use lib
  #else //Use default
