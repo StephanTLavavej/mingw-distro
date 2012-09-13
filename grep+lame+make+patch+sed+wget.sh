@@ -10,7 +10,7 @@ source 0_append_distro_path.sh
 7za x '-oC:\Temp\gcc' make-3.82.tar > NUL || { echo make-3.82.tar - EPIC FAIL ; exit 1; }
 7za x '-oC:\Temp\gcc' patch-2.6.1.tar > NUL || { echo patch-2.6.1.tar - EPIC FAIL ; exit 1; }
 7za x '-oC:\Temp\gcc' sed-4.2.1.tar > NUL || { echo sed-4.2.1.tar - EPIC FAIL ; exit 1; }
-7za x '-oC:\Temp\gcc' wget-1.13.4.tar > NUL || { echo wget-1.13.4.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' wget-1.14.tar > NUL || { echo wget-1.14.tar - EPIC FAIL ; exit 1; }
 
 patch -d /c/temp/gcc/grep-2.10 -p1 < grep.patch
 patch -d /c/temp/gcc/patch-2.6.1 -p1 < patch.patch
@@ -41,7 +41,7 @@ rm -rf build src
 mv make-3.82 src
 mkdir build
 cd build
-# make 3.82 doesn't have a job server on Windows.
+# make 3.82 doesn't have a job server on Windows, but 3.83 will.
 ../src/configure --prefix=/c/temp/gcc/dest --enable-case-insensitive-file-system --disable-job-server --disable-nls --disable-rpath || { echo make - EPIC FAIL ; exit 1; }
 sed -e "s/#define PATH_SEPARATOR_CHAR ':'/#define PATH_SEPARATOR_CHAR ';'/" config.h > config.fixed
 mv -f config.fixed config.h
@@ -84,7 +84,7 @@ mv sed/sed.exe ../dest/bin
 cd /c/temp/gcc
 rm -rf build src
 
-mv wget-1.13.4 src
+mv wget-1.14 src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-nls --without-ssl || { echo wget - EPIC FAIL ; exit 1; }

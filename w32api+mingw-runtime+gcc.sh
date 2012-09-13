@@ -7,19 +7,13 @@ source 0_append_distro_path.sh
 
 # Extract vanilla sources.
 7za x '-oC:\Temp\gcc' w32api-3.17-2-mingw32-src.tar > NUL || { echo w32api-3.17-2-mingw32-src.tar - EPIC FAIL ; exit 1; }
-7za x '-oC:\Temp\gcc' mingwrt-3.20-mingw32-src.tar > NUL || { echo mingwrt-3.20-mingw32-src.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' mingwrt-3.20-2-mingw32-src.tar > NUL || { echo mingwrt-3.20-2-mingw32-src.tar - EPIC FAIL ; exit 1; }
 7za x '-oC:\Temp\gcc' gcc-4.7.1.tar > NUL || { echo gcc-4.7.1.tar - EPIC FAIL ; exit 1; }
 7za x '-oC:\Temp\gcc' gmp-5.0.5.tar > NUL || { echo gmp-5.0.5.tar - EPIC FAIL ; exit 1; }
-7za x '-oC:\Temp\gcc' mpfr-3.1.0.tar > NUL || { echo mpfr-3.1.0.tar - EPIC FAIL ; exit 1; }
-7za x '-oC:\Temp\gcc' mpc-0.9.tar > NUL || { echo mpc-0.9.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' mpfr-3.1.1.tar > NUL || { echo mpfr-3.1.1.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' mpc-1.0.1.tar > NUL || { echo mpc-1.0.1.tar - EPIC FAIL ; exit 1; }
 
-patch -Z -d /c/temp/gcc/mpfr-3.1.0 -p1 < mpfr.patch
-
-# Apply the Patch Of Doom.
-# http://sourceforge.net/tracker/?func=detail&atid=302435&aid=3105314&group_id=2435
-# http://sourceforge.net/tracker/?func=detail&aid=3443215&group_id=2435&atid=102435
-# http://cygwin.com/cgi-bin/cvsweb.cgi/src/winsup/mingw/tlssup.c?cvsroot=src
-patch -d /c/temp/gcc/mingwrt-3.20-mingw32 -p1 < mingw-runtime.patch
+patch -Z -d /c/temp/gcc/mpfr-3.1.1 -p1 < mpfr.patch
 
 # Change the default mode to C++11.
 patch -d /c/temp/gcc/gcc-4.7.1 -p1 < gcc.patch
@@ -42,7 +36,7 @@ rm -rf dest/lib/*.la dest/share
 mv dest gmp
 
 # Build mpfr.
-mv mpfr-3.1.0 src
+mv mpfr-3.1.1 src
 mkdir build dest
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp || { echo mpfr configure - EPIC FAIL ; exit 1; }
@@ -53,7 +47,7 @@ rm -rf dest/lib/*.la dest/share
 mv dest mpfr
 
 # Build mpc.
-mv mpc-0.9 src
+mv mpc-1.0.1 src
 mkdir build dest
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp --with-mpfr=/c/temp/gcc/mpfr || { echo mpc configure - EPIC FAIL ; exit 1; }
@@ -74,7 +68,7 @@ rm -rf build src
 mv dest w32api
 
 # Build mingw-runtime.
-mv mingwrt-3.20-mingw32 src
+mv mingwrt-3.20-2-mingw32 src
 mkdir build dest
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest || { echo mingw-runtime configure - EPIC FAIL ; exit 1; }

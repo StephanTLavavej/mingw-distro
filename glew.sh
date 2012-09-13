@@ -5,12 +5,12 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' glew-1.7.0.tar > NUL || { echo glew-1.7.0.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' glew-1.9.0.tar > NUL || { echo glew-1.9.0.tar - EPIC FAIL ; exit 1; }
 
-patch -d /c/temp/gcc/glew-1.7.0 -p1 < glew.patch
+patch -d /c/temp/gcc/glew-1.9.0 -p1 < glew.patch
 
 cd /c/temp/gcc
-mv glew-1.7.0 src
+mv glew-1.9.0 src
 mkdir dest
 cd src
 rm include/GL/glxew.h
@@ -19,7 +19,7 @@ ar rs lib/libglew32.a glew.o
 mv include lib ../dest
 cd /c/temp/gcc
 rm -rf src
-mv dest glew-1.7.0
-cd glew-1.7.0
+mv dest glew-1.9.0
+cd glew-1.9.0
 
-7za -mx0 a ../glew-1.7.0.7z *
+7za -mx0 a ../glew-1.9.0.7z *
