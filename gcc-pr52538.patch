@@ -1,6 +1,6 @@
-diff -aurN gcc-4.7.1/gcc/c-family/c-common.c gcc-4.7.1-fixed/gcc/c-family/c-common.c
---- gcc-4.7.1/gcc/c-family/c-common.c	2012-02-13 12:12:54 -0800
-+++ gcc-4.7.1-fixed/gcc/c-family/c-common.c	2012-06-17 16:18:39 -0700
+diff -aurN gcc-4.7.2/gcc/c-family/c-common.c gcc-4.7.2-fixed/gcc/c-family/c-common.c
+--- gcc-4.7.2/gcc/c-family/c-common.c	2012-02-13 12:12:54 -0800
++++ gcc-4.7.2-fixed/gcc/c-family/c-common.c	2012-09-23 13:39:57 -0700
 @@ -8724,6 +8724,7 @@
    {CPP_W_NORMALIZE,			OPT_Wnormalized_},
    {CPP_W_INVALID_PCH,			OPT_Winvalid_pch},
@@ -9,9 +9,9 @@ diff -aurN gcc-4.7.1/gcc/c-family/c-common.c gcc-4.7.1-fixed/gcc/c-family/c-comm
    {CPP_W_NONE,				0}
  };
  
-diff -aurN gcc-4.7.1/gcc/c-family/c-opts.c gcc-4.7.1-fixed/gcc/c-family/c-opts.c
---- gcc-4.7.1/gcc/c-family/c-opts.c	2012-01-18 05:10:40 -0800
-+++ gcc-4.7.1-fixed/gcc/c-family/c-opts.c	2012-06-17 16:18:39 -0700
+diff -aurN gcc-4.7.2/gcc/c-family/c-opts.c gcc-4.7.2-fixed/gcc/c-family/c-opts.c
+--- gcc-4.7.2/gcc/c-family/c-opts.c	2012-01-18 05:10:40 -0800
++++ gcc-4.7.2-fixed/gcc/c-family/c-opts.c	2012-09-23 13:39:57 -0700
 @@ -475,6 +475,10 @@
        cpp_opts->warn_invalid_pch = value;
        break;
@@ -23,9 +23,9 @@ diff -aurN gcc-4.7.1/gcc/c-family/c-opts.c gcc-4.7.1-fixed/gcc/c-family/c-opts.c
      case OPT_Wlong_long:
        cpp_opts->cpp_warn_long_long = value;
        break;
-diff -aurN gcc-4.7.1/gcc/c-family/c.opt gcc-4.7.1-fixed/gcc/c-family/c.opt
---- gcc-4.7.1/gcc/c-family/c.opt	2012-02-06 02:31:18 -0800
-+++ gcc-4.7.1-fixed/gcc/c-family/c.opt	2012-06-17 16:18:39 -0700
+diff -aurN gcc-4.7.2/gcc/c-family/c.opt gcc-4.7.2-fixed/gcc/c-family/c.opt
+--- gcc-4.7.2/gcc/c-family/c.opt	2012-02-06 02:31:18 -0800
++++ gcc-4.7.2-fixed/gcc/c-family/c.opt	2012-09-23 13:39:58 -0700
 @@ -449,6 +449,10 @@
  C ObjC Var(warn_jump_misses_init) Init(-1) Warning
  Warn when a jump misses a variable initialization
@@ -37,9 +37,9 @@ diff -aurN gcc-4.7.1/gcc/c-family/c.opt gcc-4.7.1-fixed/gcc/c-family/c.opt
  Wlogical-op
  C ObjC C++ ObjC++ Var(warn_logical_op) Init(0) Warning 
  Warn when a logical operator is suspiciously always evaluating to true or false
-diff -aurN gcc-4.7.1/gcc/doc/invoke.texi gcc-4.7.1-fixed/gcc/doc/invoke.texi
---- gcc-4.7.1/gcc/doc/invoke.texi	2012-06-04 13:30:59 -0700
-+++ gcc-4.7.1-fixed/gcc/doc/invoke.texi	2012-06-17 16:18:39 -0700
+diff -aurN gcc-4.7.2/gcc/doc/invoke.texi gcc-4.7.2-fixed/gcc/doc/invoke.texi
+--- gcc-4.7.2/gcc/doc/invoke.texi	2012-09-14 13:45:27 -0700
++++ gcc-4.7.2-fixed/gcc/doc/invoke.texi	2012-09-23 13:39:58 -0700
 @@ -197,8 +197,8 @@
  -fno-default-inline  -fvisibility-inlines-hidden @gol
  -fvisibility-ms-compat @gol
@@ -51,7 +51,7 @@ diff -aurN gcc-4.7.1/gcc/doc/invoke.texi gcc-4.7.1-fixed/gcc/doc/invoke.texi
  -Weffc++  -Wstrict-null-sentinel @gol
  -Wno-non-template-friend  -Wold-style-cast @gol
  -Woverloaded-virtual  -Wno-pmf-conversions @gol
-@@ -2413,6 +2413,30 @@
+@@ -2414,6 +2414,30 @@
  base class does not have a virtual destructor.  This warning is enabled
  by @option{-Wall}.
  
@@ -82,9 +82,9 @@ diff -aurN gcc-4.7.1/gcc/doc/invoke.texi gcc-4.7.1-fixed/gcc/doc/invoke.texi
  @item -Wnarrowing @r{(C++ and Objective-C++ only)}
  @opindex Wnarrowing
  @opindex Wno-narrowing
-diff -aurN gcc-4.7.1/gcc/testsuite/g++.dg/cpp0x/Wliteral-suffix.C gcc-4.7.1-fixed/gcc/testsuite/g++.dg/cpp0x/Wliteral-suffix.C
---- gcc-4.7.1/gcc/testsuite/g++.dg/cpp0x/Wliteral-suffix.C	1969-12-31 16:00:00 -0800
-+++ gcc-4.7.1-fixed/gcc/testsuite/g++.dg/cpp0x/Wliteral-suffix.C	2012-06-17 16:18:39 -0700
+diff -aurN gcc-4.7.2/gcc/testsuite/g++.dg/cpp0x/Wliteral-suffix.C gcc-4.7.2-fixed/gcc/testsuite/g++.dg/cpp0x/Wliteral-suffix.C
+--- gcc-4.7.2/gcc/testsuite/g++.dg/cpp0x/Wliteral-suffix.C	1969-12-31 16:00:00 -0800
++++ gcc-4.7.2-fixed/gcc/testsuite/g++.dg/cpp0x/Wliteral-suffix.C	2012-09-23 13:39:58 -0700
 @@ -0,0 +1,29 @@
 +// { dg-do run }
 +// { dg-options "-std=c++0x" }
@@ -115,9 +115,9 @@ diff -aurN gcc-4.7.1/gcc/testsuite/g++.dg/cpp0x/Wliteral-suffix.C gcc-4.7.1-fixe
 +{
 +  test();
 +}
-diff -aurN gcc-4.7.1/libcpp/include/cpplib.h gcc-4.7.1-fixed/libcpp/include/cpplib.h
---- gcc-4.7.1/libcpp/include/cpplib.h	2011-12-20 12:44:13 -0800
-+++ gcc-4.7.1-fixed/libcpp/include/cpplib.h	2012-06-17 16:18:39 -0700
+diff -aurN gcc-4.7.2/libcpp/include/cpplib.h gcc-4.7.2-fixed/libcpp/include/cpplib.h
+--- gcc-4.7.2/libcpp/include/cpplib.h	2011-12-20 12:44:13 -0800
++++ gcc-4.7.2-fixed/libcpp/include/cpplib.h	2012-09-23 13:39:58 -0700
 @@ -427,6 +427,10 @@
    /* Nonzero for C++ 2011 Standard user-defnied literals.  */
    unsigned char user_literals;
@@ -139,9 +139,9 @@ diff -aurN gcc-4.7.1/libcpp/include/cpplib.h gcc-4.7.1-fixed/libcpp/include/cppl
  };
  
  /* Output a diagnostic of some kind.  */
-diff -aurN gcc-4.7.1/libcpp/init.c gcc-4.7.1-fixed/libcpp/init.c
---- gcc-4.7.1/libcpp/init.c	2011-12-20 12:44:13 -0800
-+++ gcc-4.7.1-fixed/libcpp/init.c	2012-06-17 16:18:39 -0700
+diff -aurN gcc-4.7.2/libcpp/init.c gcc-4.7.2-fixed/libcpp/init.c
+--- gcc-4.7.2/libcpp/init.c	2011-12-20 12:44:13 -0800
++++ gcc-4.7.2-fixed/libcpp/init.c	2012-09-23 13:39:58 -0700
 @@ -175,6 +175,7 @@
    CPP_OPTION (pfile, warn_variadic_macros) = 1;
    CPP_OPTION (pfile, warn_builtin_macro_redefined) = 1;
@@ -150,9 +150,9 @@ diff -aurN gcc-4.7.1/libcpp/init.c gcc-4.7.1-fixed/libcpp/init.c
  
    /* Default CPP arithmetic to something sensible for the host for the
       benefit of dumb users like fix-header.  */
-diff -aurN gcc-4.7.1/libcpp/lex.c gcc-4.7.1-fixed/libcpp/lex.c
---- gcc-4.7.1/libcpp/lex.c	2011-12-07 14:05:59 -0800
-+++ gcc-4.7.1-fixed/libcpp/lex.c	2012-06-17 16:18:39 -0700
+diff -aurN gcc-4.7.2/libcpp/lex.c gcc-4.7.2-fixed/libcpp/lex.c
+--- gcc-4.7.2/libcpp/lex.c	2011-12-07 14:05:59 -0800
++++ gcc-4.7.2-fixed/libcpp/lex.c	2012-09-23 13:39:58 -0700
 @@ -1491,14 +1491,30 @@
  
    if (CPP_OPTION (pfile, user_literals))
