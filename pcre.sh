@@ -5,21 +5,21 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' pcre-8.31.tar > NUL || { echo pcre-8.31.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' pcre-8.32.tar > NUL || { echo pcre-8.32.tar - EPIC FAIL ; exit 1; }
 
-patch -d /c/temp/gcc/pcre-8.31 -p1 < pcre.patch
+patch -d /c/temp/gcc/pcre-8.32 -p1 < pcre.patch
 
 cd /c/temp/gcc
-mv pcre-8.31 src
+mv pcre-8.32 src
 mkdir build dest
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared "CFLAGS=-s -Os -fomit-frame-pointer" "CXXFLAGS=-s -Os -fomit-frame-pointer" || { echo pcre - EPIC FAIL ; exit 1; }
 make all install || { echo pcre - EPIC FAIL ; exit 1; }
 cd /c/temp/gcc
 rm -rf build src
-mv dest pcre-8.31
-cd pcre-8.31
+mv dest pcre-8.32
+cd pcre-8.32
 rm -rf bin lib/pkgconfig lib/*.la share
 cp include/pcreposix.h include/regex.h
 
-7za -mx0 a ../pcre-8.31.7z *
+7za -mx0 a ../pcre-8.32.7z *

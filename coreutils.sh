@@ -5,12 +5,12 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' coreutils-8.19.tar > NUL || { echo coreutils-8.19.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' coreutils-8.20.tar > NUL || { echo coreutils-8.20.tar - EPIC FAIL ; exit 1; }
 
-patch -d /c/temp/gcc/coreutils-8.19 -p1 < coreutils.patch
+patch -d /c/temp/gcc/coreutils-8.20 -p1 < coreutils.patch
 
 cd /c/temp/gcc
-mv coreutils-8.19 src
+mv coreutils-8.20 src
 mkdir -p build dest/bin
 
 # Missing <sys/wait.h>.
@@ -22,13 +22,14 @@ echo "/* ignore */" > src/lib/userspec.c
 
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest || { echo coreutils - EPIC FAIL ; exit 1; }
+touch src/make-prime-list
 make -k "CFLAGS=-Os -fomit-frame-pointer" "LDFLAGS=-s"
 cd src
 mv sha1sum.exe sha256sum.exe sha512sum.exe sort.exe uniq.exe wc.exe ../../dest/bin || { echo coreutils - EPIC FAIL ; exit 1; }
 cd /c/temp/gcc
 rm -rf build src
-mv dest coreutils-8.19
-cd coreutils-8.19
+mv dest coreutils-8.20
+cd coreutils-8.20
 find -name "*.exe" -type f -print -exec strip -s {} ";"
 
-7za -mx0 a ../coreutils-8.19.7z *
+7za -mx0 a ../coreutils-8.20.7z *
