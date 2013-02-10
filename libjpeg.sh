@@ -5,24 +5,24 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' jpegsrc.v8d.tar > NUL || { echo jpegsrc.v8d.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' jpegsrc.v9.tar > NUL || { echo jpegsrc.v9.tar - EPIC FAIL ; exit 1; }
 
-cp libjpeg.patch /c/temp/gcc/jpeg-8d
+cp libjpeg.patch /c/temp/gcc/jpeg-9
 
 cd /c/temp/gcc
-mkdir -p libjpeg-8d/bin libjpeg-8d/include libjpeg-8d/lib
-cd jpeg-8d
+mkdir -p libjpeg-9/bin libjpeg-9/include libjpeg-9/lib
+cd jpeg-9
 configure --disable-shared || { echo libjpeg - EPIC FAIL ; exit 1; }
 make "CFLAGS=-Os -fomit-frame-pointer -DTWO_FILE_COMMANDLINE" "LDFLAGS=-s" || { echo libjpeg - EPIC FAIL ; exit 1; }
-mv jpegtran.exe ../libjpeg-8d/bin
-mv jconfig.h jerror.h jmorecfg.h jpeglib.h ../libjpeg-8d/include
-mv .libs/libjpeg.a ../libjpeg-8d/lib
+mv jpegtran.exe ../libjpeg-9/bin
+mv jconfig.h jerror.h jmorecfg.h jpeglib.h ../libjpeg-9/include
+mv .libs/libjpeg.a ../libjpeg-9/lib
 cd /c/temp/gcc
-patch -d libjpeg-8d -p1 < jpeg-8d/libjpeg.patch
-sed -re 's/\b(boolean|FALSE|TRUE)\b/JPEG_\1/g' libjpeg-8d/include/jpeglib.h > libjpeg-8d/include/jpeglib.h.fixed
-mv -f libjpeg-8d/include/jpeglib.h.fixed libjpeg-8d/include/jpeglib.h
-rm -rf jpeg-8d
-cd libjpeg-8d
+patch -d libjpeg-9 -p1 < jpeg-9/libjpeg.patch
+sed -re 's/\b(boolean|FALSE|TRUE)\b/JPEG_\1/g' libjpeg-9/include/jpeglib.h > libjpeg-9/include/jpeglib.h.fixed
+mv -f libjpeg-9/include/jpeglib.h.fixed libjpeg-9/include/jpeglib.h
+rm -rf jpeg-9
+cd libjpeg-9
 find -name "*.exe" -type f -print -exec strip -s {} ";"
 
-7za -mx0 a ../libjpeg-8d.7z *
+7za -mx0 a ../libjpeg-9.7z *

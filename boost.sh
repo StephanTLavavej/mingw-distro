@@ -5,13 +5,13 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' boost_1_52_0.tar > NUL || { echo boost_1_52_0.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' boost_1_53_0.tar > NUL || { echo boost_1_53_0.tar - EPIC FAIL ; exit 1; }
 
-patch -d /c/temp/gcc/boost_1_52_0 -p1 < boost-BOOST_THREAD_USE_LIB.patch
-patch -d /c/temp/gcc/boost_1_52_0 -p1 < boost-bootstrap.patch
+patch -d /c/temp/gcc/boost_1_53_0 -p1 < boost-BOOST_THREAD_USE_LIB.patch
+patch -d /c/temp/gcc/boost_1_53_0 -p1 < boost-bootstrap.patch
 
 cd /c/temp/gcc
-mv boost_1_52_0 src
+mv boost_1_53_0 src
 mkdir -p dest/include
 cd src
 bootstrap.sh || { echo boost - EPIC FAIL ; exit 1; }
@@ -24,12 +24,12 @@ cd /c/temp/gcc/dest/lib
 for i in *.a; do mv $i ${i%-mgw*.a}.a; done
 cd /c/temp/gcc
 mv src/boost dest/include
-mv dest boost-1.52.0
+mv dest boost-1.53.0
 
 echo Packaging...
 
-cd boost-1.52.0
-7za -mx0 a ../boost-1.52.0.7z * > NUL || { echo boost-1.52.0.7z - EPIC FAIL ; exit 1; }
+cd boost-1.53.0
+7za -mx0 a ../boost-1.53.0.7z * > NUL || { echo boost-1.53.0.7z - EPIC FAIL ; exit 1; }
 
 echo Cleaning...
 

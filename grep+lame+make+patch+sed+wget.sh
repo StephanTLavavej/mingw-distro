@@ -9,13 +9,13 @@ source 0_append_distro_path.sh
 7za x '-oC:\Temp\gcc' lame-3.99.5.tar > NUL || { echo lame-3.99.5.tar - EPIC FAIL ; exit 1; }
 7za x '-oC:\Temp\gcc' make-3.82.tar > NUL || { echo make-3.82.tar - EPIC FAIL ; exit 1; }
 7za x '-oC:\Temp\gcc' patch-2.6.1.tar > NUL || { echo patch-2.6.1.tar - EPIC FAIL ; exit 1; }
-7za x '-oC:\Temp\gcc' sed-4.2.1.tar > NUL || { echo sed-4.2.1.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' sed-4.2.2.tar > NUL || { echo sed-4.2.2.tar - EPIC FAIL ; exit 1; }
 7za x '-oC:\Temp\gcc' wget-1.14.tar > NUL || { echo wget-1.14.tar - EPIC FAIL ; exit 1; }
 
 patch -d /c/temp/gcc/grep-2.10 -p1 < grep.patch
 patch -d /c/temp/gcc/patch-2.6.1 -p1 < patch.patch
 patch -d /c/temp/gcc/patch-2.6.1 -p1 < patch-strnlen.patch
-patch -d /c/temp/gcc/sed-4.2.1 -p1 < sed.patch
+patch -d /c/temp/gcc/sed-4.2.2 -p1 < sed.patch
 
 cd /c/temp/gcc
 mkdir -p dest/bin
@@ -75,7 +75,7 @@ mv src/patch.exe ../dest/bin
 cd /c/temp/gcc
 rm -rf build src
 
-mv sed-4.2.1 src
+mv sed-4.2.2 src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest || { echo sed - EPIC FAIL ; exit 1; }

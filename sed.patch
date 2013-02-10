@@ -1,7 +1,7 @@
-diff -aurN sed-4.2.1/lib/regex_internal.h sed-4.2.1-fixed/lib/regex_internal.h
---- sed-4.2.1/lib/regex_internal.h	2009-06-03 12:10:51 -0700
-+++ sed-4.2.1-fixed/lib/regex_internal.h	2012-03-18 04:12:04 -0700
-@@ -458,7 +458,9 @@
+diff -aurN sed-4.2.2/lib/regex_internal.h sed-4.2.2-fixed/lib/regex_internal.h
+--- sed-4.2.2/lib/regex_internal.h	2012-12-22 05:21:52 -0800
++++ sed-4.2.2-fixed/lib/regex_internal.h	2013-02-09 18:37:00 -0800
+@@ -448,7 +448,9 @@
  #define re_string_skip_bytes(pstr,idx) ((pstr)->cur_idx += (idx))
  #define re_string_set_index(pstr,idx) ((pstr)->cur_idx = (idx))
  
@@ -11,3 +11,14 @@ diff -aurN sed-4.2.1/lib/regex_internal.h sed-4.2.1-fixed/lib/regex_internal.h
  
  #ifndef _LIBC
  # if HAVE_ALLOCA
+diff -aurN sed-4.2.2/lib/wctype.in.h sed-4.2.2-fixed/lib/wctype.in.h
+--- sed-4.2.2/lib/wctype.in.h	2012-12-22 05:21:53 -0800
++++ sed-4.2.2-fixed/lib/wctype.in.h	2013-02-09 18:38:10 -0800
+@@ -40,6 +40,7 @@
+    <wchar.h>.
+    BSD/OS 4.0.1 has a bug: <stddef.h>, <stdio.h> and <time.h> must be
+    included before <wchar.h>.  */
++# include <ctype.h>
+ # include <stddef.h>
+ # include <stdio.h>
+ # include <time.h>
