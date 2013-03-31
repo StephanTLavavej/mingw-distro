@@ -1,11 +1,8 @@
 #!/bin/sh
 
-# If you're running this by hand, use "MEOW || echo EPIC FAIL" to test MEOW for failure without closing your bash prompt.
-# This script uses "MEOW || { echo EPIC FAIL ; exit 1; }" to terminate immediately in the event of failure.
-
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' coreutils-8.20.tar > NUL || { echo coreutils-8.20.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' coreutils-8.20.tar > NUL || fail_with coreutils-8.20.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/coreutils-8.20 -p1 < coreutils.patch
 
@@ -21,11 +18,11 @@ echo "/* ignore */" > src/lib/idcache.c
 echo "/* ignore */" > src/lib/userspec.c
 
 cd build
-../src/configure --prefix=/c/temp/gcc/dest || { echo coreutils - EPIC FAIL ; exit 1; }
+../src/configure --prefix=/c/temp/gcc/dest || fail_with coreutils - EPIC FAIL
 touch src/make-prime-list
 make -k "CFLAGS=-O3 -fomit-frame-pointer" "LDFLAGS=-s"
 cd src
-mv sha1sum.exe sha256sum.exe sha512sum.exe sort.exe uniq.exe wc.exe ../../dest/bin || { echo coreutils - EPIC FAIL ; exit 1; }
+mv sha1sum.exe sha256sum.exe sha512sum.exe sort.exe uniq.exe wc.exe ../../dest/bin || fail_with coreutils - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 mv dest coreutils-8.20

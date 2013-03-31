@@ -1,11 +1,8 @@
 #!/bin/sh
 
-# If you're running this by hand, use "MEOW || echo EPIC FAIL" to test MEOW for failure without closing your bash prompt.
-# This script uses "MEOW || { echo EPIC FAIL ; exit 1; }" to terminate immediately in the event of failure.
-
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' freetype-2.4.10.tar > NUL || { echo freetype-2.4.10.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' freetype-2.4.10.tar > NUL || fail_with freetype-2.4.10.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/freetype-2.4.10 -p1 < freetype-cflags.patch
 patch -d /c/temp/gcc/freetype-2.4.10 -p1 < freetype-include.patch
@@ -14,8 +11,8 @@ cd /c/temp/gcc
 mv freetype-2.4.10 src
 mkdir build dest
 cd build
-../src/configure --disable-shared --prefix=/c/temp/gcc/dest || { echo freetype - EPIC FAIL ; exit 1; }
-make all install || { echo freetype - EPIC FAIL ; exit 1; }
+../src/configure --disable-shared --prefix=/c/temp/gcc/dest || fail_with freetype - EPIC FAIL
+make all install || fail_with freetype - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 

@@ -1,17 +1,14 @@
 #!/bin/sh
 
-# If you're running this by hand, use "MEOW || echo EPIC FAIL" to test MEOW for failure without closing your bash prompt.
-# This script uses "MEOW || { echo EPIC FAIL ; exit 1; }" to terminate immediately in the event of failure.
-
 source 0_append_distro_path.sh
 
 # Extract vanilla sources.
-7za x '-oC:\Temp\gcc' w32api-3.17-2-mingw32-src.tar > NUL || { echo w32api-3.17-2-mingw32-src.tar - EPIC FAIL ; exit 1; }
-7za x '-oC:\Temp\gcc' mingwrt-3.20-2-mingw32-src.tar > NUL || { echo mingwrt-3.20-2-mingw32-src.tar - EPIC FAIL ; exit 1; }
-7za x '-oC:\Temp\gcc' gcc-4.7.2.tar > NUL || { echo gcc-4.7.2.tar - EPIC FAIL ; exit 1; }
-7za x '-oC:\Temp\gcc' gmp-5.0.5.tar > NUL || { echo gmp-5.0.5.tar - EPIC FAIL ; exit 1; }
-7za x '-oC:\Temp\gcc' mpfr-3.1.1.tar > NUL || { echo mpfr-3.1.1.tar - EPIC FAIL ; exit 1; }
-7za x '-oC:\Temp\gcc' mpc-1.0.1.tar > NUL || { echo mpc-1.0.1.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' w32api-3.17-2-mingw32-src.tar > NUL || fail_with w32api-3.17-2-mingw32-src.tar - EPIC FAIL
+7za x '-oC:\Temp\gcc' mingwrt-3.20-2-mingw32-src.tar > NUL || fail_with mingwrt-3.20-2-mingw32-src.tar - EPIC FAIL
+7za x '-oC:\Temp\gcc' gcc-4.7.2.tar > NUL || fail_with gcc-4.7.2.tar - EPIC FAIL
+7za x '-oC:\Temp\gcc' gmp-5.0.5.tar > NUL || fail_with gmp-5.0.5.tar - EPIC FAIL
+7za x '-oC:\Temp\gcc' mpfr-3.1.1.tar > NUL || fail_with mpfr-3.1.1.tar - EPIC FAIL
+7za x '-oC:\Temp\gcc' mpc-1.0.1.tar > NUL || fail_with mpc-1.0.1.tar - EPIC FAIL
 
 patch -Z -d /c/temp/gcc/mpfr-3.1.1 -p1 < mpfr.patch
 
@@ -28,8 +25,8 @@ cd /c/temp/gcc
 mv gmp-5.0.5 src
 mkdir build dest
 cd build
-../src/configure --prefix=/c/temp/gcc/dest --disable-shared || { echo gmp configure - EPIC FAIL ; exit 1; }
-make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || { echo gmp make - EPIC FAIL ; exit 1; }
+../src/configure --prefix=/c/temp/gcc/dest --disable-shared || fail_with gmp configure - EPIC FAIL
+make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || fail_with gmp make - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 rm -rf dest/lib/*.la dest/share
@@ -39,8 +36,8 @@ mv dest gmp
 mv mpfr-3.1.1 src
 mkdir build dest
 cd build
-../src/configure --prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp || { echo mpfr configure - EPIC FAIL ; exit 1; }
-make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || { echo mpfr make - EPIC FAIL ; exit 1; }
+../src/configure --prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp || fail_with mpfr configure - EPIC FAIL
+make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || fail_with mpfr make - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 rm -rf dest/lib/*.la dest/share
@@ -50,8 +47,8 @@ mv dest mpfr
 mv mpc-1.0.1 src
 mkdir build dest
 cd build
-../src/configure --prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp --with-mpfr=/c/temp/gcc/mpfr || { echo mpc configure - EPIC FAIL ; exit 1; }
-make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || { echo mpc make - EPIC FAIL ; exit 1; }
+../src/configure --prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp --with-mpfr=/c/temp/gcc/mpfr || fail_with mpc configure - EPIC FAIL
+make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || fail_with mpc make - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 rm -rf dest/lib/*.la dest/share
@@ -61,8 +58,8 @@ mv dest mpc
 mv w32api-3.17-2-mingw32 src
 mkdir build dest
 cd build
-../src/configure --disable-nls --disable-shared --prefix=/c/temp/gcc/dest || { echo w32api configure - EPIC FAIL ; exit 1; }
-make all install "CFLAGS=-O3 -fomit-frame-pointer" "LDFLAGS=-s" || { echo w32api make - EPIC FAIL ; exit 1; }
+../src/configure --disable-nls --disable-shared --prefix=/c/temp/gcc/dest || fail_with w32api configure - EPIC FAIL
+make all install "CFLAGS=-O3 -fomit-frame-pointer" "LDFLAGS=-s" || fail_with w32api make - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 mv dest w32api
@@ -71,8 +68,8 @@ mv dest w32api
 mv mingwrt-3.20-2-mingw32 src
 mkdir build dest
 cd build
-../src/configure --prefix=/c/temp/gcc/dest || { echo mingw-runtime configure - EPIC FAIL ; exit 1; }
-make all install "CFLAGS=-O3 -fomit-frame-pointer" "LDFLAGS=-s" || { echo mingw-runtime make - EPIC FAIL ; exit 1; }
+../src/configure --prefix=/c/temp/gcc/dest || fail_with mingw-runtime configure - EPIC FAIL
+make all install "CFLAGS=-O3 -fomit-frame-pointer" "LDFLAGS=-s" || fail_with mingw-runtime make - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src dest/doc dest/share
 rm -rf dest/bin # http://article.gmane.org/gmane.comp.gnu.mingw.user/36739
@@ -88,7 +85,7 @@ cp -r mingw-runtime/* /mingw
 mv gcc-4.7.2 src
 mkdir build dest
 cd build
-../src/configure --prefix=/c/temp/gcc/dest --with-gmp=/c/temp/gcc/gmp --with-mpfr=/c/temp/gcc/mpfr --with-mpc=/c/temp/gcc/mpc --enable-languages=c,c++ --with-arch=i686 --with-tune=generic --disable-libstdcxx-pch --disable-nls --disable-shared --disable-sjlj-exceptions --disable-win32-registry --enable-checking=release --enable-lto || { echo gcc configure - EPIC FAIL ; exit 1; }
+../src/configure --prefix=/c/temp/gcc/dest --with-gmp=/c/temp/gcc/gmp --with-mpfr=/c/temp/gcc/mpfr --with-mpc=/c/temp/gcc/mpc --enable-languages=c,c++ --with-arch=i686 --with-tune=generic --disable-libstdcxx-pch --disable-nls --disable-shared --disable-sjlj-exceptions --disable-win32-registry --enable-checking=release --enable-lto || fail_with gcc configure - EPIC FAIL
 
 # --disable-libstdcxx-pch   : I don't use this, and it takes up a ton of space.
 # --disable-nls             : I don't want Native Language Support.
@@ -99,7 +96,7 @@ cd build
 # --enable-lto              : LTO is not enabled by default for MinGW, but can be explicitly requested.
 
 # Build and install.
-make bootstrap install "CFLAGS=-g0 -O3 -fomit-frame-pointer" "CXXFLAGS=-g0 -O3 -fomit-frame-pointer -mthreads" "CFLAGS_FOR_TARGET=-g0 -O3 -fomit-frame-pointer" "CXXFLAGS_FOR_TARGET=-g0 -O3 -fomit-frame-pointer -mthreads" "BOOT_CFLAGS=-g0 -O3 -fomit-frame-pointer" "BOOT_CXXFLAGS=-g0 -O3 -fomit-frame-pointer -mthreads" || { echo gcc make - EPIC FAIL ; exit 1; }
+make bootstrap install "CFLAGS=-g0 -O3 -fomit-frame-pointer" "CXXFLAGS=-g0 -O3 -fomit-frame-pointer -mthreads" "CFLAGS_FOR_TARGET=-g0 -O3 -fomit-frame-pointer" "CXXFLAGS_FOR_TARGET=-g0 -O3 -fomit-frame-pointer -mthreads" "BOOT_CFLAGS=-g0 -O3 -fomit-frame-pointer" "BOOT_CXXFLAGS=-g0 -O3 -fomit-frame-pointer -mthreads" || fail_with gcc make - EPIC FAIL
 
 # Cleanup.
 rm -rf /mingw

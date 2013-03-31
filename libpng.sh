@@ -1,18 +1,15 @@
 #!/bin/sh
 
-# If you're running this by hand, use "MEOW || echo EPIC FAIL" to test MEOW for failure without closing your bash prompt.
-# This script uses "MEOW || { echo EPIC FAIL ; exit 1; }" to terminate immediately in the event of failure.
-
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' libpng-1.5.14.tar > NUL || { echo libpng-1.5.14.tar - EPIC FAIL ; exit 1; }
+7za x '-oC:\Temp\gcc' libpng-1.5.14.tar > NUL || fail_with libpng-1.5.14.tar - EPIC FAIL
 
 cd /c/temp/gcc
 mv libpng-1.5.14 src
 mkdir build dest
 cd build
-../src/configure --prefix=/c/temp/gcc/dest --disable-shared || { echo libpng - EPIC FAIL ; exit 1; }
-make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || { echo libpng - EPIC FAIL ; exit 1; }
+../src/configure --prefix=/c/temp/gcc/dest --disable-shared || fail_with libpng - EPIC FAIL
+make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || fail_with libpng - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 mv dest libpng-1.5.14
