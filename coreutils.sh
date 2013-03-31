@@ -23,7 +23,7 @@ echo "/* ignore */" > src/lib/userspec.c
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest || { echo coreutils - EPIC FAIL ; exit 1; }
 touch src/make-prime-list
-make -k "CFLAGS=-Os -fomit-frame-pointer" "LDFLAGS=-s"
+make -k "CFLAGS=-O3 -fomit-frame-pointer" "LDFLAGS=-s"
 cd src
 mv sha1sum.exe sha256sum.exe sha512sum.exe sort.exe uniq.exe wc.exe ../../dest/bin || { echo coreutils - EPIC FAIL ; exit 1; }
 cd /c/temp/gcc

@@ -12,7 +12,7 @@ mv libpng-1.5.14 src
 mkdir build dest
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared || { echo libpng - EPIC FAIL ; exit 1; }
-make all install "CFLAGS=-s -Os -fomit-frame-pointer" || { echo libpng - EPIC FAIL ; exit 1; }
+make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || { echo libpng - EPIC FAIL ; exit 1; }
 cd /c/temp/gcc
 rm -rf build src
 mv dest libpng-1.5.14

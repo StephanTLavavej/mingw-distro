@@ -13,7 +13,7 @@ cd /c/temp/gcc
 mv zlib-1.2.7 src
 mkdir -p dest/include dest/lib
 cd src
-gcc -s -Os -fomit-frame-pointer -c *.c || { echo zlib - EPIC FAIL ; exit 1; }
+gcc -s -O3 -fomit-frame-pointer -c *.c || { echo zlib - EPIC FAIL ; exit 1; }
 ar rs ../dest/lib/libz.a *.o
 mv zconf.h zlib.h ../dest/include
 cd /c/temp/gcc

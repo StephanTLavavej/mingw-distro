@@ -13,7 +13,7 @@ cd /c/temp/gcc
 mkdir -p libjpeg-9/bin libjpeg-9/include libjpeg-9/lib
 cd jpeg-9
 configure --disable-shared || { echo libjpeg - EPIC FAIL ; exit 1; }
-make "CFLAGS=-Os -fomit-frame-pointer -DTWO_FILE_COMMANDLINE" "LDFLAGS=-s" || { echo libjpeg - EPIC FAIL ; exit 1; }
+make "CFLAGS=-O3 -fomit-frame-pointer -DTWO_FILE_COMMANDLINE" "LDFLAGS=-s" || { echo libjpeg - EPIC FAIL ; exit 1; }
 mv jpegtran.exe ../libjpeg-9/bin
 mv jconfig.h jerror.h jmorecfg.h jpeglib.h ../libjpeg-9/include
 mv .libs/libjpeg.a ../libjpeg-9/lib

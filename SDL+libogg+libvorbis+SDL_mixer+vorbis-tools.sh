@@ -20,7 +20,7 @@ mv SDL-1.2.15 src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest || { echo SDL - EPIC FAIL ; exit 1; }
-make all install "CFLAGS=-s -Os -fomit-frame-pointer" || { echo SDL - EPIC FAIL ; exit 1; }
+make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || { echo SDL - EPIC FAIL ; exit 1; }
 cd /c/temp/gcc
 rm -rf build src
 
@@ -28,7 +28,7 @@ mv libogg-1.3.0 src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared || { echo libogg - EPIC FAIL ; exit 1; }
-make all install "CFLAGS=-s -Os -fomit-frame-pointer" || { echo libogg - EPIC FAIL ; exit 1; }
+make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || { echo libogg - EPIC FAIL ; exit 1; }
 cd /c/temp/gcc
 rm -rf build src
 
@@ -36,7 +36,7 @@ mv libvorbis-1.3.3 src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared || { echo libvorbis - EPIC FAIL ; exit 1; }
-make all install "CFLAGS=-s -Os -fomit-frame-pointer" || { echo libvorbis - EPIC FAIL ; exit 1; }
+make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || { echo libvorbis - EPIC FAIL ; exit 1; }
 cd /c/temp/gcc
 rm -rf build src
 
@@ -44,7 +44,7 @@ mv SDL_mixer-1.2.12 src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared || { echo SDL_mixer - EPIC FAIL ; exit 1; }
-make all install "CFLAGS=-s -Os -fomit-frame-pointer" || { echo SDL_mixer - EPIC FAIL ; exit 1; }
+make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || { echo SDL_mixer - EPIC FAIL ; exit 1; }
 cd /c/temp/gcc
 rm -rf build src
 
@@ -52,7 +52,7 @@ mv vorbis-tools-1.4.0 src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-nls || { echo vorbis-tools - EPIC FAIL ; exit 1; }
-make all install "CFLAGS=-s -Os -fomit-frame-pointer" || { echo vorbis-tools - EPIC FAIL ; exit 1; }
+make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || { echo vorbis-tools - EPIC FAIL ; exit 1; }
 cd /c/temp/gcc
 rm -rf build src
 

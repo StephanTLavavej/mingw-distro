@@ -13,7 +13,7 @@ cd /c/temp/gcc
 mv pcre-8.32 src
 mkdir build dest
 cd build
-../src/configure --prefix=/c/temp/gcc/dest --disable-shared "CFLAGS=-s -Os -fomit-frame-pointer" "CXXFLAGS=-s -Os -fomit-frame-pointer" || { echo pcre - EPIC FAIL ; exit 1; }
+../src/configure --prefix=/c/temp/gcc/dest --disable-shared "CFLAGS=-s -O3 -fomit-frame-pointer" "CXXFLAGS=-s -O3 -fomit-frame-pointer" || { echo pcre - EPIC FAIL ; exit 1; }
 make all install || { echo pcre - EPIC FAIL ; exit 1; }
 cd /c/temp/gcc
 rm -rf build src

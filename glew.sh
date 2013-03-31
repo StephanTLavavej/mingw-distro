@@ -14,7 +14,7 @@ mv glew-1.9.0 src
 mkdir dest
 cd src
 rm include/GL/glxew.h
-gcc -s -Os -fomit-frame-pointer -Iinclude -c src/glew.c || { echo glew - EPIC FAIL ; exit 1; }
+gcc -s -O3 -fomit-frame-pointer -Iinclude -c src/glew.c || { echo glew - EPIC FAIL ; exit 1; }
 ar rs lib/libglew32.a glew.o
 mv include lib ../dest
 cd /c/temp/gcc

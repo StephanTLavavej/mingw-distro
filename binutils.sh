@@ -14,7 +14,7 @@ mv binutils-2.23.1 src
 mkdir build dest
 cd build
 ../src/configure --disable-nls --disable-shared --prefix=/c/temp/gcc/dest || { echo binutils - EPIC FAIL ; exit 1; }
-make all install "CFLAGS=-Os -fomit-frame-pointer" "LDFLAGS=-s" || { echo binutils - EPIC FAIL ; exit 1; }
+make all install "CFLAGS=-O3 -fomit-frame-pointer" "LDFLAGS=-s" || { echo binutils - EPIC FAIL ; exit 1; }
 cd /c/temp/gcc
 rm -rf build src
 mv dest binutils-2.23.1

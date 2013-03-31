@@ -24,7 +24,7 @@ mv grep-2.10 src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-nls || { echo grep - EPIC FAIL ; exit 1; }
-make "CFLAGS=-s -Os -fomit-frame-pointer" || { echo grep - EPIC FAIL ; exit 1; }
+make "CFLAGS=-s -O3 -fomit-frame-pointer" || { echo grep - EPIC FAIL ; exit 1; }
 mv src/grep.exe ../dest/bin
 cd /c/temp/gcc
 rm -rf build src
@@ -33,7 +33,7 @@ mv lame-3.99.5 src
 mkdir build
 cd build
 ../src/configure --disable-shared --prefix=/c/temp/gcc/dest || { echo lame - EPIC FAIL ; exit 1; }
-make "CFLAGS=-Os -fomit-frame-pointer" "LDFLAGS=-s" || { echo lame - EPIC FAIL ; exit 1; }
+make "CFLAGS=-O3 -fomit-frame-pointer" "LDFLAGS=-s" || { echo lame - EPIC FAIL ; exit 1; }
 mv frontend/lame.exe ../dest/bin
 cd /c/temp/gcc
 rm -rf build src
@@ -45,7 +45,7 @@ cd build
 ../src/configure --prefix=/c/temp/gcc/dest --enable-case-insensitive-file-system --disable-job-server --disable-nls --disable-rpath || { echo make - EPIC FAIL ; exit 1; }
 sed -e "s/#define PATH_SEPARATOR_CHAR ':'/#define PATH_SEPARATOR_CHAR ';'/" config.h > config.fixed
 mv -f config.fixed config.h
-make "CFLAGS=-Os -fomit-frame-pointer" "LDFLAGS=-s" || { echo make - EPIC FAIL ; exit 1; }
+make "CFLAGS=-O3 -fomit-frame-pointer" "LDFLAGS=-s" || { echo make - EPIC FAIL ; exit 1; }
 mv make.exe ../dest/bin
 cd /c/temp/gcc
 rm -rf build src
@@ -70,7 +70,7 @@ cat << 'EOD' > patch.rc
 1 24 "patch.manifest"
 EOD
 windres patch.rc patch.rc.o
-make "CFLAGS=-Os -fomit-frame-pointer" "LDFLAGS=-s" "LIBS=/c/temp/gcc/build/patch.rc.o" || { echo patch - EPIC FAIL ; exit 1; }
+make "CFLAGS=-O3 -fomit-frame-pointer" "LDFLAGS=-s" "LIBS=/c/temp/gcc/build/patch.rc.o" || { echo patch - EPIC FAIL ; exit 1; }
 mv src/patch.exe ../dest/bin
 cd /c/temp/gcc
 rm -rf build src
@@ -79,7 +79,7 @@ mv sed-4.2.2 src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest || { echo sed - EPIC FAIL ; exit 1; }
-make "CFLAGS=-Os -fomit-frame-pointer" "LDFLAGS=-s" || { echo sed - EPIC FAIL ; exit 1; }
+make "CFLAGS=-O3 -fomit-frame-pointer" "LDFLAGS=-s" || { echo sed - EPIC FAIL ; exit 1; }
 mv sed/sed.exe ../dest/bin
 cd /c/temp/gcc
 rm -rf build src
@@ -88,7 +88,7 @@ mv wget-1.14 src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-nls --without-ssl || { echo wget - EPIC FAIL ; exit 1; }
-make "CFLAGS=-Os -fomit-frame-pointer" "LDFLAGS=-s" || { echo wget - EPIC FAIL ; exit 1; }
+make "CFLAGS=-O3 -fomit-frame-pointer" "LDFLAGS=-s" || { echo wget - EPIC FAIL ; exit 1; }
 mv src/wget.exe ../dest/bin
 cd /c/temp/gcc
 rm -rf build src

@@ -13,7 +13,7 @@ mkdir -p build dest/include dest/lib
 cd src
 cp blocksort.c bzlib.c compress.c crctable.c decompress.c huffman.c randtable.c bzlib.h bzlib_private.h ../build
 cd ../build
-gcc -s -Os -fomit-frame-pointer -c *.c || { echo bzip2 - EPIC FAIL ; exit 1; }
+gcc -s -O3 -fomit-frame-pointer -c *.c || { echo bzip2 - EPIC FAIL ; exit 1; }
 ar rs ../dest/lib/libbz2.a *.o
 mv bzlib.h ../dest/include
 cd /c/temp/gcc

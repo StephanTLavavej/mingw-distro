@@ -12,11 +12,11 @@ source 0_append_distro_path.sh
 cd /c/temp/gcc
 mkdir -p dest/bin
 
-gcc -s -Os -fomit-frame-pointer pngcheck-2.3.0/pngcheck.c -o dest/bin/pngcheck.exe -lpng -lz || { echo pngcheck - EPIC FAIL ; exit 1; }
+gcc -s -O3 -fomit-frame-pointer pngcheck-2.3.0/pngcheck.c -o dest/bin/pngcheck.exe -lpng -lz || { echo pngcheck - EPIC FAIL ; exit 1; }
 
-gcc -s -Os -fomit-frame-pointer pngcrush-1.7.47-nolib/pngcrush.c -o dest/bin/pngcrush.exe -lpng -lz || { echo pngcrush - EPIC FAIL ; exit 1; }
+gcc -s -O3 -fomit-frame-pointer pngcrush-1.7.47-nolib/pngcrush.c -o dest/bin/pngcrush.exe -lpng -lz || { echo pngcrush - EPIC FAIL ; exit 1; }
 
-gcc -s -Os -fomit-frame-pointer pngrewrite-1.4.0/*.c -o dest/bin/pngrewrite.exe -lpng -lz || { echo pngrewrite - EPIC FAIL ; exit 1; }
+gcc -s -O3 -fomit-frame-pointer pngrewrite-1.4.0/*.c -o dest/bin/pngrewrite.exe -lpng -lz || { echo pngrewrite - EPIC FAIL ; exit 1; }
 
 rm -rf pngcheck-2.3.0 pngcrush-1.7.47-nolib pngrewrite-1.4.0
 mv dest pngcheck+pngcrush+pngrewrite
