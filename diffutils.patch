@@ -1,6 +1,6 @@
-diff -aurN diffutils-3.2/src/dir.c diffutils-3.2-fixed/src/dir.c
---- diffutils-3.2/src/dir.c	2011-08-14 08:58:59 -0700
-+++ diffutils-3.2-fixed/src/dir.c	2012-03-18 04:10:16 -0700
+diff -aurN diffutils-3.3/src/dir.c diffutils-3.3-fixed/src/dir.c
+--- diffutils-3.3/src/dir.c	2013-02-01 20:39:05 -0800
++++ diffutils-3.3-fixed/src/dir.c	2013-03-30 22:54:57 -0700
 @@ -203,14 +203,6 @@
    int volatile val = EXIT_SUCCESS;
    int i;
@@ -16,10 +16,10 @@ diff -aurN diffutils-3.2/src/dir.c diffutils-3.2-fixed/src/dir.c
    /* Get contents of both dirs.  */
    for (i = 0; i < 2; i++)
      if (! dir_read (&cmp->file[i], &dirdata[i]))
-diff -aurN diffutils-3.2/src/sdiff.c diffutils-3.2-fixed/src/sdiff.c
---- diffutils-3.2/src/sdiff.c	2011-08-14 22:24:38 -0700
-+++ diffutils-3.2-fixed/src/sdiff.c	2012-03-18 04:10:16 -0700
-@@ -574,7 +574,7 @@
+diff -aurN diffutils-3.3/src/sdiff.c diffutils-3.3-fixed/src/sdiff.c
+--- diffutils-3.3/src/sdiff.c	2013-02-01 20:39:05 -0800
++++ diffutils-3.3-fixed/src/sdiff.c	2013-03-30 22:54:57 -0700
+@@ -577,7 +577,7 @@
        diffarg (argv[optind]);
        diffarg (argv[optind + 1]);
        diffarg (0);
@@ -28,7 +28,7 @@ diff -aurN diffutils-3.2/src/sdiff.c diffutils-3.2-fixed/src/sdiff.c
        perror_fatal (diffargv[0]);
      }
    else
-@@ -814,7 +814,6 @@
+@@ -805,7 +805,6 @@
  
        /* Yield an exit status indicating that a signal was received.  */
        untrapsig (s);

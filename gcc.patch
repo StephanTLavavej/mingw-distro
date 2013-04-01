@@ -1,7 +1,7 @@
-diff -aurN gcc-4.7.0/gcc/c-family/c-common.c gcc-4.7.0-fixed/gcc/c-family/c-common.c
---- gcc-4.7.0/gcc/c-family/c-common.c	2012-02-13 12:12:54 -0800
-+++ gcc-4.7.0-fixed/gcc/c-family/c-common.c	2012-03-24 18:12:31 -0700
-@@ -251,9 +251,9 @@
+diff -aurN gcc-4.8.0/gcc/c-family/c-common.c gcc-4.8.0-fixed/gcc/c-family/c-common.c
+--- gcc-4.8.0/gcc/c-family/c-common.c	2013-03-08 23:54:02 -0800
++++ gcc-4.8.0-fixed/gcc/c-family/c-common.c	2013-03-31 00:01:56 -0700
+@@ -238,9 +238,9 @@
  
  int flag_use_repository;
  
@@ -13,10 +13,10 @@ diff -aurN gcc-4.7.0/gcc/c-family/c-common.c gcc-4.7.0-fixed/gcc/c-family/c-comm
  
  /* Maximum template instantiation depth.  This limit exists to limit the
     time it takes to notice excessively recursive template instantiations.
-diff -aurN gcc-4.7.0/gcc/c-family/c-opts.c gcc-4.7.0-fixed/gcc/c-family/c-opts.c
---- gcc-4.7.0/gcc/c-family/c-opts.c	2012-01-18 05:10:40 -0800
-+++ gcc-4.7.0-fixed/gcc/c-family/c-opts.c	2012-03-24 18:12:31 -0700
-@@ -213,7 +213,7 @@
+diff -aurN gcc-4.8.0/gcc/c-family/c-opts.c gcc-4.8.0-fixed/gcc/c-family/c-opts.c
+--- gcc-4.8.0/gcc/c-family/c-opts.c	2013-02-18 11:42:56 -0800
++++ gcc-4.8.0-fixed/gcc/c-family/c-opts.c	2013-03-31 00:01:56 -0700
+@@ -210,7 +210,7 @@
    unsigned int i;
    struct cpp_callbacks *cb;
  

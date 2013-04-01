@@ -1,7 +1,7 @@
-diff -aurN coreutils-8.20/configure coreutils-8.20-fixed/configure
---- coreutils-8.20/configure	2012-10-23 08:50:05 -0700
-+++ coreutils-8.20-fixed/configure	2012-12-08 20:44:27 -0800
-@@ -39834,17 +39834,7 @@
+diff -aurN coreutils-8.21/configure coreutils-8.21-fixed/configure
+--- coreutils-8.21/configure	2013-02-14 07:54:18 -0800
++++ coreutils-8.21-fixed/configure	2013-03-30 23:13:17 -0700
+@@ -39778,17 +39778,7 @@
    esac
  fi
  
@@ -19,9 +19,9 @@ diff -aurN coreutils-8.20/configure coreutils-8.20-fixed/configure
  
  
  
-diff -aurN coreutils-8.20/lib/c-strtod.c coreutils-8.20-fixed/lib/c-strtod.c
---- coreutils-8.20/lib/c-strtod.c	2012-10-23 07:17:24 -0700
-+++ coreutils-8.20-fixed/lib/c-strtod.c	2012-12-08 20:44:27 -0800
+diff -aurN coreutils-8.21/lib/c-strtod.c coreutils-8.21-fixed/lib/c-strtod.c
+--- coreutils-8.21/lib/c-strtod.c	2013-01-02 04:34:45 -0800
++++ coreutils-8.21-fixed/lib/c-strtod.c	2013-03-30 23:13:17 -0700
 @@ -26,7 +26,7 @@
  #include <stdlib.h>
  #include <string.h>
@@ -40,16 +40,16 @@ diff -aurN coreutils-8.20/lib/c-strtod.c coreutils-8.20-fixed/lib/c-strtod.c
  # define STRTOD strtold
  #else
  # define STRTOD strtod
-diff -aurN coreutils-8.20/lib/c-strtold.c coreutils-8.20-fixed/lib/c-strtold.c
---- coreutils-8.20/lib/c-strtold.c	2012-10-23 07:17:24 -0700
-+++ coreutils-8.20-fixed/lib/c-strtold.c	2012-12-08 20:44:27 -0800
+diff -aurN coreutils-8.21/lib/c-strtold.c coreutils-8.21-fixed/lib/c-strtold.c
+--- coreutils-8.21/lib/c-strtold.c	2011-08-23 06:48:12 -0700
++++ coreutils-8.21-fixed/lib/c-strtold.c	2013-03-30 23:13:17 -0700
 @@ -1,2 +1,2 @@
 -#define LONG 1
 +#define LONGCAT 1
  #include "c-strtod.c"
-diff -aurN coreutils-8.20/lib/ftruncate.c coreutils-8.20-fixed/lib/ftruncate.c
---- coreutils-8.20/lib/ftruncate.c	2012-10-23 07:17:24 -0700
-+++ coreutils-8.20-fixed/lib/ftruncate.c	2012-12-08 20:44:27 -0800
+diff -aurN coreutils-8.21/lib/ftruncate.c coreutils-8.21-fixed/lib/ftruncate.c
+--- coreutils-8.21/lib/ftruncate.c	2013-01-02 04:34:46 -0800
++++ coreutils-8.21-fixed/lib/ftruncate.c	2013-03-30 23:13:17 -0700
 @@ -14,6 +14,10 @@
     You should have received a copy of the GNU General Public License along
     with this program; if not, see <http://www.gnu.org/licenses/>.  */
@@ -72,9 +72,9 @@ diff -aurN coreutils-8.20/lib/ftruncate.c coreutils-8.20-fixed/lib/ftruncate.c
  /* Get declarations of the native Windows API functions.  */
  #  define WIN32_LEAN_AND_MEAN
  #  include <windows.h>
-diff -aurN coreutils-8.20/lib/gethostname.c coreutils-8.20-fixed/lib/gethostname.c
---- coreutils-8.20/lib/gethostname.c	2012-10-23 07:17:24 -0700
-+++ coreutils-8.20-fixed/lib/gethostname.c	2012-12-08 20:44:27 -0800
+diff -aurN coreutils-8.21/lib/gethostname.c coreutils-8.21-fixed/lib/gethostname.c
+--- coreutils-8.21/lib/gethostname.c	2013-01-02 04:34:46 -0800
++++ coreutils-8.21-fixed/lib/gethostname.c	2013-03-30 23:13:17 -0700
 @@ -87,8 +87,9 @@
  #undef gethostname
  
@@ -86,9 +86,9 @@ diff -aurN coreutils-8.20/lib/gethostname.c coreutils-8.20-fixed/lib/gethostname
    int r;
  
    if (len > INT_MAX)
-diff -aurN coreutils-8.20/lib/randread.c coreutils-8.20-fixed/lib/randread.c
---- coreutils-8.20/lib/randread.c	2012-10-23 07:14:12 -0700
-+++ coreutils-8.20-fixed/lib/randread.c	2012-12-08 20:44:27 -0800
+diff -aurN coreutils-8.21/lib/randread.c coreutils-8.21-fixed/lib/randread.c
+--- coreutils-8.21/lib/randread.c	2013-01-30 16:46:24 -0800
++++ coreutils-8.21-fixed/lib/randread.c	2013-03-30 23:13:17 -0700
 @@ -176,9 +176,6 @@
      }
    ISAAC_SEED (struct timeval, gettimeofday (&v, NULL));
@@ -99,10 +99,10 @@ diff -aurN coreutils-8.20/lib/randread.c coreutils-8.20-fixed/lib/randread.c
  
  #ifdef lint
    /* Normally we like having the extra randomness from uninitialized
-diff -aurN coreutils-8.20/lib/unistd.in.h coreutils-8.20-fixed/lib/unistd.in.h
---- coreutils-8.20/lib/unistd.in.h	2012-10-23 07:19:37 -0700
-+++ coreutils-8.20-fixed/lib/unistd.in.h	2012-12-08 20:44:27 -0800
-@@ -713,9 +713,9 @@
+diff -aurN coreutils-8.21/lib/unistd.in.h coreutils-8.21-fixed/lib/unistd.in.h
+--- coreutils-8.21/lib/unistd.in.h	2013-01-25 18:45:11 -0800
++++ coreutils-8.21-fixed/lib/unistd.in.h	2013-03-30 23:13:17 -0700
+@@ -704,9 +704,9 @@
  #   undef gethostname
  #   define gethostname rpl_gethostname
  #  endif
@@ -114,9 +114,9 @@ diff -aurN coreutils-8.20/lib/unistd.in.h coreutils-8.20-fixed/lib/unistd.in.h
  # else
  #  if !@HAVE_GETHOSTNAME@
  _GL_FUNCDECL_SYS (gethostname, int, (char *name, size_t len)
-diff -aurN coreutils-8.20/lib/xstrtod.c coreutils-8.20-fixed/lib/xstrtod.c
---- coreutils-8.20/lib/xstrtod.c	2012-10-23 07:17:24 -0700
-+++ coreutils-8.20-fixed/lib/xstrtod.c	2012-12-08 20:44:27 -0800
+diff -aurN coreutils-8.21/lib/xstrtod.c coreutils-8.21-fixed/lib/xstrtod.c
+--- coreutils-8.21/lib/xstrtod.c	2013-01-02 04:34:46 -0800
++++ coreutils-8.21-fixed/lib/xstrtod.c	2013-03-30 23:13:17 -0700
 @@ -26,7 +26,7 @@
  #include <limits.h>
  #include <stdio.h>
@@ -126,16 +126,16 @@ diff -aurN coreutils-8.20/lib/xstrtod.c coreutils-8.20-fixed/lib/xstrtod.c
  # define XSTRTOD xstrtold
  # define DOUBLE long double
  #else
-diff -aurN coreutils-8.20/lib/xstrtold.c coreutils-8.20-fixed/lib/xstrtold.c
---- coreutils-8.20/lib/xstrtold.c	2012-10-23 07:17:24 -0700
-+++ coreutils-8.20-fixed/lib/xstrtold.c	2012-12-08 20:44:27 -0800
+diff -aurN coreutils-8.21/lib/xstrtold.c coreutils-8.21-fixed/lib/xstrtold.c
+--- coreutils-8.21/lib/xstrtold.c	2011-08-23 06:48:13 -0700
++++ coreutils-8.21-fixed/lib/xstrtold.c	2013-03-30 23:13:17 -0700
 @@ -1,2 +1,2 @@
 -#define LONG 1
 +#define LONGCAT 1
  #include "xstrtod.c"
-diff -aurN coreutils-8.20/src/sort.c coreutils-8.20-fixed/src/sort.c
---- coreutils-8.20/src/sort.c	2012-10-23 07:14:12 -0700
-+++ coreutils-8.20-fixed/src/sort.c	2012-12-08 20:44:27 -0800
+diff -aurN coreutils-8.21/src/sort.c coreutils-8.21-fixed/src/sort.c
+--- coreutils-8.21/src/sort.c	2013-01-30 16:46:24 -0800
++++ coreutils-8.21-fixed/src/sort.c	2013-03-30 23:13:17 -0700
 @@ -26,7 +26,6 @@
  #include <pthread.h>
  #include <sys/resource.h>
@@ -144,7 +144,7 @@ diff -aurN coreutils-8.20/src/sort.c coreutils-8.20-fixed/src/sort.c
  #include <signal.h>
  #include <assert.h>
  #include "system.h"
-@@ -447,8 +446,6 @@
+@@ -446,8 +445,6 @@
    -c, --check, --check=diagnose-first  check for sorted input; do not sort\n\
    -C, --check=quiet, --check=silent  like -c, but do not report first bad line\
  \n\
@@ -153,7 +153,7 @@ diff -aurN coreutils-8.20/src/sort.c coreutils-8.20-fixed/src/sort.c
  "), stdout);
        fputs (_("\
        --debug               annotate the part of the line used to sort,\n\
-@@ -515,7 +512,6 @@
+@@ -514,7 +511,6 @@
  enum
  {
    CHECK_OPTION = CHAR_MAX + 1,
@@ -161,7 +161,7 @@ diff -aurN coreutils-8.20/src/sort.c coreutils-8.20-fixed/src/sort.c
    DEBUG_PROGRAM_OPTION,
    FILES0_FROM_OPTION,
    NMERGE_OPTION,
-@@ -530,7 +526,6 @@
+@@ -529,7 +525,6 @@
  {
    {"ignore-leading-blanks", no_argument, NULL, 'b'},
    {"check", optional_argument, NULL, CHECK_OPTION},
@@ -169,7 +169,7 @@ diff -aurN coreutils-8.20/src/sort.c coreutils-8.20-fixed/src/sort.c
    {"debug", no_argument, NULL, DEBUG_PROGRAM_OPTION},
    {"dictionary-order", no_argument, NULL, 'd'},
    {"ignore-case", no_argument, NULL, 'f'},
-@@ -691,21 +686,7 @@
+@@ -690,21 +685,7 @@
  static pid_t
  reap (pid_t pid)
  {
@@ -192,7 +192,7 @@ diff -aurN coreutils-8.20/src/sort.c coreutils-8.20-fixed/src/sort.c
  }
  
  /* TEMP represents a new process; add it to the process table.  Create
-@@ -3695,7 +3676,7 @@
+@@ -3694,7 +3675,7 @@
        if (STREQ (files[i], "-"))
          continue;
  
@@ -201,7 +201,7 @@ diff -aurN coreutils-8.20/src/sort.c coreutils-8.20-fixed/src/sort.c
          die (_("cannot read"), files[i]);
      }
  }
-@@ -4187,7 +4168,7 @@
+@@ -4186,7 +4167,7 @@
      static int const sig[] =
        {
          /* The usual suspects.  */
@@ -210,7 +210,7 @@ diff -aurN coreutils-8.20/src/sort.c coreutils-8.20-fixed/src/sort.c
  #ifdef SIGPOLL
          SIGPOLL,
  #endif
-@@ -4233,7 +4214,6 @@
+@@ -4232,7 +4213,6 @@
          }
  #endif
    }
@@ -218,7 +218,7 @@ diff -aurN coreutils-8.20/src/sort.c coreutils-8.20-fixed/src/sort.c
  
    /* The signal mask is known, so it is safe to invoke exit_cleanup.  */
    atexit (exit_cleanup);
-@@ -4358,12 +4338,6 @@
+@@ -4357,12 +4337,6 @@
            checkonly = c;
            break;
  
@@ -231,7 +231,7 @@ diff -aurN coreutils-8.20/src/sort.c coreutils-8.20-fixed/src/sort.c
          case DEBUG_PROGRAM_OPTION:
            debug = true;
            break;
-@@ -4703,8 +4677,8 @@
+@@ -4702,8 +4676,8 @@
        sort (files, nfiles, outfile, nthreads);
      }
  
@@ -242,10 +242,10 @@ diff -aurN coreutils-8.20/src/sort.c coreutils-8.20-fixed/src/sort.c
  
    exit (EXIT_SUCCESS);
  }
-diff -aurN coreutils-8.20/src/uniq.c coreutils-8.20-fixed/src/uniq.c
---- coreutils-8.20/src/uniq.c	2012-10-23 07:14:12 -0700
-+++ coreutils-8.20-fixed/src/uniq.c	2012-12-08 20:44:27 -0800
-@@ -391,9 +391,11 @@
+diff -aurN coreutils-8.21/src/uniq.c coreutils-8.21-fixed/src/uniq.c
+--- coreutils-8.21/src/uniq.c	2013-01-30 16:46:24 -0800
++++ coreutils-8.21-fixed/src/uniq.c	2013-03-30 23:13:17 -0700
+@@ -390,9 +390,11 @@
      }
  
   closefiles:
@@ -258,9 +258,9 @@ diff -aurN coreutils-8.20/src/uniq.c coreutils-8.20-fixed/src/uniq.c
    /* stdout is handled via the atexit-invoked close_stdout function.  */
  
    free (lb1.buffer);
-diff -aurN coreutils-8.20/src/wc.c coreutils-8.20-fixed/src/wc.c
---- coreutils-8.20/src/wc.c	2012-10-23 07:14:12 -0700
-+++ coreutils-8.20-fixed/src/wc.c	2012-12-08 20:44:27 -0800
+diff -aurN coreutils-8.21/src/wc.c coreutils-8.21-fixed/src/wc.c
+--- coreutils-8.21/src/wc.c	2013-01-30 16:46:24 -0800
++++ coreutils-8.21-fixed/src/wc.c	2013-03-30 23:13:17 -0700
 @@ -499,7 +499,7 @@
      {
        have_read_stdin = true;

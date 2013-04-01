@@ -5,24 +5,20 @@ source 0_append_distro_path.sh
 # Extract vanilla sources.
 7za x '-oC:\Temp\gcc' w32api-3.17-2-mingw32-src.tar > NUL || fail_with w32api-3.17-2-mingw32-src.tar - EPIC FAIL
 7za x '-oC:\Temp\gcc' mingwrt-3.20-2-mingw32-src.tar > NUL || fail_with mingwrt-3.20-2-mingw32-src.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' gcc-4.7.2.tar > NUL || fail_with gcc-4.7.2.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' gmp-5.0.5.tar > NUL || fail_with gmp-5.0.5.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' mpfr-3.1.1.tar > NUL || fail_with mpfr-3.1.1.tar - EPIC FAIL
+7za x '-oC:\Temp\gcc' gcc-4.8.0.tar > NUL || fail_with gcc-4.8.0.tar - EPIC FAIL
+7za x '-oC:\Temp\gcc' gmp-5.1.1.tar > NUL || fail_with gmp-5.1.1.tar - EPIC FAIL
+7za x '-oC:\Temp\gcc' mpfr-3.1.2.tar > NUL || fail_with mpfr-3.1.2.tar - EPIC FAIL
 7za x '-oC:\Temp\gcc' mpc-1.0.1.tar > NUL || fail_with mpc-1.0.1.tar - EPIC FAIL
 
-patch -Z -d /c/temp/gcc/mpfr-3.1.1 -p1 < mpfr.patch
+# patch -Z -d /c/temp/gcc/mpfr-3.1.2 -p1 < mpfr.patch
 
 # Change the default mode to C++11.
-patch -d /c/temp/gcc/gcc-4.7.2 -p1 < gcc.patch
-
-# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=52538
-# http://gcc.gnu.org/git/?p=gcc.git;a=commitdiff;h=76d340ac07ad50937aa1ecbfdf0475b010a5700a
-patch -d /c/temp/gcc/gcc-4.7.2 -p1 < gcc-pr52538.patch
+patch -d /c/temp/gcc/gcc-4.8.0 -p1 < gcc.patch
 
 cd /c/temp/gcc
 
 # Build gmp.
-mv gmp-5.0.5 src
+mv gmp-5.1.1 src
 mkdir build dest
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared || fail_with gmp configure - EPIC FAIL
@@ -33,7 +29,7 @@ rm -rf dest/lib/*.la dest/share
 mv dest gmp
 
 # Build mpfr.
-mv mpfr-3.1.1 src
+mv mpfr-3.1.2 src
 mkdir build dest
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp || fail_with mpfr configure - EPIC FAIL
@@ -82,7 +78,7 @@ cp -r w32api/* /mingw
 cp -r mingw-runtime/* /mingw
 
 # Configure.
-mv gcc-4.7.2 src
+mv gcc-4.8.0 src
 mkdir build dest
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --with-gmp=/c/temp/gcc/gmp --with-mpfr=/c/temp/gcc/mpfr --with-mpc=/c/temp/gcc/mpc --enable-languages=c,c++ --with-arch=i686 --with-tune=generic --disable-libstdcxx-pch --disable-nls --disable-shared --disable-sjlj-exceptions --disable-win32-registry --enable-checking=release --enable-lto || fail_with gcc configure - EPIC FAIL
