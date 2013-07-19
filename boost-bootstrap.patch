@@ -1,6 +1,6 @@
-diff -aurN boost_1_49_0/bootstrap.sh boost_1_49_0-fixed/bootstrap.sh
---- boost_1_49_0/bootstrap.sh	2012-01-30 18:30:03 -0800
-+++ boost_1_49_0-fixed/bootstrap.sh	2012-03-18 03:31:25 -0700
+diff -aurN boost_1_54_0/bootstrap.sh boost_1_54_0-fixed/bootstrap.sh
+--- boost_1_54_0/bootstrap.sh	2013-03-09 14:55:05 -0800
++++ boost_1_54_0-fixed/bootstrap.sh	2013-07-18 00:12:38 -0700
 @@ -215,7 +215,7 @@
  if test "x$BJAM" = x; then
    echo -n "Building Boost.Build engine with toolset $TOOLSET... "
@@ -10,3 +10,42 @@ diff -aurN boost_1_49_0/bootstrap.sh boost_1_49_0-fixed/bootstrap.sh
    if [ $? -ne 0 ]; then
        echo
        echo "Failed to build Boost.Build build engine" 
+diff -aurN boost_1_54_0/tools/build/v2/engine/build.jam boost_1_54_0-fixed/tools/build/v2/engine/build.jam
+--- boost_1_54_0/tools/build/v2/engine/build.jam	2013-05-20 21:14:18 -0700
++++ boost_1_54_0-fixed/tools/build/v2/engine/build.jam	2013-07-18 00:12:43 -0700
+@@ -483,8 +483,8 @@
+     make.c make1.c mem.c object.c option.c output.c parse.c pathsys.c regexp.c
+     rules.c scan.c search.c subst.c w32_getreg.c timestamp.c variable.c
+     modules.c strings.c filesys.c builtins.c class.c cwd.c native.c md5.c
+-    modules/set.c modules/path.c modules/regex.c modules/property-set.c
+-    modules/sequence.c modules/order.c ;
++    [ .path modules set.c ] [ .path modules path.c ] [ .path modules regex.c ]
++    [ .path modules property-set.c ] [ .path modules sequence.c ] [ .path modules order.c ] ;
+ if $(OS) = NT
+ {
+     jam.source += execnt.c filent.c pathnt.c ;
+diff -aurN boost_1_54_0/tools/build/v2/engine/build.sh boost_1_54_0-fixed/tools/build/v2/engine/build.sh
+--- boost_1_54_0/tools/build/v2/engine/build.sh	2013-05-20 21:14:18 -0700
++++ boost_1_54_0-fixed/tools/build/v2/engine/build.sh	2013-07-18 00:12:43 -0700
+@@ -247,18 +247,18 @@
+ BJAM_SOURCES="\
+  command.c compile.c constants.c debug.c execcmd.c frames.c function.c glob.c\
+  hash.c hdrmacro.c headers.c jam.c jambase.c jamgram.c lists.c make.c make1.c\
+- object.c option.c output.c parse.c pathsys.c pathunix.c regexp.c rules.c\
++ object.c option.c output.c parse.c pathsys.c regexp.c rules.c\
+  scan.c search.c subst.c timestamp.c variable.c modules.c strings.c filesys.c\
+  builtins.c class.c cwd.c native.c md5.c w32_getreg.c modules/set.c\
+  modules/path.c modules/regex.c modules/property-set.c modules/sequence.c\
+  modules/order.c"
+ case $BOOST_JAM_TOOLSET in
+     mingw)
+-    BJAM_SOURCES="${BJAM_SOURCES} execnt.c filent.c"
++    BJAM_SOURCES="${BJAM_SOURCES} execnt.c filent.c pathnt.c"
+     ;;
+ 
+     *)
+-    BJAM_SOURCES="${BJAM_SOURCES} execunix.c fileunix.c"
++    BJAM_SOURCES="${BJAM_SOURCES} execunix.c fileunix.c pathunix.c"
+     ;;
+ esac
+ 
