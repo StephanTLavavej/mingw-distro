@@ -2,15 +2,15 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' SDL-2.0.0-7469.tar > NUL || fail_with SDL-2.0.0-7469.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' libogg-1.3.1.tar > NUL || fail_with libogg-1.3.1.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' libvorbis-1.3.3.tar > NUL || fail_with libvorbis-1.3.3.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' SDL_mixer-2.0.0-650.tar > NUL || fail_with SDL_mixer-2.0.0-650.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' vorbis-tools-1.4.0.tar > NUL || fail_with vorbis-tools-1.4.0.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' SDL-2.0.0-7469.tar > NUL || fail_with SDL-2.0.0-7469.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' libogg-1.3.1.tar > NUL || fail_with libogg-1.3.1.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' libvorbis-1.3.3.tar > NUL || fail_with libvorbis-1.3.3.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' SDL_mixer-2.0.0-650.tar > NUL || fail_with SDL_mixer-2.0.0-650.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' vorbis-tools-1.4.0.tar > NUL || fail_with vorbis-tools-1.4.0.tar - EPIC FAIL
 
 # http://www.libsdl.org/extras/win32/common/directx-devel.tar.gz
 mkdir /c/temp/gcc/dest
-7za x '-oC:\Temp\gcc\dest' directx-devel.tar include > NUL || fail_with directx-devel.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc\dest' directx-devel.tar include > NUL || fail_with directx-devel.tar - EPIC FAIL
 
 cd /c/temp/gcc
 
@@ -61,4 +61,4 @@ cd SDL+libogg+libvorbis+SDL_mixer+vorbis-tools
 rm -rf bin/sdl2-config lib/pkgconfig lib/*.la share
 # Verified that strip is unnecessary.
 
-7za -mx0 a ../SDL+libogg+libvorbis+SDL_mixer+vorbis-tools.7z *
+7z -mx0 a ../SDL+libogg+libvorbis+SDL_mixer+vorbis-tools.7z *

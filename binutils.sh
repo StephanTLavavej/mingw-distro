@@ -2,7 +2,7 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' binutils-2.23.2.tar > NUL || fail_with binutils-2.23.2.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' binutils-2.23.2.tar > NUL || fail_with binutils-2.23.2.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/binutils-2.23.2 -p1 < binutils.patch
 
@@ -21,4 +21,4 @@ mv i686-pc-mingw32/lib/* lib
 rm -rf i686-pc-mingw32 lib/*.la share
 find -name "*.exe" -type f -print -exec strip -s {} ";"
 
-7za -mx0 a ../binutils-2.23.2.7z *
+7z -mx0 a ../binutils-2.23.2.7z *

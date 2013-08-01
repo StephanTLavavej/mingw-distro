@@ -2,7 +2,7 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' diffutils-3.3.tar > NUL || fail_with diffutils-3.3.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' diffutils-3.3.tar > NUL || fail_with diffutils-3.3.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/diffutils-3.3 -p1 < diffutils.patch
 
@@ -20,4 +20,4 @@ cd diffutils-3.3
 rm -rf share
 find -name "*.exe" -type f -print -exec strip -s {} ";"
 
-7za -mx0 a ../diffutils-3.3.7z *
+7z -mx0 a ../diffutils-3.3.7z *

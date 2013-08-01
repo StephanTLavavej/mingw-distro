@@ -2,7 +2,7 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' boost_1_54_0.tar > NUL || fail_with boost_1_54_0.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' boost_1_54_0.tar > NUL || fail_with boost_1_54_0.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/boost_1_54_0 -p1 < boost-bootstrap.patch
 patch -d /c/temp/gcc/boost_1_54_0 -p1 < boost-official.patch
@@ -26,7 +26,7 @@ mv dest boost-1.54.0
 echo Packaging...
 
 cd boost-1.54.0
-7za -mx0 a ../boost-1.54.0.7z * > NUL || fail_with boost-1.54.0.7z - EPIC FAIL
+7z -mx0 a ../boost-1.54.0.7z * > NUL || fail_with boost-1.54.0.7z - EPIC FAIL
 
 echo Cleaning...
 

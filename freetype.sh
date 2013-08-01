@@ -2,7 +2,7 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' freetype-2.5.0.1.tar > NUL || fail_with freetype-2.5.0.1.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' freetype-2.5.0.1.tar > NUL || fail_with freetype-2.5.0.1.tar - EPIC FAIL
 
 cd /c/temp/gcc
 mv freetype-2.5.0.1 src
@@ -20,4 +20,4 @@ rm -rf bin lib/pkgconfig lib/*.la share
 mv include/freetype2/freetype include
 rmdir include/freetype2
 
-7za -mx0 a ../freetype-2.5.0.1.7z *
+7z -mx0 a ../freetype-2.5.0.1.7z *

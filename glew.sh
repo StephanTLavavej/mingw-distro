@@ -2,7 +2,7 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' glew-1.9.0.tar > NUL || fail_with glew-1.9.0.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' glew-1.9.0.tar > NUL || fail_with glew-1.9.0.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/glew-1.9.0 -p1 < glew.patch
 
@@ -19,4 +19,4 @@ rm -rf src
 mv dest glew-1.9.0
 cd glew-1.9.0
 
-7za -mx0 a ../glew-1.9.0.7z *
+7z -mx0 a ../glew-1.9.0.7z *

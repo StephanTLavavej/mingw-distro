@@ -1,4 +1,4 @@
-msys-7.2 consists of the following files:
+msys-10.4 consists of the following files:
 
 bash-3.1.17-4-msys-1.0.16-bin.tar
 bison-2.4.2-1-msys-1.0.13-bin.tar
@@ -24,7 +24,7 @@ texinfo-4.13a-2-msys-1.0.13-bin.tar
 
 and extract.bat, which contains:
 
-@7za x *.tar && del *.tar && rd /s /q postinstall
+@7z x *.tar && del *.tar && rd /s /q postinstall
 
 It's that simple!
 

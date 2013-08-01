@@ -3,12 +3,12 @@
 source 0_append_distro_path.sh
 
 # Extract vanilla sources.
-7za x '-oC:\Temp\gcc' w32api-3.17-2-mingw32-src.tar > NUL || fail_with w32api-3.17-2-mingw32-src.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' mingwrt-3.20-2-mingw32-src.tar > NUL || fail_with mingwrt-3.20-2-mingw32-src.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' gcc-4.8.1.tar > NUL || fail_with gcc-4.8.1.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' gmp-5.1.2.tar > NUL || fail_with gmp-5.1.2.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' mpfr-3.1.2.tar > NUL || fail_with mpfr-3.1.2.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' mpc-1.0.1.tar > NUL || fail_with mpc-1.0.1.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' w32api-3.17-2-mingw32-src.tar > NUL || fail_with w32api-3.17-2-mingw32-src.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' mingwrt-3.20-2-mingw32-src.tar > NUL || fail_with mingwrt-3.20-2-mingw32-src.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' gcc-4.8.1.tar > NUL || fail_with gcc-4.8.1.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' gmp-5.1.2.tar > NUL || fail_with gmp-5.1.2.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' mpfr-3.1.2.tar > NUL || fail_with mpfr-3.1.2.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' mpc-1.0.1.tar > NUL || fail_with mpc-1.0.1.tar - EPIC FAIL
 
 # patch -Z -d /c/temp/gcc/mpfr-3.1.2 -p1 < mpfr.patch
 
@@ -111,4 +111,4 @@ cp gcc.exe cc.exe
 cd ..
 find -name "*.exe" -type f -print -exec strip -s {} ";"
 
-7za -mx0 a ../w32api+mingw-runtime+gcc.7z *
+7z -mx0 a ../w32api+mingw-runtime+gcc.7z *

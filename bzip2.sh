@@ -2,7 +2,7 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' bzip2-1.0.6.tar > NUL || fail_with bzip2-1.0.6.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' bzip2-1.0.6.tar > NUL || fail_with bzip2-1.0.6.tar - EPIC FAIL
 
 cd /c/temp/gcc
 mv bzip2-1.0.6 src
@@ -18,4 +18,4 @@ rm -rf src build
 mv dest bzip2-1.0.6
 cd bzip2-1.0.6
 
-7za -mx0 a ../bzip2-1.0.6.7z *
+7z -mx0 a ../bzip2-1.0.6.7z *

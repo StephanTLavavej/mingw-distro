@@ -2,9 +2,9 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' pngcheck-2.3.0.tar > NUL || fail_with pngcheck-2.3.0.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' pngcrush-1.7.66-nolib.tar > NUL || fail_with pngcrush-1.7.66-nolib.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc\pngrewrite-1.4.0' pngrewrite-1.4.0.zip > NUL || fail_with pngrewrite-1.4.0.zip - EPIC FAIL
+7z x '-oC:\Temp\gcc' pngcheck-2.3.0.tar > NUL || fail_with pngcheck-2.3.0.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' pngcrush-1.7.66-nolib.tar > NUL || fail_with pngcrush-1.7.66-nolib.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc\pngrewrite-1.4.0' pngrewrite-1.4.0.zip > NUL || fail_with pngrewrite-1.4.0.zip - EPIC FAIL
 
 cd /c/temp/gcc
 mkdir -p dest/bin
@@ -20,4 +20,4 @@ mv dest pngcheck+pngcrush+pngrewrite
 cd pngcheck+pngcrush+pngrewrite
 # Verified that strip is unnecessary.
 
-7za -mx0 a ../pngcheck+pngcrush+pngrewrite.7z *
+7z -mx0 a ../pngcheck+pngcrush+pngrewrite.7z *

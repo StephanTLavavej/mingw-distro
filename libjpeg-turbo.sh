@@ -2,9 +2,9 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' libjpeg-turbo-1.3.0.tar > NUL || fail_with libjpeg-turbo-1.3.0.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' cmake-2.8.11.1-win32-x86.zip > NUL || fail_with cmake-2.8.11.1-win32-x86.zip - EPIC FAIL
-7za x '-oC:\Temp\gcc' nasm-2.10.07-win32.zip > NUL || fail_with nasm-2.10.07-win32.zip - EPIC FAIL
+7z x '-oC:\Temp\gcc' libjpeg-turbo-1.3.0.tar > NUL || fail_with libjpeg-turbo-1.3.0.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' cmake-2.8.11.1-win32-x86.zip > NUL || fail_with cmake-2.8.11.1-win32-x86.zip - EPIC FAIL
+7z x '-oC:\Temp\gcc' nasm-2.10.07-win32.zip > NUL || fail_with nasm-2.10.07-win32.zip - EPIC FAIL
 
 cd /c/temp/gcc
 mv cmake-2.8.11.1-win32-x86 cmake
@@ -25,4 +25,4 @@ mv dest libjpeg-turbo-1.3.0
 cd libjpeg-turbo-1.3.0
 # Verified that strip is unnecessary.
 
-7za -mx0 a ../libjpeg-turbo-1.3.0.7z *
+7z -mx0 a ../libjpeg-turbo-1.3.0.7z *

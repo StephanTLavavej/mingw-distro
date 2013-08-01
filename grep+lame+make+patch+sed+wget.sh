@@ -2,12 +2,12 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' grep-2.10.tar > NUL || fail_with grep-2.10.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' lame-3.99.5.tar > NUL || fail_with lame-3.99.5.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' make-3.82.tar > NUL || fail_with make-3.82.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' patch-2.6.1.tar > NUL || fail_with patch-2.6.1.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' sed-4.2.2.tar > NUL || fail_with sed-4.2.2.tar - EPIC FAIL
-7za x '-oC:\Temp\gcc' wget-1.14.tar > NUL || fail_with wget-1.14.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' grep-2.10.tar > NUL || fail_with grep-2.10.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' lame-3.99.5.tar > NUL || fail_with lame-3.99.5.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' make-3.82.tar > NUL || fail_with make-3.82.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' patch-2.6.1.tar > NUL || fail_with patch-2.6.1.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' sed-4.2.2.tar > NUL || fail_with sed-4.2.2.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' wget-1.14.tar > NUL || fail_with wget-1.14.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/grep-2.10 -p1 < grep.patch
 patch -d /c/temp/gcc/patch-2.6.1 -p1 < patch.patch
@@ -94,4 +94,4 @@ mv dest grep+lame+make+patch+sed+wget
 cd grep+lame+make+patch+sed+wget
 find -name "*.exe" -type f -print -exec strip -s {} ";"
 
-7za -mx0 a ../grep+lame+make+patch+sed+wget.7z *
+7z -mx0 a ../grep+lame+make+patch+sed+wget.7z *

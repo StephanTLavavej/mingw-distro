@@ -2,7 +2,7 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' coreutils-8.21.tar > NUL || fail_with coreutils-8.21.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' coreutils-8.21.tar > NUL || fail_with coreutils-8.21.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/coreutils-8.21 -p1 < coreutils.patch
 
@@ -29,4 +29,4 @@ mv dest coreutils-8.21
 cd coreutils-8.21
 find -name "*.exe" -type f -print -exec strip -s {} ";"
 
-7za -mx0 a ../coreutils-8.21.7z *
+7z -mx0 a ../coreutils-8.21.7z *

@@ -2,7 +2,7 @@
 
 source 0_append_distro_path.sh
 
-7za x '-oC:\Temp\gcc' libpng-1.6.3.tar > NUL || fail_with libpng-1.6.3.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' libpng-1.6.3.tar > NUL || fail_with libpng-1.6.3.tar - EPIC FAIL
 
 cd /c/temp/gcc
 mv libpng-1.6.3 src
@@ -16,4 +16,4 @@ mv dest libpng-1.6.3
 cd libpng-1.6.3
 rm -rf bin include/libpng16 lib/pkgconfig lib/*.la lib/libpng16.a share
 
-7za -mx0 a ../libpng-1.6.3.7z *
+7z -mx0 a ../libpng-1.6.3.7z *
