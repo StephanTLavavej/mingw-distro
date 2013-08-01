@@ -27,6 +27,5 @@ cd /c/temp/gcc
 rm -rf build src
 mv dest coreutils-8.21
 cd coreutils-8.21
-find -name "*.exe" -type f -print -exec strip -s {} ";"
 
 7z -mx0 a ../coreutils-8.21.7z *

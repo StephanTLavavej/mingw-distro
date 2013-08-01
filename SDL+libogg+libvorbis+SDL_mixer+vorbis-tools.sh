@@ -59,6 +59,5 @@ rm -rf build src
 mv dest SDL+libogg+libvorbis+SDL_mixer+vorbis-tools
 cd SDL+libogg+libvorbis+SDL_mixer+vorbis-tools
 rm -rf bin/sdl2-config lib/pkgconfig lib/*.la share
-# Verified that strip is unnecessary.
 
 7z -mx0 a ../SDL+libogg+libvorbis+SDL_mixer+vorbis-tools.7z *

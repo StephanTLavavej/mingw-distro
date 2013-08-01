@@ -19,6 +19,5 @@ cd binutils-2.23.2
 mv i686-pc-mingw32/bin/* bin
 mv i686-pc-mingw32/lib/* lib
 rm -rf i686-pc-mingw32 lib/*.la share
-find -name "*.exe" -type f -print -exec strip -s {} ";"
 
 7z -mx0 a ../binutils-2.23.2.7z *

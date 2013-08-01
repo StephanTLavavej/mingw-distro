@@ -23,6 +23,5 @@ mv build/libjpeg.a build/libturbojpeg.a dest/lib || fail_with libjpeg-turbo - EP
 rm -rf build src cmake nasm
 mv dest libjpeg-turbo-1.3.0
 cd libjpeg-turbo-1.3.0
-# Verified that strip is unnecessary.
 
 7z -mx0 a ../libjpeg-turbo-1.3.0.7z *

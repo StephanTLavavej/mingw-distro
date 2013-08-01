@@ -92,6 +92,5 @@ rm -rf build src
 
 mv dest grep+lame+make+patch+sed+wget
 cd grep+lame+make+patch+sed+wget
-find -name "*.exe" -type f -print -exec strip -s {} ";"
 
 7z -mx0 a ../grep+lame+make+patch+sed+wget.7z *

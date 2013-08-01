@@ -18,6 +18,5 @@ gcc -s -O3 -fomit-frame-pointer pngrewrite-1.4.0/*.c -o dest/bin/pngrewrite.exe 
 rm -rf pngcheck-2.3.0 pngcrush-1.7.66-nolib pngrewrite-1.4.0
 mv dest pngcheck+pngcrush+pngrewrite
 cd pngcheck+pngcrush+pngrewrite
-# Verified that strip is unnecessary.
 
 7z -mx0 a ../pngcheck+pngcrush+pngrewrite.7z *

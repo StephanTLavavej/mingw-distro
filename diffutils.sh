@@ -18,6 +18,5 @@ rm -rf build src
 mv dest diffutils-3.3
 cd diffutils-3.3
 rm -rf share
-find -name "*.exe" -type f -print -exec strip -s {} ";"
 
 7z -mx0 a ../diffutils-3.3.7z *

@@ -109,6 +109,5 @@ cd bin
 rm c++.exe i686-pc-mingw32-*
 cp gcc.exe cc.exe
 cd ..
-find -name "*.exe" -type f -print -exec strip -s {} ";"
 
 7z -mx0 a ../w32api+mingw-runtime+gcc.7z *
