@@ -16,8 +16,6 @@ cd /c/temp/gcc
 rm -rf build src
 mv dest binutils-2.23.2
 cd binutils-2.23.2
-mv i686-pc-mingw32/bin/* bin
-mv i686-pc-mingw32/lib/* lib
-rm -rf i686-pc-mingw32 lib/*.la share
+rm -rf lib/*.la share
 
 7z -mx0 a ../binutils-2.23.2.7z *

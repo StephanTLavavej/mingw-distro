@@ -12,6 +12,8 @@ source 0_append_distro_path.sh
 mkdir /c/temp/gcc/dest
 7z x '-oC:\Temp\gcc\dest' directx-devel.tar include > NUL || fail_with directx-devel.tar - EPIC FAIL
 
+patch -d /c/temp/gcc/SDL -p1 < sdl-clipcursor.patch
+
 cd /c/temp/gcc
 
 mv SDL src

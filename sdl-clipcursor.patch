@@ -1,0 +1,80 @@
+diff -aurN SDL/include/SDL_video.h SDL-fixed/include/SDL_video.h
+--- SDL/include/SDL_video.h	2013-07-17 21:33:47 -0700
++++ SDL-fixed/include/SDL_video.h	2013-07-23 20:19:16 -0700
+@@ -39,6 +39,11 @@
+ extern "C" {
+ #endif
+ 
++extern int SDL_ClipCursorMarginLeft;
++extern int SDL_ClipCursorMarginTop;
++extern int SDL_ClipCursorMarginRight;
++extern int SDL_ClipCursorMarginBottom;
++
+ /**
+  *  \brief  The structure that defines a display mode
+  *
+diff -aurN SDL/src/video/windows/SDL_windowsevents.c SDL-fixed/src/video/windows/SDL_windowsevents.c
+--- SDL/src/video/windows/SDL_windowsevents.c	2013-07-17 21:33:47 -0700
++++ SDL-fixed/src/video/windows/SDL_windowsevents.c	2013-07-23 20:13:41 -0700
+@@ -256,6 +256,8 @@
+     }
+ }
+ 
++void WIN_ClipCursor(const RECT * orig);
++
+ LRESULT CALLBACK
+ WIN_WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+ {
+@@ -613,7 +615,7 @@
+             window_flags = SDL_GetWindowFlags(data->window);
+             if ((window_flags & SDL_WINDOW_INPUT_GRABBED) &&
+                 (window_flags & SDL_WINDOW_INPUT_FOCUS)) {
+-                ClipCursor(&rect);
++                WIN_ClipCursor(&rect);
+             }
+ 
+             x = rect.left;
+diff -aurN SDL/src/video/windows/SDL_windowswindow.c SDL-fixed/src/video/windows/SDL_windowswindow.c
+--- SDL/src/video/windows/SDL_windowswindow.c	2013-07-17 21:33:47 -0700
++++ SDL-fixed/src/video/windows/SDL_windowswindow.c	2013-07-23 20:16:08 -0700
+@@ -73,6 +73,22 @@
+     return style;
+ }
+ 
++int SDL_ClipCursorMarginLeft   = 0;
++int SDL_ClipCursorMarginTop    = 0;
++int SDL_ClipCursorMarginRight  = 0;
++int SDL_ClipCursorMarginBottom = 0;
++
++void WIN_ClipCursor(const RECT * orig) {
++    RECT adjusted = *orig;
++
++    adjusted.left   += SDL_ClipCursorMarginLeft;
++    adjusted.top    += SDL_ClipCursorMarginTop;
++    adjusted.right  -= SDL_ClipCursorMarginRight;
++    adjusted.bottom -= SDL_ClipCursorMarginBottom;
++
++    ClipCursor(&adjusted);
++}
++
+ static int
+ SetupWindowData(_THIS, SDL_Window * window, HWND hwnd, SDL_bool created)
+ {
+@@ -177,7 +193,7 @@
+             GetClientRect(hwnd, &rect);
+             ClientToScreen(hwnd, (LPPOINT) & rect);
+             ClientToScreen(hwnd, (LPPOINT) & rect + 1);
+-            ClipCursor(&rect);
++            WIN_ClipCursor(&rect);
+         }
+     }
+ 
+@@ -545,7 +561,7 @@
+         GetClientRect(hwnd, &rect);
+         ClientToScreen(hwnd, (LPPOINT) & rect);
+         ClientToScreen(hwnd, (LPPOINT) & rect + 1);
+-        ClipCursor(&rect);
++        WIN_ClipCursor(&rect);
+     } else {
+         ClipCursor(NULL);
+     }
