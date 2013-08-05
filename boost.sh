@@ -12,7 +12,7 @@ mv boost_1_54_0 src
 mkdir -p dest/include
 cd src
 bootstrap.sh || fail_with boost - EPIC FAIL
-echo "using gcc : : : <compileflags>-fomit-frame-pointer <compileflags>-Wno-attributes ;" >> tools/build/v2/user-config.jam
+echo "using gcc : : : <compileflags>-Wno-attributes ;" >> tools/build/v2/user-config.jam
 
 # --without-context : https://svn.boost.org/trac/boost/ticket/7262
 b2 -j$NUMBER_OF_PROCESSORS --without-context --without-coroutine variant=release link=static runtime-link=static threading=multi --stagedir=/c/temp/gcc/dest stage -sNO_BZIP2 -sBZIP2_BINARY=bz2 -sBZIP2_INCLUDE=/c/mingw/include -sBZIP2_LIBPATH=/c/mingw/lib -sNO_ZLIB -sZLIB_BINARY=z -sZLIB_INCLUDE=/c/mingw/include -sZLIB_LIBPATH=/c/mingw/lib || fail_with boost - EPIC FAIL

@@ -22,7 +22,7 @@ mv gmp-5.1.2 src
 mkdir build dest
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared || fail_with gmp configure - EPIC FAIL
-make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || fail_with gmp make - EPIC FAIL
+make all install "CFLAGS=-s -O3" || fail_with gmp make - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 rm -rf dest/lib/*.la dest/share
@@ -33,7 +33,7 @@ mv mpfr-3.1.2 src
 mkdir build dest
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp || fail_with mpfr configure - EPIC FAIL
-make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || fail_with mpfr make - EPIC FAIL
+make all install "CFLAGS=-s -O3" || fail_with mpfr make - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 rm -rf dest/lib/*.la dest/share
@@ -44,7 +44,7 @@ mv mpc-1.0.1 src
 mkdir build dest
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp --with-mpfr=/c/temp/gcc/mpfr || fail_with mpc configure - EPIC FAIL
-make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || fail_with mpc make - EPIC FAIL
+make all install "CFLAGS=-s -O3" || fail_with mpc make - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 rm -rf dest/lib/*.la dest/share
@@ -55,7 +55,7 @@ mv w32api-3.17-2-mingw32 src
 mkdir build dest
 cd build
 ../src/configure --disable-nls --disable-shared --prefix=/c/temp/gcc/dest || fail_with w32api configure - EPIC FAIL
-make all install "CFLAGS=-O3 -fomit-frame-pointer" "LDFLAGS=-s" || fail_with w32api make - EPIC FAIL
+make all install "CFLAGS=-O3" "LDFLAGS=-s" || fail_with w32api make - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 mv dest w32api
@@ -65,7 +65,7 @@ mv mingwrt-3.20-2-mingw32 src
 mkdir build dest
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest || fail_with mingw-runtime configure - EPIC FAIL
-make all install "CFLAGS=-O3 -fomit-frame-pointer" "LDFLAGS=-s" || fail_with mingw-runtime make - EPIC FAIL
+make all install "CFLAGS=-O3" "LDFLAGS=-s" || fail_with mingw-runtime make - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src dest/doc dest/share
 rm -rf dest/bin # http://article.gmane.org/gmane.comp.gnu.mingw.user/36739
@@ -92,7 +92,7 @@ cd build
 # --enable-lto              : LTO is not enabled by default for MinGW, but can be explicitly requested.
 
 # Build and install.
-make bootstrap install "CFLAGS=-g0 -O3 -fomit-frame-pointer" "CXXFLAGS=-g0 -O3 -fomit-frame-pointer -mthreads" "CFLAGS_FOR_TARGET=-g0 -O3 -fomit-frame-pointer" "CXXFLAGS_FOR_TARGET=-g0 -O3 -fomit-frame-pointer -mthreads" "BOOT_CFLAGS=-g0 -O3 -fomit-frame-pointer" "BOOT_CXXFLAGS=-g0 -O3 -fomit-frame-pointer -mthreads" || fail_with gcc make - EPIC FAIL
+make bootstrap install "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3 -mthreads" "CFLAGS_FOR_TARGET=-g0 -O3" "CXXFLAGS_FOR_TARGET=-g0 -O3 -mthreads" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3 -mthreads" || fail_with gcc make - EPIC FAIL
 
 # Cleanup.
 rm -rf /mingw

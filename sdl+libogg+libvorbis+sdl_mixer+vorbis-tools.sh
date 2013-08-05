@@ -22,7 +22,7 @@ cd build
 sed -re "s/ -XCClinker -static-libgcc//" ../src/configure > configure-fixed
 mv -f configure-fixed ../src/configure
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared --disable-haptic --disable-joystick || fail_with SDL - EPIC FAIL
-make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || fail_with SDL - EPIC FAIL
+make all install "CFLAGS=-s -O3" || fail_with SDL - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 
@@ -30,7 +30,7 @@ mv libogg-1.3.1 src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared || fail_with libogg - EPIC FAIL
-make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || fail_with libogg - EPIC FAIL
+make all install "CFLAGS=-s -O3" || fail_with libogg - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 
@@ -38,7 +38,7 @@ mv libvorbis-1.3.3 src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared || fail_with libvorbis - EPIC FAIL
-make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || fail_with libvorbis - EPIC FAIL
+make all install "CFLAGS=-s -O3" || fail_with libvorbis - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 
@@ -46,7 +46,7 @@ mv SDL_mixer src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared || fail_with SDL_mixer - EPIC FAIL
-make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || fail_with SDL_mixer - EPIC FAIL
+make all install "CFLAGS=-s -O3" || fail_with SDL_mixer - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 
@@ -54,7 +54,7 @@ mv vorbis-tools-1.4.0 src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-nls || fail_with vorbis-tools - EPIC FAIL
-make all install "CFLAGS=-s -O3 -fomit-frame-pointer" || fail_with vorbis-tools - EPIC FAIL
+make all install "CFLAGS=-s -O3" || fail_with vorbis-tools - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 

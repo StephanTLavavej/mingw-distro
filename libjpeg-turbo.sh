@@ -13,7 +13,7 @@ export PATH=$PATH:/c/temp/gcc/cmake/bin:/c/temp/gcc/nasm
 mv libjpeg-turbo-1.3.0 src
 mkdir -p build dest/bin dest/include dest/lib
 cd build
-cmake -G "MSYS Makefiles" "-DCMAKE_C_FLAGS=-s -O3 -fomit-frame-pointer -DTWO_FILE_COMMANDLINE -Wno-attributes" /c/temp/gcc/src || fail_with libjpeg-turbo - EPIC FAIL
+cmake -G "MSYS Makefiles" "-DCMAKE_C_FLAGS=-s -O3 -DTWO_FILE_COMMANDLINE -Wno-attributes" /c/temp/gcc/src || fail_with libjpeg-turbo - EPIC FAIL
 # make install must NOT be used, as it will contaminate the Windows system directory.
 make || fail_with libjpeg-turbo - EPIC FAIL
 cd /c/temp/gcc

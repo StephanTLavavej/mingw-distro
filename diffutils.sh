@@ -12,7 +12,7 @@ mkdir build dest
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest || fail_with diffutils - EPIC FAIL
 touch man/cmp.1 man/diff.1 man/diff3.1 man/sdiff.1
-make all install "CFLAGS=-O3 -fomit-frame-pointer" "LDFLAGS=-s" || fail_with diffutils - EPIC FAIL
+make all install "CFLAGS=-O3" "LDFLAGS=-s" || fail_with diffutils - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 mv dest diffutils-3.3
