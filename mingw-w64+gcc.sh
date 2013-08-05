@@ -92,7 +92,7 @@ cd build
 # --enable-lto              : LTO is not enabled by default for MinGW, but can be explicitly requested.
 
 # Build and install.
-make bootstrap install "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3 -mthreads" "CFLAGS_FOR_TARGET=-g0 -O3" "CXXFLAGS_FOR_TARGET=-g0 -O3 -mthreads" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3 -mthreads" || fail_with gcc make - EPIC FAIL
+make bootstrap install "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" "CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3" || fail_with gcc make - EPIC FAIL
 
 # Cleanup.
 rm -rf /mingw
