@@ -8,20 +8,16 @@ source 0_append_distro_path.sh
 7z x '-oC:\Temp\gcc' SDL_mixer-2.0.0-650.tar > NUL || fail_with SDL_mixer-2.0.0-650.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' vorbis-tools-1.4.0.tar > NUL || fail_with vorbis-tools-1.4.0.tar - EPIC FAIL
 
-# http://www.libsdl.org/extras/win32/common/directx-devel.tar.gz
-mkdir /c/temp/gcc/dest
-7z x '-oC:\Temp\gcc\dest' directx-devel.tar include > NUL || fail_with directx-devel.tar - EPIC FAIL
-
 patch -d /c/temp/gcc/SDL -p1 < sdl-clipcursor.patch
 
 cd /c/temp/gcc
 
 mv SDL src
-mkdir build
+mkdir build dest
 cd build
 sed -re "s/ -XCClinker -static-libgcc//" ../src/configure > configure-fixed
 mv -f configure-fixed ../src/configure
-../src/configure --prefix=/c/temp/gcc/dest --disable-shared --disable-haptic --disable-joystick || fail_with SDL - EPIC FAIL
+../src/configure --prefix=/c/temp/gcc/dest --disable-shared || fail_with SDL - EPIC FAIL
 make all install "CFLAGS=-s -O3" || fail_with SDL - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src

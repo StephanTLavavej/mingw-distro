@@ -1,6 +1,6 @@
 diff -aurN coreutils-8.21/configure coreutils-8.21-fixed/configure
 --- coreutils-8.21/configure	2013-02-14 07:54:18 -0800
-+++ coreutils-8.21-fixed/configure	2013-03-30 23:13:17 -0700
++++ coreutils-8.21-fixed/configure	2013-08-07 19:20:14 -0700
 @@ -39778,17 +39778,7 @@
    esac
  fi
@@ -21,7 +21,7 @@ diff -aurN coreutils-8.21/configure coreutils-8.21-fixed/configure
  
 diff -aurN coreutils-8.21/lib/c-strtod.c coreutils-8.21-fixed/lib/c-strtod.c
 --- coreutils-8.21/lib/c-strtod.c	2013-01-02 04:34:45 -0800
-+++ coreutils-8.21-fixed/lib/c-strtod.c	2013-03-30 23:13:17 -0700
++++ coreutils-8.21-fixed/lib/c-strtod.c	2013-08-07 19:20:14 -0700
 @@ -26,7 +26,7 @@
  #include <stdlib.h>
  #include <string.h>
@@ -42,14 +42,14 @@ diff -aurN coreutils-8.21/lib/c-strtod.c coreutils-8.21-fixed/lib/c-strtod.c
  # define STRTOD strtod
 diff -aurN coreutils-8.21/lib/c-strtold.c coreutils-8.21-fixed/lib/c-strtold.c
 --- coreutils-8.21/lib/c-strtold.c	2011-08-23 06:48:12 -0700
-+++ coreutils-8.21-fixed/lib/c-strtold.c	2013-03-30 23:13:17 -0700
++++ coreutils-8.21-fixed/lib/c-strtold.c	2013-08-07 19:20:14 -0700
 @@ -1,2 +1,2 @@
 -#define LONG 1
 +#define LONGCAT 1
  #include "c-strtod.c"
 diff -aurN coreutils-8.21/lib/ftruncate.c coreutils-8.21-fixed/lib/ftruncate.c
 --- coreutils-8.21/lib/ftruncate.c	2013-01-02 04:34:46 -0800
-+++ coreutils-8.21-fixed/lib/ftruncate.c	2013-03-30 23:13:17 -0700
++++ coreutils-8.21-fixed/lib/ftruncate.c	2013-08-07 19:20:14 -0700
 @@ -14,6 +14,10 @@
     You should have received a copy of the GNU General Public License along
     with this program; if not, see <http://www.gnu.org/licenses/>.  */
@@ -74,7 +74,7 @@ diff -aurN coreutils-8.21/lib/ftruncate.c coreutils-8.21-fixed/lib/ftruncate.c
  #  include <windows.h>
 diff -aurN coreutils-8.21/lib/gethostname.c coreutils-8.21-fixed/lib/gethostname.c
 --- coreutils-8.21/lib/gethostname.c	2013-01-02 04:34:46 -0800
-+++ coreutils-8.21-fixed/lib/gethostname.c	2013-03-30 23:13:17 -0700
++++ coreutils-8.21-fixed/lib/gethostname.c	2013-08-07 19:20:14 -0700
 @@ -87,8 +87,9 @@
  #undef gethostname
  
@@ -86,9 +86,39 @@ diff -aurN coreutils-8.21/lib/gethostname.c coreutils-8.21-fixed/lib/gethostname
    int r;
  
    if (len > INT_MAX)
+diff -aurN coreutils-8.21/lib/msvc-inval.c coreutils-8.21-fixed/lib/msvc-inval.c
+--- coreutils-8.21/lib/msvc-inval.c	2013-01-04 06:07:05 -0800
++++ coreutils-8.21-fixed/lib/msvc-inval.c	2013-08-07 19:20:48 -0700
+@@ -28,7 +28,7 @@
+ 
+ # if MSVC_INVALID_PARAMETER_HANDLING == DEFAULT_HANDLING
+ 
+-static void cdecl
++static void __cdecl
+ gl_msvc_invalid_parameter_handler (const wchar_t *expression,
+                                    const wchar_t *function,
+                                    const wchar_t *file,
+@@ -45,7 +45,7 @@
+ 
+ #  if defined _MSC_VER
+ 
+-static void cdecl
++static void __cdecl
+ gl_msvc_invalid_parameter_handler (const wchar_t *expression,
+                                    const wchar_t *function,
+                                    const wchar_t *file,
+@@ -94,7 +94,7 @@
+     }
+ }
+ 
+-static void cdecl
++static void __cdecl
+ gl_msvc_invalid_parameter_handler (const wchar_t *expression,
+                                    const wchar_t *function,
+                                    const wchar_t *file,
 diff -aurN coreutils-8.21/lib/randread.c coreutils-8.21-fixed/lib/randread.c
 --- coreutils-8.21/lib/randread.c	2013-01-30 16:46:24 -0800
-+++ coreutils-8.21-fixed/lib/randread.c	2013-03-30 23:13:17 -0700
++++ coreutils-8.21-fixed/lib/randread.c	2013-08-07 19:20:14 -0700
 @@ -176,9 +176,6 @@
      }
    ISAAC_SEED (struct timeval, gettimeofday (&v, NULL));
@@ -101,7 +131,7 @@ diff -aurN coreutils-8.21/lib/randread.c coreutils-8.21-fixed/lib/randread.c
    /* Normally we like having the extra randomness from uninitialized
 diff -aurN coreutils-8.21/lib/unistd.in.h coreutils-8.21-fixed/lib/unistd.in.h
 --- coreutils-8.21/lib/unistd.in.h	2013-01-25 18:45:11 -0800
-+++ coreutils-8.21-fixed/lib/unistd.in.h	2013-03-30 23:13:17 -0700
++++ coreutils-8.21-fixed/lib/unistd.in.h	2013-08-07 19:20:14 -0700
 @@ -704,9 +704,9 @@
  #   undef gethostname
  #   define gethostname rpl_gethostname
@@ -116,7 +146,7 @@ diff -aurN coreutils-8.21/lib/unistd.in.h coreutils-8.21-fixed/lib/unistd.in.h
  _GL_FUNCDECL_SYS (gethostname, int, (char *name, size_t len)
 diff -aurN coreutils-8.21/lib/xstrtod.c coreutils-8.21-fixed/lib/xstrtod.c
 --- coreutils-8.21/lib/xstrtod.c	2013-01-02 04:34:46 -0800
-+++ coreutils-8.21-fixed/lib/xstrtod.c	2013-03-30 23:13:17 -0700
++++ coreutils-8.21-fixed/lib/xstrtod.c	2013-08-07 19:20:14 -0700
 @@ -26,7 +26,7 @@
  #include <limits.h>
  #include <stdio.h>
@@ -128,14 +158,14 @@ diff -aurN coreutils-8.21/lib/xstrtod.c coreutils-8.21-fixed/lib/xstrtod.c
  #else
 diff -aurN coreutils-8.21/lib/xstrtold.c coreutils-8.21-fixed/lib/xstrtold.c
 --- coreutils-8.21/lib/xstrtold.c	2011-08-23 06:48:13 -0700
-+++ coreutils-8.21-fixed/lib/xstrtold.c	2013-03-30 23:13:17 -0700
++++ coreutils-8.21-fixed/lib/xstrtold.c	2013-08-07 19:20:14 -0700
 @@ -1,2 +1,2 @@
 -#define LONG 1
 +#define LONGCAT 1
  #include "xstrtod.c"
 diff -aurN coreutils-8.21/src/sort.c coreutils-8.21-fixed/src/sort.c
 --- coreutils-8.21/src/sort.c	2013-01-30 16:46:24 -0800
-+++ coreutils-8.21-fixed/src/sort.c	2013-03-30 23:13:17 -0700
++++ coreutils-8.21-fixed/src/sort.c	2013-08-07 19:20:14 -0700
 @@ -26,7 +26,6 @@
  #include <pthread.h>
  #include <sys/resource.h>
@@ -244,8 +274,16 @@ diff -aurN coreutils-8.21/src/sort.c coreutils-8.21-fixed/src/sort.c
  }
 diff -aurN coreutils-8.21/src/uniq.c coreutils-8.21-fixed/src/uniq.c
 --- coreutils-8.21/src/uniq.c	2013-01-30 16:46:24 -0800
-+++ coreutils-8.21-fixed/src/uniq.c	2013-03-30 23:13:17 -0700
-@@ -390,9 +390,11 @@
++++ coreutils-8.21-fixed/src/uniq.c	2013-08-07 19:21:15 -0700
+@@ -186,7 +186,6 @@
+ size_opt (char const *opt, char const *msgid)
+ {
+   unsigned long int size;
+-  verify (SIZE_MAX <= ULONG_MAX);
+ 
+   switch (xstrtoul (opt, NULL, 10, &size, ""))
+     {
+@@ -390,9 +389,11 @@
      }
  
   closefiles:
@@ -260,7 +298,7 @@ diff -aurN coreutils-8.21/src/uniq.c coreutils-8.21-fixed/src/uniq.c
    free (lb1.buffer);
 diff -aurN coreutils-8.21/src/wc.c coreutils-8.21-fixed/src/wc.c
 --- coreutils-8.21/src/wc.c	2013-01-30 16:46:24 -0800
-+++ coreutils-8.21-fixed/src/wc.c	2013-03-30 23:13:17 -0700
++++ coreutils-8.21-fixed/src/wc.c	2013-08-07 19:20:14 -0700
 @@ -499,7 +499,7 @@
      {
        have_read_stdin = true;

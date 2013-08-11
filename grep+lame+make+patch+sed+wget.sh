@@ -13,6 +13,7 @@ patch -d /c/temp/gcc/grep-2.10 -p1 < grep.patch
 patch -d /c/temp/gcc/patch-2.6.1 -p1 < patch.patch
 patch -d /c/temp/gcc/patch-2.6.1 -p1 < patch-strnlen.patch
 patch -d /c/temp/gcc/sed-4.2.2 -p1 < sed.patch
+patch -d /c/temp/gcc/wget-1.14 -p1 < wget.patch
 
 cd /c/temp/gcc
 mkdir -p dest/bin
@@ -20,7 +21,7 @@ mkdir -p dest/bin
 mv grep-2.10 src
 mkdir build
 cd build
-../src/configure --prefix=/c/temp/gcc/dest --disable-nls || fail_with grep - EPIC FAIL
+../src/configure --prefix=/c/temp/gcc/dest --disable-nls --disable-largefile || fail_with grep - EPIC FAIL
 make "CFLAGS=-s -O3" || fail_with grep - EPIC FAIL
 mv src/grep.exe ../dest/bin
 cd /c/temp/gcc

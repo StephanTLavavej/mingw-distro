@@ -1,0 +1,41 @@
+diff -aurN wget-1.14/lib/msvc-inval.c wget-1.14-fixed/lib/msvc-inval.c
+--- wget-1.14/lib/msvc-inval.c	2012-08-05 13:16:29 -0700
++++ wget-1.14-fixed/lib/msvc-inval.c	2013-08-07 00:51:03 -0700
+@@ -28,7 +28,7 @@
+ 
+ # if MSVC_INVALID_PARAMETER_HANDLING == DEFAULT_HANDLING
+ 
+-static void cdecl
++static void __cdecl
+ gl_msvc_invalid_parameter_handler (const wchar_t *expression,
+                                    const wchar_t *function,
+                                    const wchar_t *file,
+@@ -45,7 +45,7 @@
+ 
+ #  if defined _MSC_VER
+ 
+-static void cdecl
++static void __cdecl
+ gl_msvc_invalid_parameter_handler (const wchar_t *expression,
+                                    const wchar_t *function,
+                                    const wchar_t *file,
+@@ -94,7 +94,7 @@
+     }
+ }
+ 
+-static void cdecl
++static void __cdecl
+ gl_msvc_invalid_parameter_handler (const wchar_t *expression,
+                                    const wchar_t *function,
+                                    const wchar_t *file,
+diff -aurN wget-1.14/src/host.c wget-1.14-fixed/src/host.c
+--- wget-1.14/src/host.c	2012-05-12 08:18:27 -0700
++++ wget-1.14-fixed/src/host.c	2013-08-07 00:52:43 -0700
+@@ -131,6 +131,7 @@
+ #ifdef HAVE_SOCKADDR_IN6_SCOPE_ID
+               && cur->ipv6_scope == ip->ipv6_scope
+ #endif
++#define IN6_ARE_ADDR_EQUAL(a, b) (memcmp ((void*)(a), (void*)(b), sizeof (struct in6_addr)) == 0)
+               && IN6_ARE_ADDR_EQUAL (&cur->data.d6, &ip->data.d6))
+             return true;
+         }

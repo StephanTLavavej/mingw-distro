@@ -1,6 +1,36 @@
+diff -aurN diffutils-3.3/lib/msvc-inval.c diffutils-3.3-fixed/lib/msvc-inval.c
+--- diffutils-3.3/lib/msvc-inval.c	2013-03-21 21:21:35 -0700
++++ diffutils-3.3-fixed/lib/msvc-inval.c	2013-08-07 00:06:08 -0700
+@@ -28,7 +28,7 @@
+ 
+ # if MSVC_INVALID_PARAMETER_HANDLING == DEFAULT_HANDLING
+ 
+-static void cdecl
++static void __cdecl
+ gl_msvc_invalid_parameter_handler (const wchar_t *expression,
+                                    const wchar_t *function,
+                                    const wchar_t *file,
+@@ -45,7 +45,7 @@
+ 
+ #  if defined _MSC_VER
+ 
+-static void cdecl
++static void __cdecl
+ gl_msvc_invalid_parameter_handler (const wchar_t *expression,
+                                    const wchar_t *function,
+                                    const wchar_t *file,
+@@ -94,7 +94,7 @@
+     }
+ }
+ 
+-static void cdecl
++static void __cdecl
+ gl_msvc_invalid_parameter_handler (const wchar_t *expression,
+                                    const wchar_t *function,
+                                    const wchar_t *file,
 diff -aurN diffutils-3.3/src/dir.c diffutils-3.3-fixed/src/dir.c
 --- diffutils-3.3/src/dir.c	2013-02-01 20:39:05 -0800
-+++ diffutils-3.3-fixed/src/dir.c	2013-03-30 22:54:57 -0700
++++ diffutils-3.3-fixed/src/dir.c	2013-08-07 00:04:49 -0700
 @@ -203,14 +203,6 @@
    int volatile val = EXIT_SUCCESS;
    int i;
@@ -18,7 +48,7 @@ diff -aurN diffutils-3.3/src/dir.c diffutils-3.3-fixed/src/dir.c
      if (! dir_read (&cmp->file[i], &dirdata[i]))
 diff -aurN diffutils-3.3/src/sdiff.c diffutils-3.3-fixed/src/sdiff.c
 --- diffutils-3.3/src/sdiff.c	2013-02-01 20:39:05 -0800
-+++ diffutils-3.3-fixed/src/sdiff.c	2013-03-30 22:54:57 -0700
++++ diffutils-3.3-fixed/src/sdiff.c	2013-08-07 00:04:49 -0700
 @@ -577,7 +577,7 @@
        diffarg (argv[optind]);
        diffarg (argv[optind + 1]);
@@ -36,3 +66,14 @@ diff -aurN diffutils-3.3/src/sdiff.c diffutils-3.3-fixed/src/sdiff.c
  
        /* That didn't work, so exit with error status.  */
        exit (EXIT_TROUBLE);
+diff -aurN diffutils-3.3/src/system.h diffutils-3.3-fixed/src/system.h
+--- diffutils-3.3/src/system.h	2013-02-01 20:39:05 -0800
++++ diffutils-3.3-fixed/src/system.h	2013-08-07 00:06:43 -0700
+@@ -132,7 +132,6 @@
+ #define LIN_MAX PTRDIFF_MAX
+ verify (TYPE_SIGNED (lin));
+ verify (sizeof (ptrdiff_t) <= sizeof (lin));
+-verify (sizeof (lin) <= sizeof (long int));
+ 
+ /* This section contains POSIX-compliant defaults for macros
+    that are meant to be overridden by hand in config.h as needed.  */

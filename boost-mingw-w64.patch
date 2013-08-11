@@ -1,0 +1,39 @@
+diff -aurN boost_1_54_0/boost/detail/interlocked.hpp boost_1_54_0-fixed/boost/detail/interlocked.hpp
+--- boost_1_54_0/boost/detail/interlocked.hpp	2013-03-09 14:55:05 -0800
++++ boost_1_54_0-fixed/boost/detail/interlocked.hpp	2013-08-09 09:22:11 -0700
+@@ -69,9 +69,9 @@
+ # define BOOST_INTERLOCKED_EXCHANGE_POINTER(dest,exchange) \
+     ((void*)BOOST_INTERLOCKED_EXCHANGE((long*)(dest),(long)(exchange)))
+ 
+-#elif defined( BOOST_MSVC ) || defined( BOOST_INTEL_WIN )
++#elif defined( BOOST_MSVC ) || defined( BOOST_INTEL_WIN ) || defined( __MINGW64_VERSION_MAJOR )
+ 
+-#if defined( BOOST_MSVC ) && BOOST_MSVC >= 1600
++#if defined( BOOST_MSVC ) && BOOST_MSVC >= 1600 || defined( __MINGW64_VERSION_MAJOR )
+ 
+ #include <intrin.h>
+ 
+@@ -93,19 +93,23 @@
+ 
+ #endif
+ 
++#ifndef __MINGW64_VERSION_MAJOR
+ # pragma intrinsic( _InterlockedIncrement )
+ # pragma intrinsic( _InterlockedDecrement )
+ # pragma intrinsic( _InterlockedCompareExchange )
+ # pragma intrinsic( _InterlockedExchange )
+ # pragma intrinsic( _InterlockedExchangeAdd )
++#endif
+ 
+ # if defined(_M_IA64) || defined(_M_AMD64)
+ 
++#ifndef __MINGW64_VERSION_MAJOR
+ extern "C" void* __cdecl _InterlockedCompareExchangePointer( void* volatile *, void*, void* );
+ extern "C" void* __cdecl _InterlockedExchangePointer( void* volatile *, void* );
+ 
+ #  pragma intrinsic( _InterlockedCompareExchangePointer )
+ #  pragma intrinsic( _InterlockedExchangePointer )
++#endif
+ 
+ #  define BOOST_INTERLOCKED_COMPARE_EXCHANGE_POINTER _InterlockedCompareExchangePointer
+ #  define BOOST_INTERLOCKED_EXCHANGE_POINTER _InterlockedExchangePointer
