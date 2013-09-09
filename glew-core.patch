@@ -1,0 +1,72 @@
+diff -aurN glew-1.10.0/src/glew.c glew-1.10.0-fixed/src/glew.c
+--- glew-1.10.0/src/glew.c	2013-07-22 07:11:22 -0700
++++ glew-1.10.0-fixed/src/glew.c	2013-08-25 21:39:23 -0700
+@@ -9468,11 +9468,58 @@
+ 
+ /* ------------------------------------------------------------------------- */
+ 
++static const GLubyte* _glewGetExtensions(void) {
++    static int s_init = 0;
++    static GLubyte s_array[16384];
++    static const GLubyte* s_ret = 0;
++
++    if (s_init == 0) {
++        PFNGLGETSTRINGIPROC localGetStringi = 0;
++
++        s_init = 1;
++
++        localGetStringi = (PFNGLGETSTRINGIPROC)glewGetProcAddress((const GLubyte*)"glGetStringi");
++
++        if (localGetStringi) {
++            GLint num_extensions = 0;
++            GLint extension_idx = 0;
++            GLuint arr_idx = 0;
++
++            glGetIntegerv(GL_NUM_EXTENSIONS, &num_extensions);
++
++            for ( ; extension_idx < num_extensions; ++extension_idx) {
++                const GLubyte* extension = localGetStringi(GL_EXTENSIONS, extension_idx);
++
++                if (!extension) {
++                    return 0;
++                }
++
++                while (arr_idx < sizeof(s_array) && *extension != '\0') {
++                    s_array[arr_idx++] = *extension++;
++                }
++
++                if (arr_idx < sizeof(s_array)) {
++                    s_array[arr_idx++] = ' ';
++                }
++            }
++
++            if (arr_idx < sizeof(s_array)) {
++                s_array[arr_idx++] = '\0';
++                s_ret = s_array;
++            }
++        } else {
++            s_ret = glGetString(GL_EXTENSIONS);
++        }
++    }
++
++    return s_ret;
++}
++
+ GLboolean GLEWAPIENTRY glewGetExtension (const char* name)
+ {    
+   const GLubyte* start;
+   const GLubyte* end;
+-  start = (const GLubyte*)glGetString(GL_EXTENSIONS);
++  start = _glewGetExtensions();
+   if (start == 0)
+     return GL_FALSE;
+   end = start + _glewStrLen(start);
+@@ -9532,7 +9579,7 @@
+   }
+ 
+   /* query opengl extensions string */
+-  extStart = glGetString(GL_EXTENSIONS);
++  extStart = _glewGetExtensions();
+   if (extStart == 0)
+     extStart = (const GLubyte*)"";
+   extEnd = extStart + _glewStrLen(extStart);
