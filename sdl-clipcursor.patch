@@ -1,6 +1,6 @@
-diff -aurN SDL2-2.0.0/include/SDL_video.h SDL2-2.0.0-fixed/include/SDL_video.h
---- SDL2-2.0.0/include/SDL_video.h	2013-08-11 19:57:54 -0700
-+++ SDL2-2.0.0-fixed/include/SDL_video.h	2013-08-13 22:05:50 -0700
+diff -aurN SDL2-2.0.1/include/SDL_video.h SDL2-2.0.1-fixed/include/SDL_video.h
+--- SDL2-2.0.1/include/SDL_video.h	2013-10-23 21:05:29 -0700
++++ SDL2-2.0.1-fixed/include/SDL_video.h	2013-11-16 14:54:58 -0800
 @@ -39,6 +39,11 @@
  extern "C" {
  #endif
@@ -13,11 +13,11 @@ diff -aurN SDL2-2.0.0/include/SDL_video.h SDL2-2.0.0-fixed/include/SDL_video.h
  /**
   *  \brief  The structure that defines a display mode
   *
-diff -aurN SDL2-2.0.0/src/video/windows/SDL_windowsevents.c SDL2-2.0.0-fixed/src/video/windows/SDL_windowsevents.c
---- SDL2-2.0.0/src/video/windows/SDL_windowsevents.c	2013-08-11 19:57:54 -0700
-+++ SDL2-2.0.0-fixed/src/video/windows/SDL_windowsevents.c	2013-08-13 22:05:50 -0700
-@@ -256,6 +256,8 @@
-     }
+diff -aurN SDL2-2.0.1/src/video/windows/SDL_windowsevents.c SDL2-2.0.1-fixed/src/video/windows/SDL_windowsevents.c
+--- SDL2-2.0.1/src/video/windows/SDL_windowsevents.c	2013-10-23 21:05:30 -0700
++++ SDL2-2.0.1-fixed/src/video/windows/SDL_windowsevents.c	2013-11-16 14:54:58 -0800
+@@ -283,6 +283,8 @@
+     return SDL_TRUE;
  }
  
 +void WIN_ClipCursor(const RECT * orig);
@@ -25,7 +25,7 @@ diff -aurN SDL2-2.0.0/src/video/windows/SDL_windowsevents.c SDL2-2.0.0-fixed/src
  LRESULT CALLBACK
  WIN_WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
  {
-@@ -613,7 +615,7 @@
+@@ -657,7 +659,7 @@
              window_flags = SDL_GetWindowFlags(data->window);
              if ((window_flags & SDL_WINDOW_INPUT_GRABBED) &&
                  (window_flags & SDL_WINDOW_INPUT_FOCUS)) {
@@ -34,10 +34,10 @@ diff -aurN SDL2-2.0.0/src/video/windows/SDL_windowsevents.c SDL2-2.0.0-fixed/src
              }
  
              x = rect.left;
-diff -aurN SDL2-2.0.0/src/video/windows/SDL_windowswindow.c SDL2-2.0.0-fixed/src/video/windows/SDL_windowswindow.c
---- SDL2-2.0.0/src/video/windows/SDL_windowswindow.c	2013-08-11 19:57:54 -0700
-+++ SDL2-2.0.0-fixed/src/video/windows/SDL_windowswindow.c	2013-08-13 22:05:50 -0700
-@@ -106,6 +106,22 @@
+diff -aurN SDL2-2.0.1/src/video/windows/SDL_windowswindow.c SDL2-2.0.1-fixed/src/video/windows/SDL_windowswindow.c
+--- SDL2-2.0.1/src/video/windows/SDL_windowswindow.c	2013-10-23 21:05:30 -0700
++++ SDL2-2.0.1-fixed/src/video/windows/SDL_windowswindow.c	2013-11-16 14:54:58 -0800
+@@ -108,6 +108,22 @@
      SetWindowPos(hwnd, top, x, y, w, h, flags);
  }
  
@@ -60,7 +60,7 @@ diff -aurN SDL2-2.0.0/src/video/windows/SDL_windowswindow.c SDL2-2.0.0-fixed/src
  static int
  SetupWindowData(_THIS, SDL_Window * window, HWND hwnd, SDL_bool created)
  {
-@@ -217,7 +233,7 @@
+@@ -219,7 +235,7 @@
              GetClientRect(hwnd, &rect);
              ClientToScreen(hwnd, (LPPOINT) & rect);
              ClientToScreen(hwnd, (LPPOINT) & rect + 1);
@@ -69,7 +69,7 @@ diff -aurN SDL2-2.0.0/src/video/windows/SDL_windowswindow.c SDL2-2.0.0-fixed/src
          }
      }
  
-@@ -541,7 +557,7 @@
+@@ -544,7 +560,7 @@
          GetClientRect(hwnd, &rect);
          ClientToScreen(hwnd, (LPPOINT) & rect);
          ClientToScreen(hwnd, (LPPOINT) & rect + 1);

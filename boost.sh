@@ -2,15 +2,13 @@
 
 source 0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' boost_1_54_0.tar > NUL || fail_with boost_1_54_0.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' boost_1_55_0.tar > NUL || fail_with boost_1_55_0.tar - EPIC FAIL
 
-patch -d /c/temp/gcc/boost_1_54_0 -p1 < boost-84470.patch     # https://svn.boost.org/trac/boost/changeset/84470
-patch -d /c/temp/gcc/boost_1_54_0 -p1 < boost-bootstrap.patch
-patch -d /c/temp/gcc/boost_1_54_0 -p1 < boost-mingw-w64.patch
-patch -d /c/temp/gcc/boost_1_54_0 -p1 < boost-official.patch  # http://www.boost.org/users/history/version_1_54_0.html
+patch -d /c/temp/gcc/boost_1_55_0 -p1 < boost-84470.patch     # https://svn.boost.org/trac/boost/changeset/84470
+patch -d /c/temp/gcc/boost_1_55_0 -p1 < boost-bootstrap.patch
 
 cd /c/temp/gcc
-mv boost_1_54_0 src
+mv boost_1_55_0 src
 mkdir -p dest/include
 cd src
 bootstrap.sh || fail_with boost - EPIC FAIL
@@ -24,12 +22,12 @@ cd /c/temp/gcc/dest/lib
 for i in *.a; do mv $i ${i%-mgw*.a}.a; done
 cd /c/temp/gcc
 mv src/boost dest/include
-mv dest boost-1.54.0
+mv dest boost-1.55.0
 
 echo Packaging...
 
-cd boost-1.54.0
-7z -mx0 a ../boost-1.54.0.7z * > NUL || fail_with boost-1.54.0.7z - EPIC FAIL
+cd boost-1.55.0
+7z -mx0 a ../boost-1.55.0.7z * > NUL || fail_with boost-1.55.0.7z - EPIC FAIL
 
 echo Cleaning...
 

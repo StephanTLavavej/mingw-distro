@@ -4,7 +4,7 @@ source 0_append_distro_path.sh
 
 7z x '-oC:\Temp\gcc' grep-2.10.tar > NUL || fail_with grep-2.10.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' lame-3.99.5.tar > NUL || fail_with lame-3.99.5.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' make-3.82.tar > NUL || fail_with make-3.82.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' make-4.0.tar > NUL || fail_with make-4.0.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' sed-4.2.2.tar > NUL || fail_with sed-4.2.2.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' wget-1.14.tar > NUL || fail_with wget-1.14.tar - EPIC FAIL
 
@@ -33,11 +33,10 @@ mv frontend/lame.exe ../dest/bin
 cd /c/temp/gcc
 rm -rf build src
 
-mv make-3.82 src
+mv make-4.0 src
 mkdir build
 cd build
-# make 3.82 doesn't have a job server on Windows, but 3.83 will.
-../src/configure --prefix=/c/temp/gcc/dest --enable-case-insensitive-file-system --disable-job-server --disable-nls --disable-rpath || fail_with make - EPIC FAIL
+../src/configure --prefix=/c/temp/gcc/dest --enable-case-insensitive-file-system --disable-nls || fail_with make - EPIC FAIL
 sed -e "s/#define PATH_SEPARATOR_CHAR ':'/#define PATH_SEPARATOR_CHAR ';'/" config.h > config.fixed
 mv -f config.fixed config.h
 make "CFLAGS=-O3" "LDFLAGS=-s" || fail_with make - EPIC FAIL

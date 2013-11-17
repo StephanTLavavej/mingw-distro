@@ -3,19 +3,21 @@
 source 0_append_distro_path.sh
 
 # Extract vanilla sources.
-7z x '-oC:\Temp\gcc' mingw-w64-code-5986-trunk.zip > NUL || fail_with mingw-w64-code-5986-trunk.zip - EPIC FAIL
-7z x '-oC:\Temp\gcc' gcc-4.8.1.tar > NUL || fail_with gcc-4.8.1.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' gmp-5.1.2.tar > NUL || fail_with gmp-5.1.2.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' mingw-w64-v3.0.0.tar > NUL || fail_with mingw-w64-v3.0.0.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' gcc-4.8.2.tar > NUL || fail_with gcc-4.8.2.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' gmp-5.1.3.tar > NUL || fail_with gmp-5.1.3.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' mpfr-3.1.2.tar > NUL || fail_with mpfr-3.1.2.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' mpc-1.0.1.tar > NUL || fail_with mpc-1.0.1.tar - EPIC FAIL
 
+patch -Z -d /c/temp/gcc/mpfr-3.1.2 -p1 < mpfr.patch
+
 # Change the default mode to C++11.
-patch -d /c/temp/gcc/gcc-4.8.1 -p1 < gcc.patch
+patch -d /c/temp/gcc/gcc-4.8.2 -p1 < gcc.patch
 
 cd /c/temp/gcc
 
 # Build mingw-w64.
-mv mingw-w64-code-5986-trunk src
+mv mingw-w64-v3.0.0 src
 mkdir build dest
 cd build
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-lib32 --prefix=/c/temp/gcc/dest/x86_64-w64-mingw32 --with-sysroot=/c/temp/gcc/dest/x86_64-w64-mingw32 --enable-wildcard || fail_with mingw-w64 configure - EPIC FAIL
@@ -24,8 +26,8 @@ cd /c/temp/gcc
 rm -rf build src
 
 # Prepare to build gcc - set up the in-tree builds of gmp, mpfr, and mpc.
-mv gcc-4.8.1 src
-mv gmp-5.1.2 src/gmp
+mv gcc-4.8.2 src
+mv gmp-5.1.3 src/gmp
 mv mpfr-3.1.2 src/mpfr
 mv mpc-1.0.1 src/mpc
 
