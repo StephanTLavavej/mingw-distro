@@ -2,17 +2,17 @@
 
 source 0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' SDL2-2.0.1.tar > NUL || fail_with SDL2-2.0.1.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' libogg-1.3.1.tar > NUL || fail_with libogg-1.3.1.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' libvorbis-1.3.3.tar > NUL || fail_with libvorbis-1.3.3.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' SDL2-2.0.3.tar > NUL || fail_with SDL2-2.0.3.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' libogg-1.3.2.tar > NUL || fail_with libogg-1.3.2.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' libvorbis-1.3.4.tar > NUL || fail_with libvorbis-1.3.4.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' SDL2_mixer-2.0.0.tar > NUL || fail_with SDL2_mixer-2.0.0.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' vorbis-tools-1.4.0.tar > NUL || fail_with vorbis-tools-1.4.0.tar - EPIC FAIL
 
-patch -d /c/temp/gcc/SDL2-2.0.1 -p1 < sdl-clipcursor.patch
+patch -d /c/temp/gcc/SDL2-2.0.3 -p1 < sdl-clipcursor.patch
 
 cd /c/temp/gcc
 
-mv SDL2-2.0.1 src
+mv SDL2-2.0.3 src
 mkdir build dest
 cd build
 sed -re "s/ -XCClinker -static-libgcc//" ../src/configure > configure-fixed
@@ -22,7 +22,7 @@ make all install "CFLAGS=-s -O3" || fail_with SDL - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 
-mv libogg-1.3.1 src
+mv libogg-1.3.2 src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared || fail_with libogg - EPIC FAIL
@@ -30,7 +30,7 @@ make all install "CFLAGS=-s -O3" || fail_with libogg - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 
-mv libvorbis-1.3.3 src
+mv libvorbis-1.3.4 src
 mkdir build
 cd build
 ../src/configure --prefix=/c/temp/gcc/dest --disable-shared || fail_with libvorbis - EPIC FAIL

@@ -2,18 +2,18 @@
 
 source 0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' freetype-2.5.2.tar > NUL || fail_with freetype-2.5.2.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' freetype-2.5.3.tar > NUL || fail_with freetype-2.5.3.tar - EPIC FAIL
 
 cd /c/temp/gcc
-mv freetype-2.5.2 src
+mv freetype-2.5.3 src
 mkdir build dest
 cd build
 ../src/configure --disable-shared --prefix=/c/temp/gcc/dest "CFLAGS=-s -O3" --without-png || fail_with freetype - EPIC FAIL
 make all install || fail_with freetype - EPIC FAIL
 cd /c/temp/gcc
-rm -rf build src PaxHeaders.20920
-mv dest freetype-2.5.2
-cd freetype-2.5.2
+rm -rf build src PaxHeaders.*
+mv dest freetype-2.5.3
+cd freetype-2.5.3
 rm -rf bin lib/pkgconfig lib/*.la share
 
-7z -mx0 a ../freetype-2.5.2.7z *
+7z -mx0 a ../freetype-2.5.3.7z *

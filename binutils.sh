@@ -4,6 +4,12 @@ source 0_append_distro_path.sh
 
 7z x '-oC:\Temp\gcc' binutils-2.24.tar > NUL || fail_with binutils-2.24.tar - EPIC FAIL
 
+# http://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;a=patch;h=0ef76c4
+patch -d /c/temp/gcc/binutils-2.24 -p1 < binutils-0ef76c4.patch
+
+# http://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;a=patch;h=27b829e
+patch -d /c/temp/gcc/binutils-2.24 -p1 < binutils-27b829e.patch
+
 cd /c/temp/gcc
 mv binutils-2.24 src
 mkdir build dest

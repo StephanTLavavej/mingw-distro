@@ -1,0 +1,35 @@
+diff -aurN binutils-2.24/ld/ldlang.c binutils-2.24-fixed/ld/ldlang.c
+--- binutils-2.24/ld/ldlang.c	2013-11-04 07:33:39 -0800
++++ binutils-2.24-fixed/ld/ldlang.c	2014-08-08 07:39:47 -0700
+@@ -111,8 +111,6 @@
+     DEFINED() need to increment this.  */
+ int lang_statement_iteration = 0;
+ 
+-etree_type *base; /* Relocation base - or null */
+-
+ /* Return TRUE if the PATTERN argument is a wildcard pattern.
+    Although backslashes are treated specially if a pattern contains
+    wildcards, we do not consider the mere presence of a backslash to
+diff -aurN binutils-2.24/ld/ldlang.h binutils-2.24-fixed/ld/ldlang.h
+--- binutils-2.24/ld/ldlang.h	2013-11-04 07:33:39 -0800
++++ binutils-2.24-fixed/ld/ldlang.h	2014-08-08 07:39:47 -0700
+@@ -475,7 +475,6 @@
+ extern lang_statement_list_type lang_output_section_statement;
+ extern struct lang_input_statement_flags input_flags;
+ extern bfd_boolean lang_has_input_file;
+-extern etree_type *base;
+ extern lang_statement_list_type *stat_ptr;
+ extern bfd_boolean delete_output_file_on_failure;
+ 
+diff -aurN binutils-2.24/ld/mri.c binutils-2.24-fixed/ld/mri.c
+--- binutils-2.24/ld/mri.c	2013-11-04 07:33:39 -0800
++++ binutils-2.24-fixed/ld/mri.c	2014-08-08 07:39:47 -0700
+@@ -45,6 +45,8 @@
+ };
+ 
+ static unsigned int symbol_truncate = 10000;
++static etree_type *base; /* Relocation base - or null */
++
+ static struct section_name_struct *order;
+ static struct section_name_struct *only_load;
+ static struct section_name_struct *address;

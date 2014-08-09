@@ -9,11 +9,9 @@ source 0_append_distro_path.sh
 7z x '-oC:\Temp\gcc' make-a4937bc.tar > NUL || fail_with make-a4937bc.tar - EPIC FAIL
 
 7z x '-oC:\Temp\gcc' sed-4.2.2.tar > NUL || fail_with sed-4.2.2.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' wget-1.14.tar > NUL || fail_with wget-1.14.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/grep-2.10 -p1 < grep.patch
 patch -d /c/temp/gcc/sed-4.2.2 -p1 < sed.patch
-patch -d /c/temp/gcc/wget-1.14 -p1 < wget.patch
 
 cd /c/temp/gcc
 mkdir -p dest/bin
@@ -73,16 +71,7 @@ mv sed/sed.exe ../dest/bin
 cd /c/temp/gcc
 rm -rf build src
 
-mv wget-1.14 src
-mkdir build
-cd build
-../src/configure --prefix=/c/temp/gcc/dest --disable-nls --without-ssl || fail_with wget - EPIC FAIL
-make "CFLAGS=-O3" "LDFLAGS=-s" || fail_with wget - EPIC FAIL
-mv src/wget.exe ../dest/bin
-cd /c/temp/gcc
-rm -rf build src
+mv dest grep+lame+make+sed
+cd grep+lame+make+sed
 
-mv dest grep+lame+make+sed+wget
-cd grep+lame+make+sed+wget
-
-7z -mx0 a ../grep+lame+make+sed+wget.7z *
+7z -mx0 a ../grep+lame+make+sed.7z *
