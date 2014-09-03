@@ -1,8 +1,8 @@
-diff -aurN glew-1.10.0/include/GL/glew.h glew-1.10.0-fixed/include/GL/glew.h
---- glew-1.10.0/include/GL/glew.h	2013-07-22 07:11:22 -0700
-+++ glew-1.10.0-fixed/include/GL/glew.h	2013-07-31 21:51:21 -0700
-@@ -187,20 +187,7 @@
- #define GLEWAPIENTRY APIENTRY
+diff -aurN glew-1.11.0/include/GL/glew.h glew-1.11.0-fixed/include/GL/glew.h
+--- glew-1.11.0/include/GL/glew.h	2014-08-11 07:14:56 -0700
++++ glew-1.11.0-fixed/include/GL/glew.h	2014-09-01 13:40:41 -0700
+@@ -191,20 +191,7 @@
+ #  endif
  #endif
  
 -/*
@@ -22,10 +22,10 @@ diff -aurN glew-1.10.0/include/GL/glew.h glew-1.10.0-fixed/include/GL/glew.h
  
  #else /* _UNIX */
  
-diff -aurN glew-1.10.0/include/GL/wglew.h glew-1.10.0-fixed/include/GL/wglew.h
---- glew-1.10.0/include/GL/wglew.h	2013-07-22 07:11:22 -0700
-+++ glew-1.10.0-fixed/include/GL/wglew.h	2013-07-31 21:51:21 -0700
-@@ -70,19 +70,7 @@
+diff -aurN glew-1.11.0/include/GL/wglew.h glew-1.11.0-fixed/include/GL/wglew.h
+--- glew-1.11.0/include/GL/wglew.h	2014-08-11 07:14:56 -0700
++++ glew-1.11.0-fixed/include/GL/wglew.h	2014-09-01 13:40:41 -0700
+@@ -71,19 +71,7 @@
  #  undef WIN32_LEAN_AND_MEAN
  #endif
  

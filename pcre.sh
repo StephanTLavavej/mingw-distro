@@ -11,7 +11,9 @@ cd /c/temp/gcc
 mv pcre-8.35 src
 mkdir build dest
 cd build
-../src/configure --prefix=/c/temp/gcc/dest --disable-shared "CFLAGS=-s -O3" "CXXFLAGS=-s -O3" || fail_with pcre - EPIC FAIL
+../src/configure --prefix=/c/temp/gcc/dest --disable-shared \
+--enable-utf --enable-unicode-properties --enable-pcre16 --enable-pcre32 \
+"CFLAGS=-s -O3" "CXXFLAGS=-s -O3" || fail_with pcre - EPIC FAIL
 make all install || fail_with pcre - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
