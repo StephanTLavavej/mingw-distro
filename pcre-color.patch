@@ -1,6 +1,6 @@
-diff -aurN pcre-8.34/pcregrep.c pcre-8.34-fixed/pcregrep.c
---- pcre-8.34/pcregrep.c	2013-11-19 07:32:59 -0800
-+++ pcre-8.34-fixed/pcregrep.c	2014-01-18 21:53:58 -0800
+diff -aurN pcre-8.36/pcregrep.c pcre-8.36-fixed/pcregrep.c
+--- pcre-8.36/pcregrep.c	2014-09-15 06:48:59 -0700
++++ pcre-8.36-fixed/pcregrep.c	2015-01-03 20:58:10 -0800
 @@ -142,8 +142,9 @@
  
  static int  endlinetype;
@@ -13,7 +13,7 @@ diff -aurN pcre-8.34/pcregrep.c pcre-8.34-fixed/pcregrep.c
  static char *dee_option = NULL;
  static char *DEE_option = NULL;
  static char *locale = NULL;
-@@ -816,7 +817,171 @@
+@@ -817,7 +818,171 @@
  
  #endif  /* End of system-specific functions */
  
@@ -185,7 +185,7 @@ diff -aurN pcre-8.34/pcregrep.c pcre-8.34-fixed/pcregrep.c
  
  #ifndef HAVE_STRERROR
  /*************************************************
-@@ -1728,7 +1893,7 @@
+@@ -1729,7 +1894,7 @@
        {
        if (!invert)
          {
@@ -194,7 +194,7 @@ diff -aurN pcre-8.34/pcregrep.c pcre-8.34-fixed/pcregrep.c
          if (number) fprintf(stdout, "%d:", linenumber);
  
          /* Handle --line-offsets */
-@@ -1760,9 +1925,9 @@
+@@ -1761,9 +1926,9 @@
                if (plen > 0)
                  {
                  if (printed) fprintf(stdout, "%s", om_separator);
@@ -206,7 +206,7 @@ diff -aurN pcre-8.34/pcregrep.c pcre-8.34-fixed/pcregrep.c
                  printed = TRUE;
                  }
                }
-@@ -1863,7 +2028,7 @@
+@@ -1864,7 +2029,7 @@
        if (after_context > 0 || before_context > 0)
          endhyphenpending = TRUE;
  
@@ -215,7 +215,7 @@ diff -aurN pcre-8.34/pcregrep.c pcre-8.34-fixed/pcregrep.c
        if (number) fprintf(stdout, "%d:", linenumber);
  
        /* In multiline mode, we want to print to the end of the line in which
-@@ -1910,9 +2075,9 @@
+@@ -1911,9 +2076,9 @@
          {
          int plength;
          FWRITE(ptr, 1, offsets[0], stdout);
@@ -227,7 +227,7 @@ diff -aurN pcre-8.34/pcregrep.c pcre-8.34-fixed/pcregrep.c
          for (;;)
            {
            startoffset = offsets[1];
-@@ -1921,9 +2086,9 @@
+@@ -1922,9 +2087,9 @@
                  &mrc))
              break;
            FWRITE(matchptr + startoffset, 1, offsets[0] - startoffset, stdout);
@@ -239,7 +239,7 @@ diff -aurN pcre-8.34/pcregrep.c pcre-8.34-fixed/pcregrep.c
            }
  
          /* In multiline mode, we may have already printed the complete line
-@@ -2058,7 +2223,7 @@
+@@ -2059,7 +2224,7 @@
    if (count > 0 || !omit_zero_count)
      {
      if (printname != NULL && filenames != FN_NONE)
@@ -248,7 +248,7 @@ diff -aurN pcre-8.34/pcregrep.c pcre-8.34-fixed/pcregrep.c
      fprintf(stdout, "%d\n", count);
      }
    }
-@@ -2595,6 +2760,8 @@
+@@ -2603,6 +2768,8 @@
  pcre_jit_stack *jit_stack = NULL;
  #endif
  

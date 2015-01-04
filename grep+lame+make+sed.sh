@@ -4,10 +4,7 @@ source 0_append_distro_path.sh
 
 7z x '-oC:\Temp\gcc' grep-2.10.tar > NUL || fail_with grep-2.10.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' lame-3.99.5.tar > NUL || fail_with lame-3.99.5.tar - EPIC FAIL
-
-# http://git.savannah.gnu.org/cgit/make.git/snapshot/make-a4937bc.tar.gz
-7z x '-oC:\Temp\gcc' make-a4937bc.tar > NUL || fail_with make-a4937bc.tar - EPIC FAIL
-
+7z x '-oC:\Temp\gcc' make-4.1.tar > NUL || fail_with make-4.1.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' sed-4.2.2.tar > NUL || fail_with sed-4.2.2.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/grep-2.10 -p1 < grep.patch
@@ -39,16 +36,13 @@ rm -rf build src
 # http://lists.gnu.org/archive/html/make-w32/2013-10/msg00029.html
 # Eli Zaretskii> The only way to build a MinGW Make that is officially supported is build_w32.bat.
 
-mv make-a4937bc src
+mv make-4.1 src
 cd src
-
-# This is necessary for building from git.
-sed -r -e 's/%PACKAGE%/make/' -e 's/%VERSION%/4.0/' config.h.W32.template > config.h.W32
 
 mv config.h.W32 config.h
 
 gcc -Wall -Wextra -Werror -s -O3 \
--Wno-parentheses -Wno-sign-compare -Wno-unused-but-set-variable -Wno-unused-label -Wno-unused-parameter \
+-Wno-parentheses -Wno-sign-compare -Wno-unused-label -Wno-unused-parameter \
 -DHAVE_CONFIG_H -DWINDOWS32 -I. -Iglob -Iw32/include -Iw32/subproc \
 -DHAVE_CASE_INSENSITIVE_FS \
 ar.c arscan.c commands.c default.c dir.c expand.c file.c function.c getloadavg.c getopt.c getopt1.c \

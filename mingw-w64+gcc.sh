@@ -3,8 +3,8 @@
 source 0_append_distro_path.sh
 
 # Extract vanilla sources.
-7z x '-oC:\Temp\gcc' mingw-w64-v3.2.0.tar > NUL || fail_with mingw-w64-v3.2.0.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' gcc-4.9.1.tar > NUL || fail_with gcc-4.9.1.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' mingw-w64-v3.3.0.tar > NUL || fail_with mingw-w64-v3.3.0.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' gcc-4.9.2.tar > NUL || fail_with gcc-4.9.2.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' gmp-6.0.0a.tar > NUL || fail_with gmp-6.0.0a.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' mpfr-3.1.2.tar > NUL || fail_with mpfr-3.1.2.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' mpc-1.0.2.tar > NUL || fail_with mpc-1.0.2.tar - EPIC FAIL
@@ -17,7 +17,7 @@ cd /c/temp/gcc
 rm pax_global_header
 
 # Build mingw-w64.
-mv mingw-w64-v3.2.0 src
+mv mingw-w64-v3.3.0 src
 mkdir build dest
 cd build
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-lib32 --prefix=/c/temp/gcc/dest/x86_64-w64-mingw32 --with-sysroot=/c/temp/gcc/dest/x86_64-w64-mingw32 --enable-wildcard || fail_with mingw-w64 configure - EPIC FAIL
@@ -26,7 +26,7 @@ cd /c/temp/gcc
 rm -rf build src
 
 # Prepare to build gcc - set up the in-tree builds of gmp, mpfr, and mpc.
-mv gcc-4.9.1 src
+mv gcc-4.9.2 src
 mv gmp-6.0.0 src/gmp
 mv mpfr-3.1.2 src/mpfr
 mv mpc-1.0.2 src/mpc
