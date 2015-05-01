@@ -8,6 +8,7 @@ source 0_append_distro_path.sh
 7z x '-oC:\Temp\gcc' sed-4.2.2.tar > NUL || fail_with sed-4.2.2.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/grep-2.10 -p1 < grep.patch
+patch -d /c/temp/gcc/make-4.1 -p1 < make.patch
 patch -d /c/temp/gcc/sed-4.2.2 -p1 < sed.patch
 
 cd /c/temp/gcc

@@ -1,6 +1,6 @@
-msys-10.4 consists of the following files:
+msys-13.0 consists of the following files:
 
-bash-3.1.17-4-msys-1.0.16-bin.tar
+bash-3.1.23-1-msys-1.0.18-bin.tar
 bison-2.4.2-1-msys-1.0.13-bin.tar
 coreutils-5.97-3-msys-1.0.13-bin.tar
 diffutils-2.8.7.20071206cvs-3-msys-1.0.13-bin.tar
@@ -8,14 +8,14 @@ findutils-4.4.2-2-msys-1.0.13-bin.tar
 flex-2.5.35-2-msys-1.0.13-bin.tar
 gawk-3.1.7-2-msys-1.0.13-bin.tar
 grep-2.5.4-2-msys-1.0.13-bin.tar
-libiconv-1.13.1-2-msys-1.0.13-dll-2.tar
-libintl-0.17-2-msys-dll-8.tar
+libiconv-1.14-1-msys-1.0.17-dll-2.tar
+libintl-0.18.1.1-1-msys-1.0.17-dll-8.tar
 libregex-1.20090805-2-msys-1.0.13-dll-1.tar
 libtermcap-0.20050421_1-2-msys-1.0.13-dll-0.tar
-m4-1.4.14-1-msys-1.0.13-bin.tar
+m4-1.4.16-2-msys-1.0.17-bin.tar
 make-3.81-3-msys-1.0.13-bin.tar
-msysCORE-1.0.17-1-msys-1.0.17-bin.tar
-msysCORE-1.0.17-1-msys-1.0.17-ext.tar
+msysCORE-1.0.18-1-msys-1.0.18-bin.tar
+msysCORE-1.0.18-1-msys-1.0.18-ext.tar
 patch-2.6.1-1-msys-1.0.13-bin.tar
 sed-4.2.1-2-msys-1.0.13-bin.tar
 tar-1.23-1-msys-1.0.13-bin.tar

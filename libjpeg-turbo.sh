@@ -2,15 +2,15 @@
 
 source 0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' libjpeg-turbo-1.3.1.tar > NUL || fail_with libjpeg-turbo-1.3.1.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' cmake-3.0.0-win32-x86.zip > NUL || fail_with cmake-3.0.0-win32-x86.zip - EPIC FAIL
-7z x '-oC:\Temp\gcc' nasm-2.11.05-win32.zip > NUL || fail_with nasm-2.11.05-win32.zip - EPIC FAIL
+7z x '-oC:\Temp\gcc' libjpeg-turbo-1.4.0.tar > NUL || fail_with libjpeg-turbo-1.4.0.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' cmake-3.2.2-win32-x86.zip > NUL || fail_with cmake-3.2.2-win32-x86.zip - EPIC FAIL
+7z x '-oC:\Temp\gcc' nasm-2.11.08-win32.zip > NUL || fail_with nasm-2.11.08-win32.zip - EPIC FAIL
 
 cd /c/temp/gcc
-mv cmake-3.0.0-win32-x86 cmake
-mv nasm-2.11.05 nasm
+mv cmake-3.2.2-win32-x86 cmake
+mv nasm-2.11.08 nasm
 export PATH=$PATH:/c/temp/gcc/cmake/bin:/c/temp/gcc/nasm
-mv libjpeg-turbo-1.3.1 src
+mv libjpeg-turbo-1.4.0 src
 mkdir -p build dest/bin dest/include dest/lib
 cd build
 cmake -G "MSYS Makefiles" "-DCMAKE_C_FLAGS=-s -O3 -DTWO_FILE_COMMANDLINE -Wno-attributes" /c/temp/gcc/src || fail_with libjpeg-turbo - EPIC FAIL
@@ -21,7 +21,7 @@ mv build/jpegtran-static.exe dest/bin/jpegtran.exe || fail_with libjpeg-turbo - 
 mv build/jconfig.h src/jerror.h src/jmorecfg.h src/jpeglib.h src/turbojpeg.h dest/include || fail_with libjpeg-turbo - EPIC FAIL
 mv build/libjpeg.a build/libturbojpeg.a dest/lib || fail_with libjpeg-turbo - EPIC FAIL
 rm -rf build src cmake nasm
-mv dest libjpeg-turbo-1.3.1
-cd libjpeg-turbo-1.3.1
+mv dest libjpeg-turbo-1.4.0
+cd libjpeg-turbo-1.4.0
 
-7z -mx0 a ../libjpeg-turbo-1.3.1.7z *
+7z -mx0 a ../libjpeg-turbo-1.4.0.7z *

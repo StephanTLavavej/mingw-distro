@@ -1,7 +1,7 @@
-diff -aurN glew-1.11.0/include/GL/glew.h glew-1.11.0-fixed/include/GL/glew.h
---- glew-1.11.0/include/GL/glew.h	2014-08-11 07:14:56 -0700
-+++ glew-1.11.0-fixed/include/GL/glew.h	2014-09-01 13:40:41 -0700
-@@ -191,20 +191,7 @@
+diff -aurN glew-1.12.0/include/GL/glew.h glew-1.12.0-fixed/include/GL/glew.h
+--- glew-1.12.0/include/GL/glew.h	2015-01-24 04:45:51 -0800
++++ glew-1.12.0-fixed/include/GL/glew.h	2015-04-26 12:43:40 -0700
+@@ -192,20 +192,7 @@
  #  endif
  #endif
  
@@ -22,9 +22,9 @@ diff -aurN glew-1.11.0/include/GL/glew.h glew-1.11.0-fixed/include/GL/glew.h
  
  #else /* _UNIX */
  
-diff -aurN glew-1.11.0/include/GL/wglew.h glew-1.11.0-fixed/include/GL/wglew.h
---- glew-1.11.0/include/GL/wglew.h	2014-08-11 07:14:56 -0700
-+++ glew-1.11.0-fixed/include/GL/wglew.h	2014-09-01 13:40:41 -0700
+diff -aurN glew-1.12.0/include/GL/wglew.h glew-1.12.0-fixed/include/GL/wglew.h
+--- glew-1.12.0/include/GL/wglew.h	2015-01-24 04:45:51 -0800
++++ glew-1.12.0-fixed/include/GL/wglew.h	2015-04-26 12:43:40 -0700
 @@ -71,19 +71,7 @@
  #  undef WIN32_LEAN_AND_MEAN
  #endif

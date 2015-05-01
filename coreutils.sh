@@ -22,7 +22,7 @@ cd build
 touch src/make-prime-list
 make -k "CFLAGS=-O3" "LDFLAGS=-s"
 cd src
-mv sha1sum.exe sha256sum.exe sha512sum.exe sort.exe uniq.exe wc.exe ../../dest/bin || fail_with coreutils - EPIC FAIL
+mv sort.exe uniq.exe wc.exe ../../dest/bin || fail_with coreutils - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 mv dest coreutils-8.23
