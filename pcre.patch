@@ -1,9 +1,9 @@
-diff -aurN pcre-8.36/pcre.h.generic pcre-8.36-fixed/pcre.h.generic
---- pcre-8.36/pcre.h.generic	2014-09-26 02:23:11 -0700
-+++ pcre-8.36-fixed/pcre.h.generic	2015-01-03 20:53:14 -0800
+diff -aurN pcre-8.37/pcre.h.generic pcre-8.37-fixed/pcre.h.generic
+--- pcre-8.37/pcre.h.generic	2015-04-28 04:35:06 -0700
++++ pcre-8.37-fixed/pcre.h.generic	2015-09-27 12:34:08 -0700
 @@ -46,25 +46,6 @@
  #define PCRE_PRERELEASE     
- #define PCRE_DATE           2014-09-26
+ #define PCRE_DATE           2015-04-28
  
 -/* When an application links to a PCRE DLL in Windows, the symbols that are
 -imported have to be identified as such. When building PCRE, the appropriate
@@ -27,9 +27,9 @@ diff -aurN pcre-8.36/pcre.h.generic pcre-8.36-fixed/pcre.h.generic
  /* By default, we use the standard "extern" declarations. */
  
  #ifndef PCRE_EXP_DECL
-diff -aurN pcre-8.36/pcre.h.in pcre-8.36-fixed/pcre.h.in
---- pcre-8.36/pcre.h.in	2014-02-09 03:46:05 -0800
-+++ pcre-8.36-fixed/pcre.h.in	2015-01-03 20:53:14 -0800
+diff -aurN pcre-8.37/pcre.h.in pcre-8.37-fixed/pcre.h.in
+--- pcre-8.37/pcre.h.in	2014-02-09 03:46:05 -0800
++++ pcre-8.37-fixed/pcre.h.in	2015-09-27 12:34:08 -0700
 @@ -46,25 +46,6 @@
  #define PCRE_PRERELEASE     @PCRE_PRERELEASE@
  #define PCRE_DATE           @PCRE_DATE@
@@ -56,9 +56,9 @@ diff -aurN pcre-8.36/pcre.h.in pcre-8.36-fixed/pcre.h.in
  /* By default, we use the standard "extern" declarations. */
  
  #ifndef PCRE_EXP_DECL
-diff -aurN pcre-8.36/pcreposix.h pcre-8.36-fixed/pcreposix.h
---- pcre-8.36/pcreposix.h	2014-01-31 06:32:51 -0800
-+++ pcre-8.36-fixed/pcreposix.h	2015-01-03 20:53:14 -0800
+diff -aurN pcre-8.37/pcreposix.h pcre-8.37-fixed/pcreposix.h
+--- pcre-8.37/pcreposix.h	2014-01-31 06:32:51 -0800
++++ pcre-8.37-fixed/pcreposix.h	2015-09-27 12:34:08 -0700
 @@ -109,16 +109,6 @@
    regoff_t rm_eo;
  } regmatch_t;

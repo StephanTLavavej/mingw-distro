@@ -1,9 +1,9 @@
-diff -aurN boost_1_56_0/bootstrap.sh boost_1_56_0-fixed/bootstrap.sh
---- boost_1_56_0/bootstrap.sh	2014-08-03 13:49:14 -0700
-+++ boost_1_56_0-fixed/bootstrap.sh	2014-08-04 20:40:27 -0700
-@@ -215,7 +215,7 @@
+diff -aurN boost_1_59_0/bootstrap.sh boost_1_59_0-fixed/bootstrap.sh
+--- boost_1_59_0/bootstrap.sh	2015-08-11 07:00:14 -0700
++++ boost_1_59_0-fixed/bootstrap.sh	2015-09-26 15:13:24 -0700
+@@ -223,7 +223,7 @@
  if test "x$BJAM" = x; then
-   echo -n "Building Boost.Build engine with toolset $TOOLSET... "
+   $ECHO -n "Building Boost.Build engine with toolset $TOOLSET... "
    pwd=`pwd`
 -  (cd "$my_dir/tools/build/src/engine" && ./build.sh "$TOOLSET") > bootstrap.log 2>&1
 +  (cd "$my_dir/tools/build/src/engine" && ./build.sh mingw) > bootstrap.log 2>&1

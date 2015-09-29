@@ -1,7 +1,7 @@
-diff -aurN glew-1.12.0/src/glew.c glew-1.12.0-fixed/src/glew.c
---- glew-1.12.0/src/glew.c	2015-01-24 04:45:52 -0800
-+++ glew-1.12.0-fixed/src/glew.c	2015-04-26 12:45:57 -0700
-@@ -10264,11 +10264,58 @@
+diff -aurN glew-1.13.0/src/glew.c glew-1.13.0-fixed/src/glew.c
+--- glew-1.13.0/src/glew.c	2015-08-10 04:47:22 -0700
++++ glew-1.13.0-fixed/src/glew.c	2015-09-27 10:45:27 -0700
+@@ -9270,11 +9270,58 @@
  
  /* ------------------------------------------------------------------------- */
  
@@ -61,7 +61,7 @@ diff -aurN glew-1.12.0/src/glew.c glew-1.12.0-fixed/src/glew.c
    if (start == 0)
      return GL_FALSE;
    end = start + _glewStrLen(start);
-@@ -10329,7 +10376,7 @@
+@@ -9335,7 +9382,7 @@
    }
  
    /* query opengl extensions string */

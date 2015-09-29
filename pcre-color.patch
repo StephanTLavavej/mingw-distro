@@ -1,6 +1,6 @@
-diff -aurN pcre-8.36/pcregrep.c pcre-8.36-fixed/pcregrep.c
---- pcre-8.36/pcregrep.c	2014-09-15 06:48:59 -0700
-+++ pcre-8.36-fixed/pcregrep.c	2015-01-03 20:58:10 -0800
+diff -aurN pcre-8.37/pcregrep.c pcre-8.37-fixed/pcregrep.c
+--- pcre-8.37/pcregrep.c	2015-04-14 10:06:44 -0700
++++ pcre-8.37-fixed/pcregrep.c	2015-09-27 12:40:30 -0700
 @@ -142,8 +142,9 @@
  
  static int  endlinetype;
@@ -185,28 +185,28 @@ diff -aurN pcre-8.36/pcregrep.c pcre-8.36-fixed/pcregrep.c
  
  #ifndef HAVE_STRERROR
  /*************************************************
-@@ -1729,7 +1894,7 @@
-       {
-       if (!invert)
-         {
--        if (printname != NULL) fprintf(stdout, "%s:", printname);
-+        if (printname != NULL) setWinColor(filename_color), fprintf(stdout, "%s:", printname), resetWinColor();
-         if (number) fprintf(stdout, "%d:", linenumber);
+@@ -1746,7 +1911,7 @@
+           prevoffsets[0] = offsets[0];
+           prevoffsets[1] = offsets[1];
  
-         /* Handle --line-offsets */
-@@ -1761,9 +1926,9 @@
-               if (plen > 0)
-                 {
-                 if (printed) fprintf(stdout, "%s", om_separator);
--                if (do_colour) fprintf(stdout, "%c[%sm", 0x1b, colour_string);
-+                if (do_colour) setWinColor(colour_string);
-                 FWRITE(matchptr + offsets[n*2], 1, plen, stdout);
--                if (do_colour) fprintf(stdout, "%c[00m", 0x1b);
-+                if (do_colour) resetWinColor();
-                 printed = TRUE;
+-          if (printname != NULL) fprintf(stdout, "%s:", printname);
++          if (printname != NULL) setWinColor(filename_color), fprintf(stdout, "%s:", printname), resetWinColor();
+           if (number) fprintf(stdout, "%d:", linenumber);
+ 
+           /* Handle --line-offsets */
+@@ -1778,9 +1943,9 @@
+                 if (plen > 0)
+                   {
+                   if (printed) fprintf(stdout, "%s", om_separator);
+-                  if (do_colour) fprintf(stdout, "%c[%sm", 0x1b, colour_string);
++                  if (do_colour) setWinColor(colour_string);
+                   FWRITE(matchptr + offsets[n*2], 1, plen, stdout);
+-                  if (do_colour) fprintf(stdout, "%c[00m", 0x1b);
++                  if (do_colour) resetWinColor();
+                   printed = TRUE;
+                   }
                  }
-               }
-@@ -1864,7 +2029,7 @@
+@@ -1898,7 +2063,7 @@
        if (after_context > 0 || before_context > 0)
          endhyphenpending = TRUE;
  
@@ -215,7 +215,7 @@ diff -aurN pcre-8.36/pcregrep.c pcre-8.36-fixed/pcregrep.c
        if (number) fprintf(stdout, "%d:", linenumber);
  
        /* In multiline mode, we want to print to the end of the line in which
-@@ -1911,9 +2076,9 @@
+@@ -1945,9 +2110,9 @@
          {
          int plength;
          FWRITE(ptr, 1, offsets[0], stdout);
@@ -227,7 +227,7 @@ diff -aurN pcre-8.36/pcregrep.c pcre-8.36-fixed/pcregrep.c
          for (;;)
            {
            startoffset = offsets[1];
-@@ -1922,9 +2087,9 @@
+@@ -1956,9 +2121,9 @@
                  &mrc))
              break;
            FWRITE(matchptr + startoffset, 1, offsets[0] - startoffset, stdout);
@@ -239,7 +239,7 @@ diff -aurN pcre-8.36/pcregrep.c pcre-8.36-fixed/pcregrep.c
            }
  
          /* In multiline mode, we may have already printed the complete line
-@@ -2059,7 +2224,7 @@
+@@ -2094,7 +2259,7 @@
    if (count > 0 || !omit_zero_count)
      {
      if (printname != NULL && filenames != FN_NONE)
@@ -248,7 +248,7 @@ diff -aurN pcre-8.36/pcregrep.c pcre-8.36-fixed/pcregrep.c
      fprintf(stdout, "%d\n", count);
      }
    }
-@@ -2603,6 +2768,8 @@
+@@ -2638,6 +2803,8 @@
  pcre_jit_stack *jit_stack = NULL;
  #endif
  
