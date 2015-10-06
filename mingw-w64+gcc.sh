@@ -21,7 +21,8 @@ mv gmp-6.0.0 src
 mkdir build dest
 cd build
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/c/temp/gcc/dest --disable-shared || fail_with gmp configure - EPIC FAIL
-make all install "CFLAGS=-s -O3" || fail_with gmp make - EPIC FAIL
+make $X_MAKE_JOBS all "CFLAGS=-s -O3" || fail_with gmp make - EPIC FAIL
+make install || fail_with gmp make - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 rm -rf dest/lib/*.la dest/share
@@ -32,7 +33,8 @@ mv mpfr-3.1.3 src
 mkdir build dest
 cd build
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp || fail_with mpfr configure - EPIC FAIL
-make all install "CFLAGS=-s -O3" || fail_with mpfr make - EPIC FAIL
+make $X_MAKE_JOBS all "CFLAGS=-s -O3" || fail_with mpfr make - EPIC FAIL
+make install || fail_with mpfr make - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 rm -rf dest/lib/*.la dest/share
@@ -43,7 +45,8 @@ mv mpc-1.0.3 src
 mkdir build dest
 cd build
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp --with-mpfr=/c/temp/gcc/mpfr || fail_with mpc configure - EPIC FAIL
-make all install "CFLAGS=-s -O3" || fail_with mpc make - EPIC FAIL
+make $X_MAKE_JOBS all "CFLAGS=-s -O3" || fail_with mpc make - EPIC FAIL
+make install || fail_with mpc make - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 rm -rf dest/lib/*.la dest/share
@@ -54,7 +57,8 @@ mv mingw-w64-v4.0.4 src
 mkdir build dest
 cd build
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-lib32 --prefix=/c/temp/gcc/dest/x86_64-w64-mingw32 --with-sysroot=/c/temp/gcc/dest/x86_64-w64-mingw32 --enable-wildcard || fail_with mingw-w64 configure - EPIC FAIL
-make all install "CFLAGS=-s -O3" || fail_with mingw-w64 make - EPIC FAIL
+make $X_MAKE_JOBS all "CFLAGS=-s -O3" || fail_with mingw-w64 make - EPIC FAIL
+make install || fail_with mingw-w64 make - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 
@@ -90,7 +94,8 @@ cd build
 # --with-tune=haswell             : Tune for Haswell by default.
 
 # Build and install.
-make bootstrap install "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" "CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3" || fail_with gcc make - EPIC FAIL
+make $X_MAKE_JOBS bootstrap "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" "CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3" || fail_with gcc make - EPIC FAIL
+make install || fail_with gcc make - EPIC FAIL
 
 # Cleanup.
 cd /c/temp/gcc

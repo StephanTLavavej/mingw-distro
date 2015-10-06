@@ -15,3 +15,6 @@ function fail_with {
     echo $*
     if [ "$PS1" == "" ]; then exit 1; fi
 }
+
+export X_MAKE_JOBS="-j$NUMBER_OF_PROCESSORS -O"
+export X_B2_JOBS="-j$NUMBER_OF_PROCESSORS"
