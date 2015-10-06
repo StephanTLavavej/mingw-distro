@@ -17,7 +17,7 @@ mkdir -p dest/bin
 mv grep-2.10 src
 mkdir build
 cd build
-../src/configure --prefix=/c/temp/gcc/dest --disable-nls --disable-largefile || fail_with grep - EPIC FAIL
+../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/c/temp/gcc/dest --disable-nls --disable-largefile || fail_with grep - EPIC FAIL
 make "CFLAGS=-s -O3" || fail_with grep - EPIC FAIL
 mv src/grep.exe ../dest/bin
 cd /c/temp/gcc
@@ -26,7 +26,7 @@ rm -rf build src
 mv lame-3.99.5 src
 mkdir build
 cd build
-../src/configure --disable-shared --prefix=/c/temp/gcc/dest || fail_with lame - EPIC FAIL
+../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-shared --prefix=/c/temp/gcc/dest || fail_with lame - EPIC FAIL
 make "CFLAGS=-O3" "LDFLAGS=-s" || fail_with lame - EPIC FAIL
 mv frontend/lame.exe ../dest/bin
 cd /c/temp/gcc
@@ -60,7 +60,7 @@ rm -rf src
 mv sed-4.2.2 src
 mkdir build
 cd build
-../src/configure --prefix=/c/temp/gcc/dest || fail_with sed - EPIC FAIL
+../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/c/temp/gcc/dest || fail_with sed - EPIC FAIL
 make "CFLAGS=-O3" "LDFLAGS=-s" || fail_with sed - EPIC FAIL
 mv sed/sed.exe ../dest/bin
 cd /c/temp/gcc

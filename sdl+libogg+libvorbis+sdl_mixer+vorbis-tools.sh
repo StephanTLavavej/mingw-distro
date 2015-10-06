@@ -17,7 +17,7 @@ mkdir build dest
 cd build
 sed -re "s/ -XCClinker -static-libgcc//" ../src/configure > configure-fixed
 mv -f configure-fixed ../src/configure
-../src/configure --prefix=/c/temp/gcc/dest --disable-shared --disable-render-d3d || fail_with SDL - EPIC FAIL
+../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/c/temp/gcc/dest --disable-shared --disable-render-d3d || fail_with SDL - EPIC FAIL
 make all install "CFLAGS=-s -O3" || fail_with SDL - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
@@ -25,7 +25,7 @@ rm -rf build src
 mv libogg-1.3.2 src
 mkdir build
 cd build
-../src/configure --prefix=/c/temp/gcc/dest --disable-shared || fail_with libogg - EPIC FAIL
+../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/c/temp/gcc/dest --disable-shared || fail_with libogg - EPIC FAIL
 make all install "CFLAGS=-s -O3" || fail_with libogg - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
@@ -33,7 +33,7 @@ rm -rf build src
 mv libvorbis-1.3.5 src
 mkdir build
 cd build
-../src/configure --prefix=/c/temp/gcc/dest --disable-shared || fail_with libvorbis - EPIC FAIL
+../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/c/temp/gcc/dest --disable-shared || fail_with libvorbis - EPIC FAIL
 make all install "CFLAGS=-s -O3" || fail_with libvorbis - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
@@ -41,7 +41,7 @@ rm -rf build src
 mv SDL2_mixer-2.0.0 src
 mkdir build
 cd build
-../src/configure --prefix=/c/temp/gcc/dest --disable-shared || fail_with SDL_mixer - EPIC FAIL
+../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/c/temp/gcc/dest --disable-shared || fail_with SDL_mixer - EPIC FAIL
 make all install "CFLAGS=-s -O3" || fail_with SDL_mixer - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
@@ -49,7 +49,7 @@ rm -rf build src
 mv vorbis-tools-1.4.0 src
 mkdir build
 cd build
-../src/configure --prefix=/c/temp/gcc/dest --disable-nls || fail_with vorbis-tools - EPIC FAIL
+../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/c/temp/gcc/dest --disable-nls || fail_with vorbis-tools - EPIC FAIL
 make all install "CFLAGS=-s -O3" || fail_with vorbis-tools - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
