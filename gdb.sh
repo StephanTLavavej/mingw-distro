@@ -2,7 +2,7 @@
 
 source 0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' gdb-7.10.tar > NUL || fail_with gdb-7.10.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' gdb-7.10.tar > /dev/null || fail_with gdb-7.10.tar - EPIC FAIL
 
 cd /c/temp/gcc
 mv gdb-7.10 src

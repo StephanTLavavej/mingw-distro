@@ -2,9 +2,9 @@
 
 source 0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' libjpeg-turbo-1.4.2.tar > NUL || fail_with libjpeg-turbo-1.4.2.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' cmake-3.3.2-win32-x86.zip > NUL || fail_with cmake-3.3.2-win32-x86.zip - EPIC FAIL
-7z x '-oC:\Temp\gcc' nasm-2.11.08-win32.zip > NUL || fail_with nasm-2.11.08-win32.zip - EPIC FAIL
+7z x '-oC:\Temp\gcc' libjpeg-turbo-1.4.2.tar > /dev/null || fail_with libjpeg-turbo-1.4.2.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' cmake-3.3.2-win32-x86.zip > /dev/null || fail_with cmake-3.3.2-win32-x86.zip - EPIC FAIL
+7z x '-oC:\Temp\gcc' nasm-2.11.08-win32.zip > /dev/null || fail_with nasm-2.11.08-win32.zip - EPIC FAIL
 
 cd /c/temp/gcc
 mv cmake-3.3.2-win32-x86 cmake

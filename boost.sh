@@ -3,7 +3,7 @@
 source 0_append_distro_path.sh
 
 # Avoid extracting a file with a problematic non-ASCII filename.
-7z x '-oC:\Temp\gcc' boost_1_59_0.tar '-x!boost_1_59_0\libs\preprocessor\doc' > NUL || fail_with boost_1_59_0.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' boost_1_59_0.tar '-x!boost_1_59_0\libs\preprocessor\doc' > /dev/null || fail_with boost_1_59_0.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/boost_1_59_0 -p1 < boost-bootstrap.patch
 
@@ -28,7 +28,7 @@ mv dest boost-1.59.0
 echo Packaging...
 
 cd boost-1.59.0
-7z -mx0 a ../boost-1.59.0.7z * > NUL || fail_with boost-1.59.0.7z - EPIC FAIL
+7z -mx0 a ../boost-1.59.0.7z * > /dev/null || fail_with boost-1.59.0.7z - EPIC FAIL
 
 echo Cleaning...
 

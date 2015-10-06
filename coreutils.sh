@@ -2,7 +2,7 @@
 
 source 0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' coreutils-8.24.tar > NUL || fail_with coreutils-8.24.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' coreutils-8.24.tar > /dev/null || fail_with coreutils-8.24.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/coreutils-8.24 -p1 < coreutils.patch
 
