@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source 0_append_distro_path.sh
+source ./0_append_distro_path.sh
 
 7z x '-oC:\Temp\gcc' SDL2-2.0.3.tar > /dev/null || fail_with SDL2-2.0.3.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' libogg-1.3.2.tar > /dev/null || fail_with libogg-1.3.2.tar - EPIC FAIL

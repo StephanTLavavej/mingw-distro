@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source 0_append_distro_path.sh
+source ./0_append_distro_path.sh
 
 7z x '-oC:\Temp\gcc' libjpeg-turbo-1.4.2.tar > /dev/null || fail_with libjpeg-turbo-1.4.2.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' cmake-3.3.2-win32-x86.zip > /dev/null || fail_with cmake-3.3.2-win32-x86.zip - EPIC FAIL

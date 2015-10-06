@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source 0_append_distro_path.sh
+source ./0_append_distro_path.sh
 
 7z x '-oC:\Temp\gcc' grep-2.10.tar > /dev/null || fail_with grep-2.10.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' lame-3.99.5.tar > /dev/null || fail_with lame-3.99.5.tar - EPIC FAIL

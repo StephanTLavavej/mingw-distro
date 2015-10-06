@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source 0_append_distro_path.sh
+source ./0_append_distro_path.sh
 
 7z x '-oC:\Temp\gcc' libpng-1.6.18.tar > /dev/null || fail_with libpng-1.6.18.tar - EPIC FAIL
 

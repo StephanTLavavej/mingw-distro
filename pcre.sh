@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source 0_append_distro_path.sh
+source ./0_append_distro_path.sh
 
 7z x '-oC:\Temp\gcc' pcre-8.37.tar > /dev/null || fail_with pcre-8.37.tar - EPIC FAIL
 

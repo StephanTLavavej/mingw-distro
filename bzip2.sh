@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source 0_append_distro_path.sh
+source ./0_append_distro_path.sh
 
 7z x '-oC:\Temp\gcc' bzip2-1.0.6.tar > /dev/null || fail_with bzip2-1.0.6.tar - EPIC FAIL
 

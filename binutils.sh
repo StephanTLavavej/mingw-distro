@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source 0_append_distro_path.sh
+source ./0_append_distro_path.sh
 
 7z x '-oC:\Temp\gcc' binutils-2.25.1.tar > /dev/null || fail_with binutils-2.25.1.tar - EPIC FAIL
 

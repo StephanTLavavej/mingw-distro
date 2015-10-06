@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source 0_append_distro_path.sh
+source ./0_append_distro_path.sh
 
 7z x '-oC:\Temp\gcc' freetype-2.6.tar > /dev/null || fail_with freetype-2.6.tar - EPIC FAIL
 

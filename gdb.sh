@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source 0_append_distro_path.sh
+source ./0_append_distro_path.sh
 
 7z x '-oC:\Temp\gcc' gdb-7.10.tar > /dev/null || fail_with gdb-7.10.tar - EPIC FAIL
 

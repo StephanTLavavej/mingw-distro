@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source 0_append_distro_path.sh
+source ./0_append_distro_path.sh
 
 7z x '-oC:\Temp\gcc' zlib-1.2.8.tar > /dev/null || fail_with zlib-1.2.8.tar - EPIC FAIL
 

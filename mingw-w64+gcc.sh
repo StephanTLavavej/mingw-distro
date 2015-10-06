@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source 0_append_distro_path.sh
+source ./0_append_distro_path.sh
 
 # Extract vanilla sources.
 7z x '-oC:\Temp\gcc' gmp-6.0.0a.tar > /dev/null || fail_with gmp-6.0.0a.tar - EPIC FAIL

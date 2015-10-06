@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source 0_append_distro_path.sh
+source ./0_append_distro_path.sh
 
 7z x '-oC:\Temp\gcc' pngcheck-2.3.0.tar > /dev/null || fail_with pngcheck-2.3.0.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' pngcrush-1.7.86-nolib.tar > /dev/null || fail_with pngcrush-1.7.86-nolib.tar - EPIC FAIL
