@@ -57,5 +57,6 @@ rm -rf build src
 mv dest SDL+libogg+libvorbis+SDL_mixer+vorbis-tools
 cd SDL+libogg+libvorbis+SDL_mixer+vorbis-tools
 rm -rf bin/sdl2-config lib/pkgconfig lib/*.la share
+for i in bin/*.exe; do mv $i ${i/x86_64-w64-mingw32-}; done
 
 7z -mx0 a ../SDL+libogg+libvorbis+SDL_mixer+vorbis-tools.7z *
