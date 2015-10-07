@@ -1,0 +1,18 @@
+Go to: http://sourceforge.net/projects/msys2/files/Base/x86_64/
+
+Download the most recent version of: msys2-base-x86_64-20150916.tar.xz
+
+Extract it to: C:\Temp\gcc\msys64
+
+Run: msys2_shell.bat
+
+CLOSE AND RESTART MSYS2.
+
+In MSYS2, run: update-core
+
+CLOSE AND RESTART MSYS2.
+
+In MSYS2, run: pacman -Su cmake diffutils make nasm patch tar texinfo
+
+Stephan T. Lavavej
+http://nuwen.net
