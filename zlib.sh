@@ -10,7 +10,7 @@ cd /c/temp/gcc
 mv zlib-1.2.8 src
 mkdir -p dest/include dest/lib
 cd src
-gcc -s -O3 -c *.c || fail_with zlib - EPIC FAIL
+gcc -s -O3 -c *.c || fail_with zlib 1 - EPIC FAIL
 ar rs ../dest/lib/libz.a *.o
 mv zconf.h zlib.h ../dest/include
 cd /c/temp/gcc
