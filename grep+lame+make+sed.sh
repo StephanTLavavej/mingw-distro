@@ -17,7 +17,10 @@ mkdir -p dest/bin
 mv grep-2.10 src
 mkdir build
 cd build
-../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/c/temp/gcc/dest --disable-nls --disable-largefile || fail_with grep 1 - EPIC FAIL
+
+../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
+--prefix=/c/temp/gcc/dest --disable-nls --disable-largefile || fail_with grep 1 - EPIC FAIL
+
 make $X_MAKE_JOBS "CFLAGS=-s -O3" || fail_with grep 2 - EPIC FAIL
 mv src/grep.exe ../dest/bin || fail_with grep 3 - EPIC FAIL
 cd /c/temp/gcc
@@ -26,7 +29,10 @@ rm -rf build src
 mv lame-3.99.5 src
 mkdir build
 cd build
-../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-shared --prefix=/c/temp/gcc/dest || fail_with lame 1 - EPIC FAIL
+
+../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-shared \
+--prefix=/c/temp/gcc/dest || fail_with lame 1 - EPIC FAIL
+
 make $X_MAKE_JOBS "CFLAGS=-O3" "LDFLAGS=-s" || fail_with lame 2 - EPIC FAIL
 mv frontend/lame.exe ../dest/bin || fail_with lame 3 - EPIC FAIL
 cd /c/temp/gcc
@@ -46,11 +52,10 @@ gcc -Wall -Wextra -Werror -s -O3 \
 -Wno-parentheses -Wno-sign-compare -Wno-unused-label -Wno-unused-parameter \
 -DHAVE_CONFIG_H -DWINDOWS32 -I. -Iglob -Iw32/include -Iw32/subproc \
 -DHAVE_CASE_INSENSITIVE_FS \
-ar.c arscan.c commands.c default.c dir.c expand.c file.c function.c getloadavg.c getopt.c getopt1.c \
-guile.c \
-hash.c implicit.c job.c load.c loadapi.c main.c misc.c output.c read.c remake.c remote-stub.c rule.c \
-signame.c strcache.c variable.c version.c vpath.c glob/fnmatch.c glob/glob.c w32/pathstuff.c \
-w32/compat/posixfcn.c w32/subproc/misc.c w32/subproc/sub_proc.c w32/subproc/w32err.c \
+ar.c arscan.c commands.c default.c dir.c expand.c file.c function.c getloadavg.c getopt.c getopt1.c guile.c hash.c \
+implicit.c job.c load.c loadapi.c main.c misc.c output.c read.c remake.c remote-stub.c rule.c signame.c strcache.c \
+variable.c version.c vpath.c glob/fnmatch.c glob/glob.c \
+w32/pathstuff.c w32/compat/posixfcn.c w32/subproc/misc.c w32/subproc/sub_proc.c w32/subproc/w32err.c \
 -o ../dest/bin/make.exe || fail_with make 1 - EPIC FAIL
 
 cd /c/temp/gcc
@@ -60,7 +65,10 @@ rm -rf src
 mv sed-4.2.2 src
 mkdir build
 cd build
-../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/c/temp/gcc/dest || fail_with sed 1 - EPIC FAIL
+
+../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
+--prefix=/c/temp/gcc/dest || fail_with sed 1 - EPIC FAIL
+
 make $X_MAKE_JOBS "CFLAGS=-O3" "LDFLAGS=-s" || fail_with sed 2 - EPIC FAIL
 mv sed/sed.exe ../dest/bin || fail_with sed 3 - EPIC FAIL
 cd /c/temp/gcc

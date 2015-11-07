@@ -20,7 +20,10 @@ rm pax_global_header
 mv gmp-6.0.0 src
 mkdir build dest
 cd build
-../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/c/temp/gcc/dest --disable-shared || fail_with gmp 1 - EPIC FAIL
+
+../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
+--prefix=/c/temp/gcc/dest --disable-shared || fail_with gmp 1 - EPIC FAIL
+
 make $X_MAKE_JOBS all "CFLAGS=-s -O3" || fail_with gmp 2 - EPIC FAIL
 make install || fail_with gmp 3 - EPIC FAIL
 cd /c/temp/gcc
@@ -32,7 +35,10 @@ mv dest gmp
 mv mpfr-3.1.3 src
 mkdir build dest
 cd build
-../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp || fail_with mpfr 1 - EPIC FAIL
+
+../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
+--prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp || fail_with mpfr 1 - EPIC FAIL
+
 make $X_MAKE_JOBS all "CFLAGS=-s -O3" || fail_with mpfr 2 - EPIC FAIL
 make install || fail_with mpfr 3 - EPIC FAIL
 cd /c/temp/gcc
@@ -44,7 +50,11 @@ mv dest mpfr
 mv mpc-1.0.3 src
 mkdir build dest
 cd build
-../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp --with-mpfr=/c/temp/gcc/mpfr || fail_with mpc 1 - EPIC FAIL
+
+../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
+--prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp --with-mpfr=/c/temp/gcc/mpfr \
+|| fail_with mpc 1 - EPIC FAIL
+
 make $X_MAKE_JOBS all "CFLAGS=-s -O3" || fail_with mpc 2 - EPIC FAIL
 make install || fail_with mpc 3 - EPIC FAIL
 cd /c/temp/gcc
@@ -56,7 +66,11 @@ mv dest mpc
 mv mingw-w64-v4.0.4 src
 mkdir build dest
 cd build
-../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-lib32 --prefix=/c/temp/gcc/dest/x86_64-w64-mingw32 --with-sysroot=/c/temp/gcc/dest/x86_64-w64-mingw32 --enable-wildcard || fail_with mingw-w64 1 - EPIC FAIL
+
+../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-lib32 \
+--prefix=/c/temp/gcc/dest/x86_64-w64-mingw32 --with-sysroot=/c/temp/gcc/dest/x86_64-w64-mingw32 --enable-wildcard \
+|| fail_with mingw-w64 1 - EPIC FAIL
+
 make $X_MAKE_JOBS all "CFLAGS=-s -O3" || fail_with mingw-w64 2 - EPIC FAIL
 make install || fail_with mingw-w64 3 - EPIC FAIL
 cd /c/temp/gcc
@@ -74,7 +88,11 @@ cp -r dest/x86_64-w64-mingw32/include src/gcc/winsup/mingw/include
 # Configure.
 mkdir build
 cd build
-../src/configure --with-gmp=/c/temp/gcc/gmp --with-mpfr=/c/temp/gcc/mpfr --with-mpc=/c/temp/gcc/mpc --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest --disable-libstdcxx-pch --disable-nls --disable-shared --disable-win32-registry --enable-checking=release --with-tune=haswell || fail_with gcc 1 - EPIC FAIL
+
+../src/configure --with-gmp=/c/temp/gcc/gmp --with-mpfr=/c/temp/gcc/mpfr --with-mpc=/c/temp/gcc/mpc \
+--enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
+--disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest --disable-libstdcxx-pch --disable-nls \
+--disable-shared --disable-win32-registry --enable-checking=release --with-tune=haswell || fail_with gcc 1 - EPIC FAIL
 
 # --with-gmp=/c/temp/gcc/gmp      : Obvious.
 # --with-mpfr=/c/temp/gcc/mpfr    : Obvious.
@@ -94,7 +112,9 @@ cd build
 # --with-tune=haswell             : Tune for Haswell by default.
 
 # Build and install.
-make $X_MAKE_JOBS bootstrap "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" "CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3" || fail_with gcc 2 - EPIC FAIL
+make $X_MAKE_JOBS bootstrap "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" \
+"CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3" || fail_with gcc 2 - EPIC FAIL
+
 make install || fail_with gcc 3 - EPIC FAIL
 
 # Cleanup.

@@ -8,7 +8,10 @@ cd /c/temp/gcc
 mv freetype-2.6.1 src
 mkdir build dest
 cd build
-../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-shared --prefix=/c/temp/gcc/dest "CFLAGS=-s -O3" --without-png || fail_with freetype 1 - EPIC FAIL
+
+../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-shared \
+--prefix=/c/temp/gcc/dest "CFLAGS=-s -O3" --without-png || fail_with freetype 1 - EPIC FAIL
+
 make $X_MAKE_JOBS all || fail_with freetype 2 - EPIC FAIL
 make install || fail_with freetype 3 - EPIC FAIL
 cd /c/temp/gcc
