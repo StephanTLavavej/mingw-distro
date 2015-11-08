@@ -8,7 +8,6 @@ source ./0_append_distro_path.sh
 7z x '-oC:\Temp\gcc' sed-4.2.2.tar > /dev/null || fail_with sed-4.2.2.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/grep-2.10 -p1 < grep.patch
-patch -d /c/temp/gcc/make-4.1 -p1 < make.patch
 patch -d /c/temp/gcc/sed-4.2.2 -p1 < sed.patch
 
 cd /c/temp/gcc
@@ -48,8 +47,7 @@ cd src
 
 mv config.h.W32 config.h
 
-gcc -Wall -Wextra -Werror -s -O3 \
--Wno-parentheses -Wno-sign-compare -Wno-unused-label -Wno-unused-parameter \
+gcc -s -O3 \
 -DHAVE_CONFIG_H -DWINDOWS32 -I. -Iglob -Iw32/include -Iw32/subproc \
 -DHAVE_CASE_INSENSITIVE_FS \
 ar.c arscan.c commands.c default.c dir.c expand.c file.c function.c getloadavg.c getopt.c getopt1.c guile.c hash.c \

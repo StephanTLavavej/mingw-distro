@@ -15,6 +15,8 @@ cd /c/temp/gcc
 mv SDL2-2.0.3 src
 mkdir build dest
 cd build
+
+# This will be fixed in SDL 2.0.4.
 sed -re "s/ -XCClinker -static-libgcc//" ../src/configure > configure-fixed
 mv -f configure-fixed ../src/configure
 

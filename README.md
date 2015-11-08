@@ -8,9 +8,9 @@ You'll need to run them in MSYS2, which you can set up without an installer:
 * Download the most recent version of: `msys2-base-x86_64-20150916.tar.xz`
 * Extract it to: `C:\Temp\gcc\msys64`
 * Run: `msys2_shell.bat`
-* CLOSE AND RESTART MSYS2.
+* CLOSE MSYS2 BY CLICKING THE WINDOW'S RED X. (Don't type `exit`.) Restart MSYS2.
 * In MSYS2, run: `update-core`
-* CLOSE AND RESTART MSYS2.
+* CLOSE MSYS2 BY CLICKING THE WINDOW'S RED X. (Don't type `exit`.) Restart MSYS2.
 * In MSYS2, run: `pacman -Su cmake diffutils make nasm patch tar texinfo`
 
 ### Important Notes
