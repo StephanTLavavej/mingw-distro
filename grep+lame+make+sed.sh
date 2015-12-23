@@ -56,6 +56,9 @@ variable.c version.c vpath.c glob/fnmatch.c glob/glob.c \
 w32/pathstuff.c w32/compat/posixfcn.c w32/subproc/misc.c w32/subproc/sub_proc.c w32/subproc/w32err.c \
 -o ../dest/bin/make.exe || fail_with make 1 - EPIC FAIL
 
+# For CMake.
+cp ../dest/bin/make.exe ../dest/bin/mingw32-make.exe || fail_with make 2 - EPIC FAIL
+
 cd /c/temp/gcc
 rm -rf src
 

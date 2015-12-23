@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' libpng-1.6.18.tar > /dev/null || fail_with libpng-1.6.18.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' libpng-1.6.20.tar > /dev/null || fail_with libpng-1.6.20.tar - EPIC FAIL
 
 cd /c/temp/gcc
-mv libpng-1.6.18 src
+mv libpng-1.6.20 src
 mkdir build dest
 cd build
 
@@ -16,8 +16,8 @@ make $X_MAKE_JOBS all "CFLAGS=-s -O3" || fail_with libpng 2 - EPIC FAIL
 make install || fail_with libpng 3 - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
-mv dest libpng-1.6.18
-cd libpng-1.6.18
+mv dest libpng-1.6.20
+cd libpng-1.6.20
 rm -rf bin include/libpng16 lib/pkgconfig lib/*.la lib/libpng16.a share
 
-7z -mx0 a ../libpng-1.6.18.7z *
+7z -mx0 a ../libpng-1.6.20.7z *

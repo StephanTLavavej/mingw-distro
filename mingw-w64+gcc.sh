@@ -3,11 +3,11 @@
 source ./0_append_distro_path.sh
 
 # Extract vanilla sources.
-7z x '-oC:\Temp\gcc' gmp-6.0.0a.tar > /dev/null || fail_with gmp-6.0.0a.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' gmp-6.1.0.tar > /dev/null || fail_with gmp-6.1.0.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' mpfr-3.1.3.tar > /dev/null || fail_with mpfr-3.1.3.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' mpc-1.0.3.tar > /dev/null || fail_with mpc-1.0.3.tar - EPIC FAIL
 7z x '-oC:\Temp\gcc' mingw-w64-v4.0.4.tar > /dev/null || fail_with mingw-w64-v4.0.4.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' gcc-5.2.0.tar > /dev/null || fail_with gcc-5.2.0.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' gcc-5.3.0.tar > /dev/null || fail_with gcc-5.3.0.tar - EPIC FAIL
 
 patch -Z -d /c/temp/gcc/mpfr-3.1.3 -p1 < mpfr.patch
 
@@ -17,7 +17,7 @@ cd /c/temp/gcc
 rm pax_global_header
 
 # Build gmp.
-mv gmp-6.0.0 src
+mv gmp-6.1.0 src
 mkdir build dest
 cd build
 
@@ -77,7 +77,7 @@ cd /c/temp/gcc
 rm -rf build src
 
 # Prepare to build gcc.
-mv gcc-5.2.0 src
+mv gcc-5.3.0 src
 
 # Prepare to build gcc - perform magic directory surgery.
 cp -r dest/x86_64-w64-mingw32/lib dest/x86_64-w64-mingw32/lib64
