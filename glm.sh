@@ -2,12 +2,14 @@
 
 source ./0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' glm-0.9.7.1.7z glm/glm || fail_with glm-0.9.7.1.7z - EPIC FAIL
+extract_file glm-0.9.7.1.7z
 
 cd /c/temp/gcc
-mv glm glm-0.9.7.1
+mv glm src
+mkdir -p dest/include
+mv src/glm dest/include
+rm -rf src
+mv dest glm-0.9.7.1
 cd glm-0.9.7.1
-mkdir include
-mv glm include
 
 7z -mx0 a ../glm-0.9.7.1.7z *

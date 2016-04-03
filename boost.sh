@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' boost_1_60_0.tar || fail_with boost_1_60_0.tar - EPIC FAIL
+extract_file boost_1_60_0.tar
 
 patch -d /c/temp/gcc/boost_1_60_0 -p1 < boost-bootstrap.patch
 

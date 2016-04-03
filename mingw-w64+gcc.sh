@@ -3,11 +3,11 @@
 source ./0_append_distro_path.sh
 
 # Extract vanilla sources.
-7z x '-oC:\Temp\gcc' gmp-6.1.0.tar || fail_with gmp-6.1.0.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' mpfr-3.1.3.tar || fail_with mpfr-3.1.3.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' mpc-1.0.3.tar || fail_with mpc-1.0.3.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' mingw-w64-v4.0.4.tar || fail_with mingw-w64-v4.0.4.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' gcc-5.3.0.tar || fail_with gcc-5.3.0.tar - EPIC FAIL
+extract_file gmp-6.1.0.tar
+extract_file mpfr-3.1.3.tar
+extract_file mpc-1.0.3.tar
+extract_file mingw-w64-v4.0.4.tar
+extract_file gcc-5.3.0.tar
 
 patch -Z -d /c/temp/gcc/mpfr-3.1.3 -p1 < mpfr.patch
 

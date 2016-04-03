@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' libjpeg-turbo-1.4.2.tar || fail_with libjpeg-turbo-1.4.2.tar - EPIC FAIL
+extract_file libjpeg-turbo-1.4.2.tar
 
 cd /c/temp/gcc
 mv libjpeg-turbo-1.4.2 src

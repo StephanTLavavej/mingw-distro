@@ -16,5 +16,9 @@ function fail_with {
     if [ "$PS1" == "" ]; then exit 1; fi
 }
 
+function extract_file {
+    7z x '-oC:\Temp\gcc' $* || fail_with $* - EPIC FAIL
+}
+
 export X_MAKE_JOBS="-j$NUMBER_OF_PROCESSORS -O"
 export X_B2_JOBS="-j$NUMBER_OF_PROCESSORS"

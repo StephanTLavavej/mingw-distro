@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' grep-2.10.tar || fail_with grep-2.10.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' lame-3.99.5.tar || fail_with lame-3.99.5.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' make-4.1.tar || fail_with make-4.1.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' sed-4.2.2.tar || fail_with sed-4.2.2.tar - EPIC FAIL
+extract_file grep-2.10.tar
+extract_file lame-3.99.5.tar
+extract_file make-4.1.tar
+extract_file sed-4.2.2.tar
 
 patch -d /c/temp/gcc/grep-2.10 -p1 < grep.patch
 patch -d /c/temp/gcc/sed-4.2.2 -p1 < sed.patch

@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' binutils-2.25.1.tar || fail_with binutils-2.25.1.tar - EPIC FAIL
+extract_file binutils-2.25.1.tar
 
 cd /c/temp/gcc
 mv binutils-2.25.1 src
