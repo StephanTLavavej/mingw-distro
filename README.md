@@ -4,14 +4,32 @@ Here are the build scripts for my MinGW distro.
 
 You'll need to run them in MSYS2, which you can set up without an installer:
 
-* Go to: http://sourceforge.net/projects/msys2/files/Base/x86_64/
-* Download the most recent version of: `msys2-base-x86_64-20150916.tar.xz`
+* Go to: https://sourceforge.net/projects/msys2/files/Base/x86_64/
+* Download: `msys2-base-x86_64-20160205.tar.xz`
 * Extract it to: `C:\Temp\gcc\msys64`
 * Run: `msys2_shell.bat`
-* CLOSE MSYS2 BY CLICKING THE WINDOW'S RED X. (Don't type `exit`.) Restart MSYS2.
+* RECYCLE MSYS2, which means:
+  * Close MSYS2 by clicking the window's red X. (Don't type `exit`.)
+  * In Task Manager, terminate `pacman.exe` if it's still running. (Sometimes it will, sometimes it won't.)
+  * Restart MSYS2.
 * In MSYS2, run: `update-core`
-* CLOSE MSYS2 BY CLICKING THE WINDOW'S RED X. (Don't type `exit`.) Restart MSYS2.
+* RECYCLE MSYS2.
+* In MSYS2, run: `pacman -Syuu`
+* RECYCLE MSYS2.
+* Repeat the previous two steps until you see this:
+```
+$ pacman -Syuu
+:: Synchronizing package databases...
+ mingw32 is up to date
+ mingw64 is up to date
+ msys is up to date
+:: Starting core system upgrade...
+ there is nothing to do
+:: Starting full system upgrade...
+ there is nothing to do
+```
 * In MSYS2, run: `pacman -Su cmake diffutils make nasm patch tar texinfo`
+* RECYCLE MSYS2.
 
 ### Important Notes
 
