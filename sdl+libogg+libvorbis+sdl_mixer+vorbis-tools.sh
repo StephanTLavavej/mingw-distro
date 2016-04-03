@@ -2,11 +2,11 @@
 
 source ./0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' SDL2-2.0.3.tar > /dev/null || fail_with SDL2-2.0.3.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' libogg-1.3.2.tar > /dev/null || fail_with libogg-1.3.2.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' libvorbis-1.3.5.tar > /dev/null || fail_with libvorbis-1.3.5.tar - EPIC FAIL
-7z x '-oC:\Temp\gcc' SDL2_mixer-2.0.0.zip > /dev/null || fail_with SDL2_mixer-2.0.0.zip - EPIC FAIL
-7z x '-oC:\Temp\gcc' vorbis-tools-1.4.0.tar > /dev/null || fail_with vorbis-tools-1.4.0.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' SDL2-2.0.3.tar || fail_with SDL2-2.0.3.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' libogg-1.3.2.tar || fail_with libogg-1.3.2.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' libvorbis-1.3.5.tar || fail_with libvorbis-1.3.5.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' SDL2_mixer-2.0.0.zip || fail_with SDL2_mixer-2.0.0.zip - EPIC FAIL
+7z x '-oC:\Temp\gcc' vorbis-tools-1.4.0.tar || fail_with vorbis-tools-1.4.0.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/SDL2-2.0.3 -p1 < sdl-clipcursor.patch
 

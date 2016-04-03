@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' libpng-1.6.20.tar > /dev/null || fail_with libpng-1.6.20.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' libpng-1.6.20.tar || fail_with libpng-1.6.20.tar - EPIC FAIL
 
 cd /c/temp/gcc
 mv libpng-1.6.20 src

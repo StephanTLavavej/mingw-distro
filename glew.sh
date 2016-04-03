@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' glew-1.13.0.tar > /dev/null || fail_with glew-1.13.0.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' glew-1.13.0.tar || fail_with glew-1.13.0.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/glew-1.13.0 -p1 < glew-core.patch
 

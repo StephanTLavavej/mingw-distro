@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' boost_1_60_0.tar > /dev/null || fail_with boost_1_60_0.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' boost_1_60_0.tar || fail_with boost_1_60_0.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/boost_1_60_0 -p1 < boost-bootstrap.patch
 
@@ -29,7 +29,7 @@ mv dest boost-1.60.0
 echo Packaging...
 
 cd boost-1.60.0
-7z -mx0 a ../boost-1.60.0.7z * > /dev/null || fail_with boost-1.60.0.7z - EPIC FAIL
+7z -mx0 a ../boost-1.60.0.7z * || fail_with boost-1.60.0.7z - EPIC FAIL
 
 echo Cleaning...
 

@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' pcre-8.37.tar > /dev/null || fail_with pcre-8.37.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' pcre-8.37.tar || fail_with pcre-8.37.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/pcre-8.37 -p1 < pcre.patch
 patch -d /c/temp/gcc/pcre-8.37 -p1 < pcre-color.patch

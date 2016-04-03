@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' freetype-2.6.2.tar > /dev/null || fail_with freetype-2.6.2.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' freetype-2.6.2.tar || fail_with freetype-2.6.2.tar - EPIC FAIL
 
 cd /c/temp/gcc
 mv freetype-2.6.2 src

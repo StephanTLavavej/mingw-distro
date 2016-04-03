@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-7z x '-oC:\Temp\gcc' zlib-1.2.8.tar > /dev/null || fail_with zlib-1.2.8.tar - EPIC FAIL
+7z x '-oC:\Temp\gcc' zlib-1.2.8.tar || fail_with zlib-1.2.8.tar - EPIC FAIL
 
 patch -d /c/temp/gcc/zlib-1.2.8 -p1 < zlib.patch
 
