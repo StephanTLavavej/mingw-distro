@@ -2,13 +2,12 @@
 
 source ./0_append_distro_path.sh
 
-extract_file pcre-8.37.tar
+extract_file pcre-8.38.tar
 
-patch -d /c/temp/gcc/pcre-8.37 -p1 < pcre.patch
-patch -d /c/temp/gcc/pcre-8.37 -p1 < pcre-color.patch
+patch -d /c/temp/gcc/pcre-8.38 -p1 < pcre-color.patch
 
 cd /c/temp/gcc
-mv pcre-8.37 src
+mv pcre-8.38 src
 mkdir build dest
 cd build
 
@@ -20,9 +19,9 @@ make $X_MAKE_JOBS all || fail_with pcre 2 - EPIC FAIL
 make install || fail_with pcre 3 - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
-mv dest pcre-8.37
-cd pcre-8.37
+mv dest pcre-8.38
+cd pcre-8.38
 rm -rf bin/pcre-config lib/pkgconfig lib/*.la share
 cp include/pcreposix.h include/regex.h
 
-7z -mx0 a ../pcre-8.37.7z *
+7z -mx0 a ../pcre-8.38.7z *

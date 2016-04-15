@@ -2,23 +2,19 @@
 
 source ./0_append_distro_path.sh
 
-extract_file SDL2-2.0.3.tar
+extract_file SDL2-2.0.4.tar
 extract_file libogg-1.3.2.tar
 extract_file libvorbis-1.3.5.tar
-extract_file SDL2_mixer-2.0.0.zip
+extract_file SDL2_mixer-2.0.1.zip
 extract_file vorbis-tools-1.4.0.tar
 
-patch -d /c/temp/gcc/SDL2-2.0.3 -p1 < sdl-clipcursor.patch
+patch -d /c/temp/gcc/SDL2-2.0.4 -p1 < sdl-clipcursor.patch
 
 cd /c/temp/gcc
 
-mv SDL2-2.0.3 src
+mv SDL2-2.0.4 src
 mkdir build dest
 cd build
-
-# This will be fixed in SDL 2.0.4.
-sed -re "s/ -XCClinker -static-libgcc//" ../src/configure > configure-fixed
-mv -f configure-fixed ../src/configure
 
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
 --prefix=/c/temp/gcc/dest --disable-shared --disable-render-d3d || fail_with SDL 1 - EPIC FAIL
@@ -52,7 +48,7 @@ make install || fail_with libvorbis 3 - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 
-mv SDL2_mixer-2.0.0 src
+mv SDL2_mixer-2.0.1 src
 mkdir build
 cd build
 
@@ -78,7 +74,7 @@ rm -rf build src
 
 mv dest SDL+libogg+libvorbis+SDL_mixer+vorbis-tools
 cd SDL+libogg+libvorbis+SDL_mixer+vorbis-tools
-rm -rf bin/sdl2-config lib/pkgconfig lib/*.la share
+rm -rf bin/sdl2-config lib/cmake lib/pkgconfig lib/*.la share
 for i in bin/*.exe; do mv $i ${i/x86_64-w64-mingw32-}; done
 
 7z -mx0 a ../SDL+libogg+libvorbis+SDL_mixer+vorbis-tools.7z *

@@ -4,17 +4,12 @@ source ./0_append_distro_path.sh
 
 # Extract vanilla sources.
 extract_file gmp-6.1.0.tar
-extract_file mpfr-3.1.3.tar
+extract_file mpfr-3.1.4.tar
 extract_file mpc-1.0.3.tar
-extract_file mingw-w64-v4.0.4.tar
+extract_file mingw-w64-v4.0.6.zip
 extract_file gcc-5.3.0.tar
 
-patch -Z -d /c/temp/gcc/mpfr-3.1.3 -p1 < mpfr.patch
-
 cd /c/temp/gcc
-
-# mingw-w64 emits this cruft.
-rm pax_global_header
 
 # Build gmp.
 mv gmp-6.1.0 src
@@ -32,7 +27,7 @@ rm -rf dest/lib/*.la dest/share
 mv dest gmp
 
 # Build mpfr.
-mv mpfr-3.1.3 src
+mv mpfr-3.1.4 src
 mkdir build dest
 cd build
 
@@ -63,7 +58,7 @@ rm -rf dest/lib/*.la dest/share
 mv dest mpc
 
 # Build mingw-w64.
-mv mingw-w64-v4.0.4 src
+mv mingw-w64-v4.0.6 src
 mkdir build dest
 cd build
 

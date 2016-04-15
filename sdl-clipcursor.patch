@@ -1,6 +1,6 @@
-diff -aurN SDL2-2.0.3/include/SDL_video.h SDL2-2.0.3-fixed/include/SDL_video.h
---- SDL2-2.0.3/include/SDL_video.h	2014-03-15 19:31:43 -0700
-+++ SDL2-2.0.3-fixed/include/SDL_video.h	2014-08-02 23:00:07 -0700
+diff -aurN SDL2-2.0.4/include/SDL_video.h SDL2-2.0.4-fixed/include/SDL_video.h
+--- SDL2-2.0.4/include/SDL_video.h	2016-01-02 11:56:31.000000000 -0800
++++ SDL2-2.0.4-fixed/include/SDL_video.h	2016-04-04 20:54:47.332652900 -0700
 @@ -39,6 +39,11 @@
  extern "C" {
  #endif
@@ -13,11 +13,11 @@ diff -aurN SDL2-2.0.3/include/SDL_video.h SDL2-2.0.3-fixed/include/SDL_video.h
  /**
   *  \brief  The structure that defines a display mode
   *
-diff -aurN SDL2-2.0.3/src/video/windows/SDL_windowswindow.c SDL2-2.0.3-fixed/src/video/windows/SDL_windowswindow.c
---- SDL2-2.0.3/src/video/windows/SDL_windowswindow.c	2014-03-15 19:31:44 -0700
-+++ SDL2-2.0.3-fixed/src/video/windows/SDL_windowswindow.c	2014-08-02 23:12:09 -0700
+diff -aurN SDL2-2.0.4/src/video/windows/SDL_windowswindow.c SDL2-2.0.4-fixed/src/video/windows/SDL_windowswindow.c
+--- SDL2-2.0.4/src/video/windows/SDL_windowswindow.c	2016-01-02 11:56:31.000000000 -0800
++++ SDL2-2.0.4-fixed/src/video/windows/SDL_windowswindow.c	2016-04-04 20:54:47.348266600 -0700
 @@ -113,6 +113,22 @@
-     data->expected_resize = FALSE;
+     data->expected_resize = SDL_FALSE;
  }
  
 +int SDL_ClipCursorMarginLeft   = 0;
@@ -39,7 +39,7 @@ diff -aurN SDL2-2.0.3/src/video/windows/SDL_windowswindow.c SDL2-2.0.3-fixed/src
  static int
  SetupWindowData(_THIS, SDL_Window * window, HWND hwnd, SDL_bool created)
  {
-@@ -224,7 +240,7 @@
+@@ -244,7 +260,7 @@
              GetClientRect(hwnd, &rect);
              ClientToScreen(hwnd, (LPPOINT) & rect);
              ClientToScreen(hwnd, (LPPOINT) & rect + 1);
@@ -48,7 +48,7 @@ diff -aurN SDL2-2.0.3/src/video/windows/SDL_windowswindow.c SDL2-2.0.3-fixed/src
          }
      }
  
-@@ -773,7 +789,7 @@
+@@ -812,7 +828,7 @@
              if (GetClientRect(data->hwnd, &rect) && !IsRectEmpty(&rect)) {
                  ClientToScreen(data->hwnd, (LPPOINT) & rect);
                  ClientToScreen(data->hwnd, (LPPOINT) & rect + 1);

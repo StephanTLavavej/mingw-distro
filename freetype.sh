@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-extract_file freetype-2.6.2.tar
+extract_file freetype-2.6.3.tar
 
 cd /c/temp/gcc
-mv freetype-2.6.2 src
+mv freetype-2.6.3 src
 mkdir build dest
 cd build
 
@@ -16,8 +16,8 @@ make $X_MAKE_JOBS all || fail_with freetype 2 - EPIC FAIL
 make install || fail_with freetype 3 - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
-mv dest freetype-2.6.2
-cd freetype-2.6.2
+mv dest freetype-2.6.3
+cd freetype-2.6.3
 rm -rf bin lib/pkgconfig lib/*.la share
 
-7z -mx0 a ../freetype-2.6.2.7z *
+7z -mx0 a ../freetype-2.6.3.7z *

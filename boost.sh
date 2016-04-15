@@ -26,14 +26,8 @@ cd /c/temp/gcc
 mv src/boost dest/include
 mv dest boost-1.60.0
 
-echo Packaging...
-
 cd boost-1.60.0
 7z -mx0 a ../boost-1.60.0.7z * || fail_with boost-1.60.0.7z - EPIC FAIL
 
-echo Cleaning...
-
 cd /c/temp/gcc
 rm -rf src
-
-echo Done.

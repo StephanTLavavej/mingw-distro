@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-extract_file binutils-2.25.1.tar
+extract_file binutils-2.26.tar
 
 cd /c/temp/gcc
-mv binutils-2.25.1 src
+mv binutils-2.26 src
 mkdir build dest
 cd build
 
@@ -17,8 +17,8 @@ make $X_MAKE_JOBS all "CFLAGS=-O3" "LDFLAGS=-s" || fail_with binutils 2 - EPIC F
 make install || fail_with binutils 3 - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
-mv dest binutils-2.25.1
-cd binutils-2.25.1
+mv dest binutils-2.26
+cd binutils-2.26
 rm -rf lib/*.la share
 
-7z -mx0 a ../binutils-2.25.1.7z *
+7z -mx0 a ../binutils-2.26.7z *
