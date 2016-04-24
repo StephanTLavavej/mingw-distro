@@ -11,7 +11,7 @@ cd src
 cp blocksort.c bzlib.c compress.c crctable.c decompress.c huffman.c randtable.c bzlib.h bzlib_private.h ../build
 cd ../build
 gcc -s -O3 -c *.c || fail_with bzip2 1 - EPIC FAIL
-ar rs ../dest/lib/libbz2.a *.o
+ar rs ../dest/lib/libbz2.a *.o || fail_with bzip2 2 - EPIC FAIL
 mv bzlib.h ../dest/include
 cd /c/temp/gcc
 rm -rf src build

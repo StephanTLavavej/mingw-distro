@@ -12,7 +12,7 @@ mkdir dest
 cd src
 rm include/GL/glxew.h
 gcc -DGLEW_STATIC -s -O3 -Iinclude -c src/glew.c || fail_with glew 1 - EPIC FAIL
-ar rs lib/libglew32.a glew.o
+ar rs lib/libglew32.a glew.o || fail_with glew 2 - EPIC FAIL
 mv include lib ../dest
 cd /c/temp/gcc
 rm -rf src
