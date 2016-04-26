@@ -9,8 +9,10 @@ mv libjpeg-turbo-1.4.2 src
 mkdir -p build dest/bin dest/include dest/lib
 cd build
 
-cmake -G "Unix Makefiles" "-DCMAKE_C_FLAGS=-s -O3 -DTWO_FILE_COMMANDLINE -Wno-attributes" /c/temp/gcc/src \
-|| fail_with libjpeg-turbo 1 - EPIC FAIL
+cmake \
+"-DCMAKE_C_FLAGS=-s -O3 -DTWO_FILE_COMMANDLINE -Wno-attributes" \
+"-DENABLE_SHARED=OFF" \
+-G "Unix Makefiles" /c/temp/gcc/src || fail_with libjpeg-turbo 1 - EPIC FAIL
 
 # make install must NOT be used, as it will contaminate the Windows system directory.
 make $X_MAKE_JOBS || fail_with libjpeg-turbo 2 - EPIC FAIL
