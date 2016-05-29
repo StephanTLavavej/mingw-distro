@@ -7,7 +7,9 @@ extract_file gmp-6.1.0.tar
 extract_file mpfr-3.1.4.tar
 extract_file mpc-1.0.3.tar
 extract_file mingw-w64-v4.0.6.zip
-extract_file gcc-5.3.0.tar
+extract_file gcc-6.1.0.tar
+
+patch -Z -d /c/temp/gcc/mpfr-3.1.4 -p1 < mpfr.patch
 
 cd /c/temp/gcc
 
@@ -72,7 +74,7 @@ cd /c/temp/gcc
 rm -rf build src
 
 # Prepare to build gcc.
-mv gcc-5.3.0 src
+mv gcc-6.1.0 src
 
 # Prepare to build gcc - perform magic directory surgery.
 cp -r dest/x86_64-w64-mingw32/lib dest/x86_64-w64-mingw32/lib64

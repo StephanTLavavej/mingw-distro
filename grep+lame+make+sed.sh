@@ -4,7 +4,7 @@ source ./0_append_distro_path.sh
 
 extract_file grep-2.10.tar
 extract_file lame-3.99.5.tar
-extract_file make-4.1.tar
+extract_file make-4.2.tar
 extract_file sed-4.2.2.tar
 
 patch -d /c/temp/gcc/grep-2.10 -p1 < grep.patch
@@ -38,31 +38,15 @@ mv frontend/lame.exe ../dest/bin || fail_with lame 3 - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 
-
-# Distilled from "build_w32.bat gcc".
-# http://lists.gnu.org/archive/html/make-w32/2013-10/msg00029.html
-# Eli Zaretskii> The only way to build a MinGW Make that is officially supported is build_w32.bat.
-
-mv make-4.1 src
+mv make-4.2 src
 cd src
-
-mv config.h.W32 config.h
-
-gcc -s -O3 \
--DHAVE_CONFIG_H -DWINDOWS32 -I. -Iglob -Iw32/include -Iw32/subproc \
--DHAVE_CASE_INSENSITIVE_FS \
-ar.c arscan.c commands.c default.c dir.c expand.c file.c function.c getloadavg.c getopt.c getopt1.c guile.c hash.c \
-implicit.c job.c load.c loadapi.c main.c misc.c output.c read.c remake.c remote-stub.c rule.c signame.c strcache.c \
-variable.c version.c vpath.c glob/fnmatch.c glob/glob.c \
-w32/pathstuff.c w32/compat/posixfcn.c w32/subproc/misc.c w32/subproc/sub_proc.c w32/subproc/w32err.c \
--o ../dest/bin/make.exe || fail_with make 1 - EPIC FAIL
-
-# For CMake.
-cp ../dest/bin/make.exe ../dest/bin/mingw32-make.exe || fail_with make 2 - EPIC FAIL
-
+cmd /c "build_w32.bat gcc"
+strip -s GccRel/gnumake.exe || fail_with make 1 - EPIC FAIL
+mv GccRel/gnumake.exe ../dest/bin/make.exe || fail_with make 2 - EPIC FAIL
+# mingw32-make.exe is for CMake.
+cp ../dest/bin/make.exe ../dest/bin/mingw32-make.exe || fail_with make 3 - EPIC FAIL
 cd /c/temp/gcc
 rm -rf src
-
 
 mv sed-4.2.2 src
 mkdir build

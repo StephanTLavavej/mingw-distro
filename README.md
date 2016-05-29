@@ -1,4 +1,4 @@
-# MinGW Distro: [nuwen.net/mingw.html](http://nuwen.net/mingw.html)
+# MinGW Distro: [nuwen.net/mingw.html](https://nuwen.net/mingw.html)
 
 Here are the build scripts for my MinGW distro.
 
@@ -15,7 +15,7 @@ You'll need to run them in MSYS2, which you can set up without an installer:
 * In MSYS2, run: `update-core`
 * RECYCLE MSYS2.
 * In MSYS2, run: `pacman -Syuu`
-* RECYCLE MSYS2.
+* RECYCLE MSYS2. Note that from now on, you'll need to run: `msys2_shell.cmd`
 * Repeat the previous two steps until you see this:
 ```
 $ pacman -Syuu
