@@ -1,6 +1,6 @@
-diff -aurN SDL2-2.0.4/include/SDL_video.h SDL2-2.0.4-fixed/include/SDL_video.h
---- SDL2-2.0.4/include/SDL_video.h	2016-01-02 11:56:31.000000000 -0800
-+++ SDL2-2.0.4-fixed/include/SDL_video.h	2016-04-04 20:54:47.332652900 -0700
+diff -aurN SDL2-2.0.5/include/SDL_video.h SDL2-2.0.5-fixed/include/SDL_video.h
+--- SDL2-2.0.5/include/SDL_video.h	2016-10-19 20:56:26.000000000 -0700
++++ SDL2-2.0.5-fixed/include/SDL_video.h	2016-12-03 19:55:39.980450900 -0800
 @@ -39,6 +39,11 @@
  extern "C" {
  #endif
@@ -13,9 +13,9 @@ diff -aurN SDL2-2.0.4/include/SDL_video.h SDL2-2.0.4-fixed/include/SDL_video.h
  /**
   *  \brief  The structure that defines a display mode
   *
-diff -aurN SDL2-2.0.4/src/video/windows/SDL_windowswindow.c SDL2-2.0.4-fixed/src/video/windows/SDL_windowswindow.c
---- SDL2-2.0.4/src/video/windows/SDL_windowswindow.c	2016-01-02 11:56:31.000000000 -0800
-+++ SDL2-2.0.4-fixed/src/video/windows/SDL_windowswindow.c	2016-04-04 20:54:47.348266600 -0700
+diff -aurN SDL2-2.0.5/src/video/windows/SDL_windowswindow.c SDL2-2.0.5-fixed/src/video/windows/SDL_windowswindow.c
+--- SDL2-2.0.5/src/video/windows/SDL_windowswindow.c	2016-10-19 20:56:26.000000000 -0700
++++ SDL2-2.0.5-fixed/src/video/windows/SDL_windowswindow.c	2016-12-03 19:55:39.996075200 -0800
 @@ -113,6 +113,22 @@
      data->expected_resize = SDL_FALSE;
  }
@@ -48,7 +48,7 @@ diff -aurN SDL2-2.0.4/src/video/windows/SDL_windowswindow.c SDL2-2.0.4-fixed/src
          }
      }
  
-@@ -812,7 +828,7 @@
+@@ -829,7 +845,7 @@
              if (GetClientRect(data->hwnd, &rect) && !IsRectEmpty(&rect)) {
                  ClientToScreen(data->hwnd, (LPPOINT) & rect);
                  ClientToScreen(data->hwnd, (LPPOINT) & rect + 1);

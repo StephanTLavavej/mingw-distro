@@ -4,7 +4,7 @@ source ./0_append_distro_path.sh
 
 extract_file grep-2.10.tar
 extract_file lame-3.99.5.tar
-extract_file make-4.2.tar
+extract_file make-4.2.1.tar
 extract_file sed-4.2.2.tar
 
 patch -d /c/temp/gcc/grep-2.10 -p1 < grep.patch
@@ -38,7 +38,7 @@ mv frontend/lame.exe ../dest/bin || fail_with lame 3 - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
 
-mv make-4.2 src
+mv make-4.2.1 src
 cd src
 cmd /c "build_w32.bat gcc"
 strip -s GccRel/gnumake.exe || fail_with make 1 - EPIC FAIL

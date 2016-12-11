@@ -2,12 +2,12 @@
 
 source ./0_append_distro_path.sh
 
-extract_file glbinding-2.0.0.zip
+extract_file glbinding-2.1.1.zip
 
-patch -d /c/temp/gcc/glbinding-2.0.0 -p1 < glbinding.patch
+patch -d /c/temp/gcc/glbinding-2.1.1 -p1 < glbinding.patch
 
 cd /c/temp/gcc
-mv glbinding-2.0.0 src
+mv glbinding-2.1.1 src
 mkdir build dest
 cd build
 
@@ -24,9 +24,9 @@ make $X_MAKE_JOBS || fail_with glbinding 2 - EPIC FAIL
 make install || fail_with glbinding 3 - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
-mv dest glbinding-2.0.0
-cd glbinding-2.0.0
+mv dest glbinding-2.1.1
+cd glbinding-2.1.1
 rm -rf cmake data AUTHORS glbinding-config.cmake README.md VERSION
 mv LICENSE include/glbinding
 
-7z -mx0 a ../glbinding-2.0.0.7z *
+7z -mx0 a ../glbinding-2.1.1.7z *

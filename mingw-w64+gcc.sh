@@ -3,18 +3,16 @@
 source ./0_append_distro_path.sh
 
 # Extract vanilla sources.
-extract_file gmp-6.1.0.tar
-extract_file mpfr-3.1.4.tar
+extract_file gmp-6.1.1.tar
+extract_file mpfr-3.1.5.tar
 extract_file mpc-1.0.3.tar
-extract_file mingw-w64-v4.0.6.zip
-extract_file gcc-6.1.0.tar
-
-patch -Z -d /c/temp/gcc/mpfr-3.1.4 -p1 < mpfr.patch
+extract_file mingw-w64-v5.0.0.zip
+extract_file gcc-6.2.0.tar
 
 cd /c/temp/gcc
 
 # Build gmp.
-mv gmp-6.1.0 src
+mv gmp-6.1.1 src
 mkdir build dest
 cd build
 
@@ -29,7 +27,7 @@ rm -rf dest/lib/*.la dest/share
 mv dest gmp
 
 # Build mpfr.
-mv mpfr-3.1.4 src
+mv mpfr-3.1.5 src
 mkdir build dest
 cd build
 
@@ -60,7 +58,7 @@ rm -rf dest/lib/*.la dest/share
 mv dest mpc
 
 # Build mingw-w64.
-mv mingw-w64-v4.0.6 src
+mv mingw-w64-v5.0.0 src
 mkdir build dest
 cd build
 
@@ -74,7 +72,7 @@ cd /c/temp/gcc
 rm -rf build src
 
 # Prepare to build gcc.
-mv gcc-6.1.0 src
+mv gcc-6.2.0 src
 
 # Prepare to build gcc - perform magic directory surgery.
 cp -r dest/x86_64-w64-mingw32/lib dest/x86_64-w64-mingw32/lib64

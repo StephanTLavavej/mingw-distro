@@ -2,22 +2,22 @@
 
 source ./0_append_distro_path.sh
 
-extract_file SDL2-2.0.4.tar
+extract_file SDL2-2.0.5.tar
 extract_file libogg-1.3.2.tar
 extract_file libvorbis-1.3.5.tar
 extract_file SDL2_mixer-2.0.1.zip
 extract_file vorbis-tools-1.4.0.tar
 
-patch -d /c/temp/gcc/SDL2-2.0.4 -p1 < sdl-clipcursor.patch
+patch -d /c/temp/gcc/SDL2-2.0.5 -p1 < sdl-clipcursor.patch
 
 cd /c/temp/gcc
 
-mv SDL2-2.0.4 src
+mv SDL2-2.0.5 src
 mkdir build dest
 cd build
 
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
---prefix=/c/temp/gcc/dest --disable-shared --disable-render-d3d || fail_with SDL 1 - EPIC FAIL
+--prefix=/c/temp/gcc/dest --disable-shared || fail_with SDL 1 - EPIC FAIL
 
 make $X_MAKE_JOBS all "CFLAGS=-s -O3" || fail_with SDL 2 - EPIC FAIL
 make install || fail_with SDL 3 - EPIC FAIL

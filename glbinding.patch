@@ -1,6 +1,6 @@
-diff -aurN glbinding-2.0.0/source/glbinding/source/Binding.cpp glbinding-2.0.0-fixed/source/glbinding/source/Binding.cpp
---- glbinding-2.0.0/source/glbinding/source/Binding.cpp	2016-03-24 10:15:07.000000000 -0700
-+++ glbinding-2.0.0-fixed/source/glbinding/source/Binding.cpp	2016-04-25 20:50:24.191675500 -0700
+diff -aurN glbinding-2.1.1/source/glbinding/source/Binding.cpp glbinding-2.1.1-fixed/source/glbinding/source/Binding.cpp
+--- glbinding-2.1.1/source/glbinding/source/Binding.cpp	2016-07-01 01:44:23.000000000 -0700
++++ glbinding-2.1.1-fixed/source/glbinding/source/Binding.cpp	2016-12-10 18:03:17.367776600 -0800
 @@ -2,7 +2,15 @@
  #include <glbinding/Binding.h>
  
@@ -26,9 +26,9 @@ diff -aurN glbinding-2.0.0/source/glbinding/source/Binding.cpp glbinding-2.0.0-f
  std::unordered_map<glbinding::ContextHandle, int> g_bindings;
  
  } // namespace
-diff -aurN glbinding-2.0.0/source/glbinding/source/logging.cpp glbinding-2.0.0-fixed/source/glbinding/source/logging.cpp
---- glbinding-2.0.0/source/glbinding/source/logging.cpp	2016-03-24 10:15:07.000000000 -0700
-+++ glbinding-2.0.0-fixed/source/glbinding/source/logging.cpp	2016-04-25 21:04:33.780329900 -0700
+diff -aurN glbinding-2.1.1/source/glbinding/source/logging.cpp glbinding-2.1.1-fixed/source/glbinding/source/logging.cpp
+--- glbinding-2.1.1/source/glbinding/source/logging.cpp	2016-07-01 01:44:23.000000000 -0700
++++ glbinding-2.1.1-fixed/source/glbinding/source/logging.cpp	2016-12-10 18:03:17.379791800 -0800
 @@ -3,11 +3,20 @@
  
  #include <array>
@@ -99,9 +99,9 @@ diff -aurN glbinding-2.0.0/source/glbinding/source/logging.cpp glbinding-2.0.0-f
          }
  
          logfile.close();
-diff -aurN glbinding-2.0.0/source/glbinding/source/RingBuffer.hpp glbinding-2.0.0-fixed/source/glbinding/source/RingBuffer.hpp
---- glbinding-2.0.0/source/glbinding/source/RingBuffer.hpp	2016-03-24 10:15:07.000000000 -0700
-+++ glbinding-2.0.0-fixed/source/glbinding/source/RingBuffer.hpp	2016-04-25 21:22:53.179803600 -0700
+diff -aurN glbinding-2.1.1/source/glbinding/source/RingBuffer.inl glbinding-2.1.1-fixed/source/glbinding/source/RingBuffer.inl
+--- glbinding-2.1.1/source/glbinding/source/RingBuffer.inl	2016-07-01 01:44:23.000000000 -0700
++++ glbinding-2.1.1-fixed/source/glbinding/source/RingBuffer.inl	2016-12-10 18:03:17.392779100 -0800
 @@ -2,7 +2,6 @@
  #pragma once
  
