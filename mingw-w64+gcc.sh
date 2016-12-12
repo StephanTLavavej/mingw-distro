@@ -12,67 +12,6 @@ extract_file gcc-6.2.0.tar
 
 cd /c/temp/gcc
 
-# Build gmp.
-mv gmp-6.1.1 src
-mkdir build dest
-cd build
-
-../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
---prefix=/c/temp/gcc/dest --disable-shared || fail_with gmp 1 - EPIC FAIL
-
-make $X_MAKE_JOBS all "CFLAGS=-s -O3" || fail_with gmp 2 - EPIC FAIL
-make install || fail_with gmp 3 - EPIC FAIL
-cd /c/temp/gcc
-rm -rf build src
-rm -rf dest/lib/*.la dest/share
-mv dest gmp
-
-# Build mpfr.
-mv mpfr-3.1.5 src
-mkdir build dest
-cd build
-
-../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
---prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp || fail_with mpfr 1 - EPIC FAIL
-
-make $X_MAKE_JOBS all "CFLAGS=-s -O3" || fail_with mpfr 2 - EPIC FAIL
-make install || fail_with mpfr 3 - EPIC FAIL
-cd /c/temp/gcc
-rm -rf build src
-rm -rf dest/lib/*.la dest/share
-mv dest mpfr
-
-# Build mpc.
-mv mpc-1.0.3 src
-mkdir build dest
-cd build
-
-../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
---prefix=/c/temp/gcc/dest --disable-shared --with-gmp=/c/temp/gcc/gmp --with-mpfr=/c/temp/gcc/mpfr \
-|| fail_with mpc 1 - EPIC FAIL
-
-make $X_MAKE_JOBS all "CFLAGS=-s -O3" || fail_with mpc 2 - EPIC FAIL
-make install || fail_with mpc 3 - EPIC FAIL
-cd /c/temp/gcc
-rm -rf build src
-rm -rf dest/lib/*.la dest/share
-mv dest mpc
-
-# Build isl.
-mv isl-0.17.1 src
-mkdir build dest
-cd build
-
-../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
---prefix=/c/temp/gcc/dest --disable-shared --with-gmp-prefix=/c/temp/gcc/gmp || fail_with isl 1 - EPIC FAIL
-
-make $X_MAKE_JOBS all "CFLAGS=-s -O3" || fail_with isl 2 - EPIC FAIL
-make install || fail_with isl 3 - EPIC FAIL
-cd /c/temp/gcc
-rm -rf build src
-rm -rf dest/lib/*.la dest/lib/pkgconfig
-mv dest isl
-
 # Build mingw-w64.
 mv mingw-w64-v5.0.0 src
 mkdir build dest
@@ -89,6 +28,10 @@ rm -rf build src
 
 # Prepare to build gcc.
 mv gcc-6.2.0 src
+mv gmp-6.1.1 src/gmp
+mv mpfr-3.1.5 src/mpfr
+mv mpc-1.0.3 src/mpc
+mv isl-0.17.1 src/isl
 
 # Prepare to build gcc - perform magic directory surgery.
 cp -r dest/x86_64-w64-mingw32/lib dest/x86_64-w64-mingw32/lib64
@@ -100,15 +43,11 @@ cp -r dest/x86_64-w64-mingw32/include src/gcc/winsup/mingw/include
 mkdir build
 cd build
 
-../src/configure --with-gmp=/c/temp/gcc/gmp --with-mpfr=/c/temp/gcc/mpfr --with-mpc=/c/temp/gcc/mpc --with-isl=/c/temp/gcc/isl \
---enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
---disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest --disable-libstdcxx-pch --disable-nls \
---disable-shared --disable-win32-registry --enable-checking=release --with-tune=haswell || fail_with gcc 1 - EPIC FAIL
+../src/configure --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 \
+--target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest \
+--disable-libstdcxx-pch --disable-nls --disable-shared --disable-win32-registry --enable-checking=release \
+--with-tune=haswell || fail_with gcc 1 - EPIC FAIL
 
-# --with-gmp=/c/temp/gcc/gmp      : Obvious.
-# --with-mpfr=/c/temp/gcc/mpfr    : Obvious.
-# --with-mpc=/c/temp/gcc/mpc      : Obvious.
-# --with-isl=/c/temp/gcc/isl      : Obvious.
 # --enable-languages=c,c++        : I want C and C++ only.
 # --build=x86_64-w64-mingw32      : I want a native compiler.
 # --host=x86_64-w64-mingw32       : Ditto.
@@ -132,7 +71,6 @@ make install || fail_with gcc 3 - EPIC FAIL
 # Cleanup.
 cd /c/temp/gcc
 rm -rf build src
-rm -rf gmp mpfr mpc isl
 mv dest mingw-w64+gcc
 cd mingw-w64+gcc
 find -name "*.la" -type f -print -exec rm {} ";"
