@@ -7,15 +7,15 @@ extract_file gmp-6.1.2.tar
 extract_file mpfr-3.1.5.tar
 extract_file mpc-1.0.3.tar
 extract_file isl-0.18.tar
-extract_file mingw-w64-v5.0.0.zip
-extract_file gcc-6.3.0.tar
+extract_file mingw-w64-v5.0.2.zip
+extract_file gcc-7.1.0.tar
 
 patch -Z -d /c/temp/gcc/mpfr-3.1.5 -p1 < mpfr.patch
 
 cd /c/temp/gcc
 
 # Build mingw-w64.
-mv mingw-w64-v5.0.0 src
+mv mingw-w64-v5.0.2 src
 mkdir build dest
 cd build
 
@@ -29,7 +29,7 @@ cd /c/temp/gcc
 rm -rf build src
 
 # Prepare to build gcc.
-mv gcc-6.3.0 src
+mv gcc-7.1.0 src
 mv gmp-6.1.2 src/gmp
 mv mpfr-3.1.5 src/mpfr
 mv mpc-1.0.3 src/mpc
