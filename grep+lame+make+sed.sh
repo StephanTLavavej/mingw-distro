@@ -5,10 +5,9 @@ source ./0_append_distro_path.sh
 extract_file grep-2.10.tar
 extract_file lame-3.99.5.tar
 extract_file make-4.2.1.tar
-extract_file sed-4.2.2.tar
+extract_file sed-4.4.tar
 
 patch -d /c/temp/gcc/grep-2.10 -p1 < grep.patch
-patch -d /c/temp/gcc/sed-4.2.2 -p1 < sed.patch
 
 cd /c/temp/gcc
 mkdir -p dest/bin
@@ -48,7 +47,7 @@ cp ../dest/bin/make.exe ../dest/bin/mingw32-make.exe || fail_with make 3 - EPIC 
 cd /c/temp/gcc
 rm -rf src
 
-mv sed-4.2.2 src
+mv sed-4.4 src
 mkdir build
 cd build
 
