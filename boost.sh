@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-extract_file boost_1_63_0.tar
+extract_file boost_1_64_0.tar
 
 cd /c/temp/gcc
-mv boost_1_63_0 src
+mv boost_1_64_0 src
 mkdir -p dest/include
 cd src
 ./bootstrap.sh || fail_with boost 1 - EPIC FAIL
@@ -18,10 +18,10 @@ cd /c/temp/gcc/dest/lib
 for i in *.a; do mv $i ${i%-mgw*.a}.a; done
 cd /c/temp/gcc
 mv src/boost dest/include
-mv dest boost-1.63.0
+mv dest boost-1.64.0
 
-cd boost-1.63.0
-7z -mx0 a ../boost-1.63.0.7z * || fail_with boost-1.63.0.7z - EPIC FAIL
+cd boost-1.64.0
+7z -mx0 a ../boost-1.64.0.7z * || fail_with boost-1.64.0.7z - EPIC FAIL
 
 cd /c/temp/gcc
 rm -rf src
