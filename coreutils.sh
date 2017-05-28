@@ -2,12 +2,12 @@
 
 source ./0_append_distro_path.sh
 
-extract_file coreutils-8.26.tar
+extract_file coreutils-8.27.tar
 
-patch -d /c/temp/gcc/coreutils-8.26 -p1 < coreutils.patch
+patch -d /c/temp/gcc/coreutils-8.27 -p1 < coreutils.patch
 
 cd /c/temp/gcc
-mv coreutils-8.26 src
+mv coreutils-8.27 src
 mkdir -p build dest/bin
 
 # Missing <sys/wait.h>.
@@ -28,7 +28,7 @@ cd src
 mv sort.exe uniq.exe wc.exe ../../dest/bin || fail_with coreutils 2 - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
-mv dest coreutils-8.26
-cd coreutils-8.26
+mv dest coreutils-8.27
+cd coreutils-8.27
 
-7z -mx0 a ../coreutils-8.26.7z *
+7z -mx0 a ../coreutils-8.27.7z *
