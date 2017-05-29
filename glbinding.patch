@@ -1,6 +1,6 @@
-diff -aurN glbinding-2.1.1/source/glbinding/source/Binding.cpp glbinding-2.1.1-fixed/source/glbinding/source/Binding.cpp
---- glbinding-2.1.1/source/glbinding/source/Binding.cpp	2016-07-01 01:44:23.000000000 -0700
-+++ glbinding-2.1.1-fixed/source/glbinding/source/Binding.cpp	2016-12-10 18:03:17.367776600 -0800
+diff -aurN glbinding-2.1.3/source/glbinding/source/Binding.cpp glbinding-2.1.3-fixed/source/glbinding/source/Binding.cpp
+--- glbinding-2.1.3/source/glbinding/source/Binding.cpp	2017-05-05 01:29:21.000000000 -0700
++++ glbinding-2.1.3-fixed/source/glbinding/source/Binding.cpp	2017-05-28 20:28:21.610095200 -0700
 @@ -2,7 +2,15 @@
  #include <glbinding/Binding.h>
  
@@ -26,9 +26,45 @@ diff -aurN glbinding-2.1.1/source/glbinding/source/Binding.cpp glbinding-2.1.1-f
  std::unordered_map<glbinding::ContextHandle, int> g_bindings;
  
  } // namespace
-diff -aurN glbinding-2.1.1/source/glbinding/source/logging.cpp glbinding-2.1.1-fixed/source/glbinding/source/logging.cpp
---- glbinding-2.1.1/source/glbinding/source/logging.cpp	2016-07-01 01:44:23.000000000 -0700
-+++ glbinding-2.1.1-fixed/source/glbinding/source/logging.cpp	2016-12-10 18:03:17.379791800 -0800
+@@ -55,7 +63,7 @@
+     const auto currentContext = resolveWOUse ? getCurrentContext() : static_cast<ContextHandle>(0);
+ 
+     {
+-        std::lock_guard<std::recursive_mutex> lock(g_mutex);
++        std_boost::lock_guard<std_boost::recursive_mutex> lock(g_mutex);
+ 
+         if (g_bindings.find(context) != g_bindings.cend())
+         {
+@@ -107,7 +115,7 @@
+ 
+ void Binding::useContext(const ContextHandle context)
+ {
+-    std::lock_guard<std::recursive_mutex> lock(g_mutex);
++    std_boost::lock_guard<std_boost::recursive_mutex> lock(g_mutex);
+ 
+     t_context = context;
+ 
+@@ -133,7 +141,7 @@
+ 
+ void Binding::releaseContext(const ContextHandle context)
+ {
+-    std::lock_guard<std::recursive_mutex> lock(g_mutex);
++    std_boost::lock_guard<std_boost::recursive_mutex> lock(g_mutex);
+ 
+     AbstractFunction::neglectState(g_bindings[context]);
+ 
+@@ -142,7 +150,7 @@
+ 
+ void Binding::addContextSwitchCallback(const ContextSwitchCallback callback)
+ {
+-    std::lock_guard<std::recursive_mutex> lock(g_mutex);
++    std_boost::lock_guard<std_boost::recursive_mutex> lock(g_mutex);
+ 
+     s_callbacks.push_back(std::move(callback));
+ }
+diff -aurN glbinding-2.1.3/source/glbinding/source/logging.cpp glbinding-2.1.3-fixed/source/glbinding/source/logging.cpp
+--- glbinding-2.1.3/source/glbinding/source/logging.cpp	2017-05-05 01:29:21.000000000 -0700
++++ glbinding-2.1.3-fixed/source/glbinding/source/logging.cpp	2017-05-28 20:19:29.211147000 -0700
 @@ -3,11 +3,20 @@
  
  #include <array>
@@ -55,7 +91,7 @@ diff -aurN glbinding-2.1.1/source/glbinding/source/logging.cpp glbinding-2.1.1-f
 @@ -20,8 +29,8 @@
  
  std::atomic<bool> g_stop{false};
- std::atomic<bool> g_persisted{false};
+ std::atomic<bool> g_persisted{true};
 -std::mutex g_lockfinish;
 -std::condition_variable g_finishcheck;
 +std_boost::mutex g_lockfinish;
@@ -99,9 +135,9 @@ diff -aurN glbinding-2.1.1/source/glbinding/source/logging.cpp glbinding-2.1.1-f
          }
  
          logfile.close();
-diff -aurN glbinding-2.1.1/source/glbinding/source/RingBuffer.inl glbinding-2.1.1-fixed/source/glbinding/source/RingBuffer.inl
---- glbinding-2.1.1/source/glbinding/source/RingBuffer.inl	2016-07-01 01:44:23.000000000 -0700
-+++ glbinding-2.1.1-fixed/source/glbinding/source/RingBuffer.inl	2016-12-10 18:03:17.392779100 -0800
+diff -aurN glbinding-2.1.3/source/glbinding/source/RingBuffer.inl glbinding-2.1.3-fixed/source/glbinding/source/RingBuffer.inl
+--- glbinding-2.1.3/source/glbinding/source/RingBuffer.inl	2017-05-05 01:29:21.000000000 -0700
++++ glbinding-2.1.3-fixed/source/glbinding/source/RingBuffer.inl	2017-05-28 20:16:10.304905500 -0700
 @@ -2,7 +2,6 @@
  #pragma once
  

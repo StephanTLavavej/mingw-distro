@@ -2,12 +2,12 @@
 
 source ./0_append_distro_path.sh
 
-extract_file glbinding-2.1.1.zip
+extract_file glbinding-2.1.3.zip
 
-patch -d /c/temp/gcc/glbinding-2.1.1 -p1 < glbinding.patch
+patch -d /c/temp/gcc/glbinding-2.1.3 -p1 < glbinding.patch
 
 cd /c/temp/gcc
-mv glbinding-2.1.1 src
+mv glbinding-2.1.3 src
 mkdir build dest
 cd build
 
@@ -18,15 +18,16 @@ cmake \
 "-DOPENGL_gl_LIBRARY=/c/mingw/x86_64-w64-mingw32/lib/libopengl32.a" \
 "-DOPENGL_INCLUDE_DIR=/c/mingw/x86_64-w64-mingw32/include/gl" \
 "-DOPTION_BUILD_TESTS=OFF" \
+"-DOPTION_BUILD_TOOLS=OFF" \
 -G "Unix Makefiles" /c/temp/gcc/src || fail_with glbinding 1 - EPIC FAIL
 
 make $X_MAKE_JOBS || fail_with glbinding 2 - EPIC FAIL
 make install || fail_with glbinding 3 - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
-mv dest glbinding-2.1.1
-cd glbinding-2.1.1
-rm -rf cmake data AUTHORS glbinding-config.cmake README.md VERSION
+mv dest glbinding-2.1.3
+cd glbinding-2.1.3
+rm -rf cmake AUTHORS glbinding-config.cmake README.md VERSION
 mv LICENSE include/glbinding
 
-7z -mx0 a ../glbinding-2.1.1.7z *
+7z -mx0 a ../glbinding-2.1.3.7z *
