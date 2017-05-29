@@ -47,7 +47,7 @@ cd build
 
 ../src/configure --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 \
 --target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest \
---disable-libstdcxx-pch --disable-nls --disable-shared --disable-win32-registry \
+--disable-libstdcxx-pch --disable-libstdcxx-verbose --disable-nls --disable-shared --disable-win32-registry \
 --with-tune=haswell || fail_with gcc 1 - EPIC FAIL
 
 # --enable-languages=c,c++        : I want C and C++ only.
@@ -58,6 +58,7 @@ cd build
 # --prefix=/c/temp/gcc/dest       : I want the compiler to be installed here.
 # --with-sysroot=/c/temp/gcc/dest : Ditto. (This one is important!)
 # --disable-libstdcxx-pch         : I don't use this, and it takes up a ton of space.
+# --disable-libstdcxx-verbose     : Reduce generated executable size. This doesn't affect the ABI.
 # --disable-nls                   : I don't want Native Language Support.
 # --disable-shared                : I don't want DLLs.
 # --disable-win32-registry        : I don't want this abomination.
