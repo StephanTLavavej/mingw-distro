@@ -1,0 +1,55 @@
+diff -aurN grep-3.1/lib/colorize-w32.c grep-3.1-fixed/lib/colorize-w32.c
+--- grep-3.1/lib/colorize-w32.c	2017-01-01 03:34:33.000000000 -0800
++++ grep-3.1-fixed/lib/colorize-w32.c	2017-07-30 16:43:02.773225700 -0700
+@@ -32,6 +32,27 @@
+ 
+ static HANDLE hstdout = INVALID_HANDLE_VALUE;
+ static SHORT norm_attr;
++static CRITICAL_SECTION color_lock;
++static BOOL color_bool = TRUE;
++
++/* After Ctrl+C or Ctrl+Break,
++   restore the normal text attribute used by the console.  */
++static BOOL WINAPI
++w32_color_handler (DWORD ctrl_type)
++{
++  if (ctrl_type == CTRL_C_EVENT
++      || ctrl_type == CTRL_BREAK_EVENT)
++    {
++      EnterCriticalSection (&color_lock);
++      if (hstdout != INVALID_HANDLE_VALUE)
++        {
++          SetConsoleTextAttribute (hstdout, norm_attr);
++        }
++      color_bool = FALSE;
++      LeaveCriticalSection (&color_lock);
++    }
++  return FALSE;
++}
+ 
+ /* Initialize the normal text attribute used by the console.  */
+ void
+@@ -45,6 +66,9 @@
+      norm_attr = csbi.wAttributes;
+   else
+     hstdout = INVALID_HANDLE_VALUE;
++
++  InitializeCriticalSectionAndSpinCount (&color_lock, 4000);
++  SetConsoleCtrlHandler (&w32_color_handler, TRUE);
+ }
+ 
+ /* Return non-zero if we should highlight matches in output.  */
+@@ -164,7 +188,12 @@
+   if (hstdout != INVALID_HANDLE_VALUE)
+     {
+       SHORT attr = w32_sgr2attr (sgr_seq);
+-      SetConsoleTextAttribute (hstdout, attr);
++      EnterCriticalSection (&color_lock);
++      if (color_bool)
++        {
++          SetConsoleTextAttribute (hstdout, attr);
++        }
++      LeaveCriticalSection (&color_lock);
+     }
+   else
+     printf (sgr_start, sgr_seq);
