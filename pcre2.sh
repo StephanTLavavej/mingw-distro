@@ -20,6 +20,7 @@ rm -rf build src
 mv dest pcre2-10.23
 cd pcre2-10.23
 rm -rf bin/pcre2-config lib/pkgconfig lib/*.la share
-cp include/pcre2posix.h include/regex.h
+# Avoid colliding with the original PCRE library.
+# cp include/pcre2posix.h include/regex.h
 
 7z -mx0 a ../pcre2-10.23.7z *
