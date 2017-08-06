@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-extract_file libjpeg-turbo-1.5.1.tar
+extract_file libjpeg-turbo-1.5.2.tar
 
 cd /c/temp/gcc
-mv libjpeg-turbo-1.5.1 src
+mv libjpeg-turbo-1.5.2 src
 mkdir -p build dest/bin dest/include dest/lib
 cd build
 
@@ -22,7 +22,7 @@ mv build/jconfig.h src/jerror.h src/jmorecfg.h src/jpeglib.h src/turbojpeg.h des
 
 mv build/.libs/libjpeg.a build/.libs/libturbojpeg.a dest/lib || fail_with libjpeg-turbo 5 - EPIC FAIL
 rm -rf build src
-mv dest libjpeg-turbo-1.5.1
-cd libjpeg-turbo-1.5.1
+mv dest libjpeg-turbo-1.5.2
+cd libjpeg-turbo-1.5.2
 
-7z -mx0 a ../libjpeg-turbo-1.5.1.7z *
+7z -mx0 a ../libjpeg-turbo-1.5.2.7z *
