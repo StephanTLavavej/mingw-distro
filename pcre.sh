@@ -4,8 +4,6 @@ source ./0_append_distro_path.sh
 
 extract_file pcre-8.40.tar
 
-patch -d /c/temp/gcc/pcre-8.40 -p1 < pcre-color.patch
-
 cd /c/temp/gcc
 mv pcre-8.40 src
 mkdir build dest
