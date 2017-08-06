@@ -1,0 +1,55 @@
+diff -aurN pcre2-10.23/src/pcre2grep.c pcre2-10.23-fixed/src/pcre2grep.c
+--- pcre2-10.23/src/pcre2grep.c	2017-07-30 19:58:55.583586000 -0700
++++ pcre2-10.23-fixed/src/pcre2grep.c	2017-07-30 19:58:15.059126400 -0700
+@@ -626,11 +626,24 @@
+ 
+ #ifdef WIN32
+ 
++#ifndef STRICT
++# define STRICT
++#endif
++#ifndef WIN32_LEAN_AND_MEAN
++# define WIN32_LEAN_AND_MEAN
++#endif
++
++#include <windows.h>
++
+ #define iswild(name) (strpbrk(name, "*?") != NULL)
+ 
+ /* Convert ANSI BGR format to RGB used by Windows */
+ #define BGR_RGB(x) ((x & 1 ? 4 : 0) | (x & 2) | (x & 4 ? 1 : 0))
+ 
++static HANDLE hstdout;
++static CONSOLE_SCREEN_BUFFER_INFO csbi;
++static WORD match_colour;
++
+ static WORD
+ decode_ANSI_colour(const char *cs)
+ {
+@@ -813,15 +826,6 @@
+ 
+ #elif defined WIN32
+ 
+-#ifndef STRICT
+-# define STRICT
+-#endif
+-#ifndef WIN32_LEAN_AND_MEAN
+-# define WIN32_LEAN_AND_MEAN
+-#endif
+-
+-#include <windows.h>
+-
+ #ifndef INVALID_FILE_ATTRIBUTES
+ #define INVALID_FILE_ATTRIBUTES 0xFFFFFFFF
+ #endif
+@@ -936,10 +940,6 @@
+ 
+ /************* Print optionally coloured match in Windows **********/
+ 
+-static HANDLE hstdout;
+-static CONSOLE_SCREEN_BUFFER_INFO csbi;
+-static WORD match_colour;
+-
+ static void
+ print_match(const char* buf, int length)
+ {

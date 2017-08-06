@@ -4,6 +4,12 @@ source ./0_append_distro_path.sh
 
 extract_file pcre2-10.23.tar
 
+# https://bugs.exim.org/show_bug.cgi?id=2067
+# https://vcs.pcre.org/pcre2/code/trunk/src/pcre2grep.c?r1=678&r2=691
+# https://vcs.pcre.org/pcre2/code/trunk/src/pcre2grep.c?r1=734&r2=737
+patch -d /c/temp/gcc/pcre2-10.23 -p1 < pcre2-r691.patch
+patch -d /c/temp/gcc/pcre2-10.23 -p1 < pcre2-r737.patch
+
 cd /c/temp/gcc
 mv pcre2-10.23 src
 mkdir build dest
