@@ -2,16 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-extract_file pcre2-10.23.tar
-
-# https://bugs.exim.org/show_bug.cgi?id=2067
-# https://vcs.pcre.org/pcre2/code/trunk/src/pcre2grep.c?r1=678&r2=691
-# https://vcs.pcre.org/pcre2/code/trunk/src/pcre2grep.c?r1=734&r2=737
-patch -d /c/temp/gcc/pcre2-10.23 -p1 < pcre2-r691.patch
-patch -d /c/temp/gcc/pcre2-10.23 -p1 < pcre2-r737.patch
+extract_file pcre2-10.30.tar
 
 cd /c/temp/gcc
-mv pcre2-10.23 src
+mv pcre2-10.30 src
 mkdir build dest
 cd build
 
@@ -23,10 +17,10 @@ make $X_MAKE_JOBS all || fail_with pcre2 2 - EPIC FAIL
 make install || fail_with pcre2 3 - EPIC FAIL
 cd /c/temp/gcc
 rm -rf build src
-mv dest pcre2-10.23
-cd pcre2-10.23
+mv dest pcre2-10.30
+cd pcre2-10.30
 rm -rf bin/pcre2-config lib/pkgconfig lib/*.la share
 # Avoid colliding with the original PCRE library.
 # cp include/pcre2posix.h include/regex.h
 
-7z -mx0 a ../pcre2-10.23.7z *
+7z -mx0 a ../pcre2-10.30.7z *
