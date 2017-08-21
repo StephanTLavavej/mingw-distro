@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-extract_file glm-0.9.8.5.zip
+untar_file glm-0.9.8.5.tar
 
 cd /c/temp/gcc
-mv glm src
+mv glm-0.9.8.5 src
 mkdir -p dest/include
 mv src/glm dest/include
 rm -rf src

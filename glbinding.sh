@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file glbinding-2.1.3.zip
+untar_file glbinding-2.1.3.tar
 
 patch -d /c/temp/gcc/glbinding-2.1.3 -p1 < glbinding.patch
 

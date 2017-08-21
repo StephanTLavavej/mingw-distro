@@ -5,7 +5,7 @@ source ./0_append_distro_path.sh
 untar_file SDL2-2.0.5.tar
 untar_file libogg-1.3.2.tar
 untar_file libvorbis-1.3.5.tar
-extract_file SDL2_mixer-2.0.1.zip
+untar_file SDL2_mixer-2.0.1.tar --exclude=SDL2_mixer-2.0.1/Xcode
 untar_file vorbis-tools-1.4.0.tar
 
 patch -d /c/temp/gcc/SDL2-2.0.5 -p1 < sdl-clipcursor.patch
