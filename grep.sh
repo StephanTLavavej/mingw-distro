@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file grep-3.1.tar
+untar_file grep-3.1.tar
 
 patch -d /c/temp/gcc/grep-3.1 -p1 < grep-configure.patch
 patch -d /c/temp/gcc/grep-3.1 -p1 < grep-lock.patch

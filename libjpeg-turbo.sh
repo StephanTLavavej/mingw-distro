@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file libjpeg-turbo-1.5.2.tar
+untar_file libjpeg-turbo-1.5.2.tar
 
 cd /c/temp/gcc
 mv libjpeg-turbo-1.5.2 src

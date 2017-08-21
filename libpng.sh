@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file libpng-1.6.30.tar
+untar_file libpng-1.6.30.tar
 
 cd /c/temp/gcc
 mv libpng-1.6.30 src

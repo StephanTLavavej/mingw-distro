@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file lame-3.99.5.tar
+untar_file lame-3.99.5.tar
 
 cd /c/temp/gcc
 mkdir -p dest/bin

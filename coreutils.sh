@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file coreutils-8.27.tar
+untar_file coreutils-8.27.tar
 
 patch -d /c/temp/gcc/coreutils-8.27 -p1 < coreutils.patch
 

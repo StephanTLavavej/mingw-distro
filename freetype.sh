@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file freetype-2.8.tar
+untar_file freetype-2.8.tar
 
 cd /c/temp/gcc
 mv freetype-2.8 src

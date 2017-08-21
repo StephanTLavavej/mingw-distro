@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file pngcheck-2.3.0.tar
+untar_file pngcheck-2.3.0.tar
 
 cd /c/temp/gcc
 mv pngcheck-2.3.0 src

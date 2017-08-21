@@ -3,10 +3,10 @@
 source ./0_append_distro_path.sh
 
 # Extract vanilla sources.
-extract_file gmp-6.1.2.tar
-extract_file mpfr-3.1.5.tar
-extract_file mpc-1.0.3.tar
-extract_file isl-0.18.tar
+untar_file gmp-6.1.2.tar
+untar_file mpfr-3.1.5.tar
+untar_file mpc-1.0.3.tar
+untar_file isl-0.18.tar
 extract_file mingw-w64-v5.0.2.zip
 untar_file gcc-7.2.0.tar
 

@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file zlib-1.2.11.tar
+untar_file zlib-1.2.11.tar
 
 cd /c/temp/gcc
 mv zlib-1.2.11 src

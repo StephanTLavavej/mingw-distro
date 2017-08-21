@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file bzip2-1.0.6.tar
+untar_file bzip2-1.0.6.tar
 
 cd /c/temp/gcc
 mv bzip2-1.0.6 src

@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file gdb-8.0.tar
+untar_file gdb-8.0.tar
 
 cd /c/temp/gcc
 mv gdb-8.0 src

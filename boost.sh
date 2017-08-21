@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file boost_1_64_0.tar
+untar_file boost_1_64_0.tar
 
 cd /c/temp/gcc
 mv boost_1_64_0 src

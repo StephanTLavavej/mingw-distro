@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file pngcrush-1.8.12-nolib.tar
+untar_file pngcrush-1.8.12-nolib.tar
 
 cd /c/temp/gcc
 mv pngcrush-1.8.12-nolib src

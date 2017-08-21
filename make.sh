@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file make-4.2.1.tar
+untar_file make-4.2.1.tar
 
 cd /c/temp/gcc
 mkdir -p dest/bin

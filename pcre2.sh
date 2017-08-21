@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file pcre2-10.30.tar
+untar_file pcre2-10.30.tar
 
 cd /c/temp/gcc
 mv pcre2-10.30 src

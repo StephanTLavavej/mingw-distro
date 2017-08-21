@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file pcre-8.41.tar
+untar_file pcre-8.41.tar
 
 cd /c/temp/gcc
 mv pcre-8.41 src

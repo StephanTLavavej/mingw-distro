@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file binutils-2.29.tar
+untar_file binutils-2.29.tar
 
 cd /c/temp/gcc
 mv binutils-2.29 src

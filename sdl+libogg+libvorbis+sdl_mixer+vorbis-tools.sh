@@ -2,11 +2,11 @@
 
 source ./0_append_distro_path.sh
 
-extract_file SDL2-2.0.5.tar
-extract_file libogg-1.3.2.tar
-extract_file libvorbis-1.3.5.tar
+untar_file SDL2-2.0.5.tar
+untar_file libogg-1.3.2.tar
+untar_file libvorbis-1.3.5.tar
 extract_file SDL2_mixer-2.0.1.zip
-extract_file vorbis-tools-1.4.0.tar
+untar_file vorbis-tools-1.4.0.tar
 
 patch -d /c/temp/gcc/SDL2-2.0.5 -p1 < sdl-clipcursor.patch
 

@@ -2,7 +2,7 @@
 
 source ./0_append_distro_path.sh
 
-extract_file sed-4.4.tar
+untar_file sed-4.4.tar
 
 cd /c/temp/gcc
 mkdir -p dest/bin
