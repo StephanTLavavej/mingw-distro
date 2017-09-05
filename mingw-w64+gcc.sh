@@ -64,8 +64,7 @@ cd build
 ../src/configure --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 \
 --target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest \
 --disable-libstdcxx-pch --disable-libstdcxx-verbose --disable-nls --disable-shared --disable-win32-registry \
---enable-libatomic --enable-threads=posix \
---enable-lto --enable-libgomp \
+--enable-threads=posix --enable-libgomp \
 --with-tune=haswell || fail_with gcc 1 - EPIC FAIL
 
 # --enable-languages=c,c++        : I want C and C++ only.
