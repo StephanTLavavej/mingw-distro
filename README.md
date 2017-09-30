@@ -5,7 +5,7 @@ Here are the build scripts for my MinGW distro.
 You'll need to run them in MSYS2, which you can set up without an installer:
 
 * Go to: https://sourceforge.net/projects/msys2/files/Base/x86_64/
-* Download: `msys2-base-x86_64-20161025.tar.xz`
+* Download: `msys2-base-x86_64-20170918.tar.xz`
 * Extract it to: `C:\Temp\gcc\msys64`
 * Run: `msys2_shell.cmd`
 * RECYCLE MSYS2, which means:
