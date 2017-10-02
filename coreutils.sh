@@ -23,7 +23,7 @@ cd build
 --prefix=/c/temp/gcc/dest || fail_with coreutils 1 - EPIC FAIL
 
 touch src/make-prime-list
-make $X_MAKE_JOBS -k "CFLAGS=-O3" "LDFLAGS=-s"
+make $X_MAKE_JOBS -k "CFLAGS=-O3" "LDFLAGS=-s" || true
 cd src
 mv sort.exe uniq.exe wc.exe ../../dest/bin || fail_with coreutils 2 - EPIC FAIL
 cd /c/temp/gcc
