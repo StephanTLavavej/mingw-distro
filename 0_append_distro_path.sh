@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# Reject expansion of unset variables.
+set -u
+
+# Exit when a command fails.
+if [ "${PS1:-}" == "" ]; then set -e; fi
+
 export X_DISTRO_ROOT=/c/mingw
 
 export X_DISTRO_BIN=$X_DISTRO_ROOT/bin
@@ -13,7 +19,7 @@ export CPLUS_INCLUDE_PATH=$X_DISTRO_INC
 
 function fail_with {
     echo $*
-    if [ "$PS1" == "" ]; then exit 1; fi
+    if [ "${PS1:-}" == "" ]; then exit 1; fi
 }
 
 function untar_file {
@@ -22,3 +28,6 @@ function untar_file {
 
 export X_MAKE_JOBS="-j$NUMBER_OF_PROCESSORS -O"
 export X_B2_JOBS="-j$NUMBER_OF_PROCESSORS"
+
+# Print commands.
+if [ "${PS1:-}" == "" ]; then set -x; fi
