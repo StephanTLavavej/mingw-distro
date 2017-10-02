@@ -20,12 +20,12 @@ echo "/* ignore */" > src/lib/userspec.c
 cd build
 
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
---prefix=/c/temp/gcc/dest || fail_with coreutils 1 - EPIC FAIL
+--prefix=/c/temp/gcc/dest
 
 touch src/make-prime-list
 make $X_MAKE_JOBS -k "CFLAGS=-O3" "LDFLAGS=-s" || true
 cd src
-mv sort.exe uniq.exe wc.exe ../../dest/bin || fail_with coreutils 2 - EPIC FAIL
+mv sort.exe uniq.exe wc.exe ../../dest/bin
 cd /c/temp/gcc
 rm -rf build src
 mv dest coreutils-8.28

@@ -8,7 +8,7 @@ cd /c/temp/gcc
 mv pngcrush-1.8.13-nolib src
 mkdir -p dest/bin
 
-gcc -s -O3 src/pngcrush.c -o dest/bin/pngcrush.exe -lpng -lz || fail_with pngcrush 1 - EPIC FAIL
+gcc -s -O3 src/pngcrush.c -o dest/bin/pngcrush.exe -lpng -lz
 rm -rf src
 mv dest pngcrush-1.8.13
 cd pngcrush-1.8.13

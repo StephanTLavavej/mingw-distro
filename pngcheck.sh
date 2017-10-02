@@ -8,7 +8,7 @@ cd /c/temp/gcc
 mv pngcheck-2.3.0 src
 mkdir -p dest/bin
 
-gcc -s -O3 src/pngcheck.c -o dest/bin/pngcheck.exe || fail_with pngcheck 1 - EPIC FAIL
+gcc -s -O3 src/pngcheck.c -o dest/bin/pngcheck.exe
 rm -rf src
 mv dest pngcheck-2.3.0
 cd pngcheck-2.3.0

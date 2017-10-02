@@ -19,10 +19,10 @@ cmake \
 "-DOPENGL_INCLUDE_DIR=/c/mingw/x86_64-w64-mingw32/include/gl" \
 "-DOPTION_BUILD_TESTS=OFF" \
 "-DOPTION_BUILD_TOOLS=OFF" \
--G "Unix Makefiles" /c/temp/gcc/src || fail_with glbinding 1 - EPIC FAIL
+-G "Unix Makefiles" /c/temp/gcc/src
 
-make $X_MAKE_JOBS || fail_with glbinding 2 - EPIC FAIL
-make install || fail_with glbinding 3 - EPIC FAIL
+make $X_MAKE_JOBS
+make install
 cd /c/temp/gcc
 rm -rf build src
 mv dest glbinding-2.1.3

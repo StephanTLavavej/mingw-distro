@@ -12,10 +12,10 @@ mkdir build
 cd build
 
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
---prefix=/c/temp/gcc/dest || fail_with sed 1 - EPIC FAIL
+--prefix=/c/temp/gcc/dest
 
-make $X_MAKE_JOBS "CFLAGS=-O3" "LDFLAGS=-s" || fail_with sed 2 - EPIC FAIL
-mv sed/sed.exe ../dest/bin || fail_with sed 3 - EPIC FAIL
+make $X_MAKE_JOBS "CFLAGS=-O3" "LDFLAGS=-s"
+mv sed/sed.exe ../dest/bin
 cd /c/temp/gcc
 rm -rf build src
 

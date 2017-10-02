@@ -17,13 +17,8 @@ export PATH=$PATH:$X_DISTRO_BIN
 export C_INCLUDE_PATH=$X_DISTRO_INC
 export CPLUS_INCLUDE_PATH=$X_DISTRO_INC
 
-function fail_with {
-    echo $*
-    if [ "${PS1:-}" == "" ]; then exit 1; fi
-}
-
 function untar_file {
-    tar --extract --directory=/c/temp/gcc --file=$* || fail_with $1 - EPIC FAIL
+    tar --extract --directory=/c/temp/gcc --file=$*
 }
 
 export X_MAKE_JOBS="-j$NUMBER_OF_PROCESSORS -O"

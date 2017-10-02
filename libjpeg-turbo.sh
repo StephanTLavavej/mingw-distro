@@ -10,10 +10,10 @@ mkdir build dest
 cd build
 
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-shared \
---prefix=/c/temp/gcc/dest "CFLAGS=-s -O3 -DTWO_FILE_COMMANDLINE" || fail_with libjpeg-turbo 1 - EPIC FAIL
+--prefix=/c/temp/gcc/dest "CFLAGS=-s -O3 -DTWO_FILE_COMMANDLINE"
 
-make $X_MAKE_JOBS || fail_with libjpeg-turbo 2 - EPIC FAIL
-make install || fail_with libjpeg-turbo 3 - EPIC FAIL
+make $X_MAKE_JOBS
+make install
 cd /c/temp/gcc
 rm -rf build src
 mv dest libjpeg-turbo-1.5.2
