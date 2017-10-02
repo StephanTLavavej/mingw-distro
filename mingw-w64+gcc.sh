@@ -14,10 +14,22 @@ untar_file gcc-7.2.0.tar
 
 cd /c/temp/gcc
 
-# Build mingw-w64.
+# Build winpthreads and mingw-w64.
 mv mingw-w64-v5.0.2 src
-mkdir build dest
-cd build
+mkdir build-winpthreads build-mingw-w64 dest
+
+cd build-winpthreads
+
+../src/mingw-w64-libraries/winpthreads/configure \
+--build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
+--prefix=/c/temp/gcc/dest/x86_64-w64-mingw32 --with-sysroot=/c/temp/gcc/dest/x86_64-w64-mingw32 \
+--disable-shared || fail_with winpthreads 1 - EPIC FAIL
+
+make $X_MAKE_JOBS all "CFLAGS=-s -O3" || fail_with winpthreads 2 - EPIC FAIL
+make install || fail_with winpthreads 3 - EPIC FAIL
+cd /c/temp/gcc
+
+cd build-mingw-w64
 
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-lib32 \
 --prefix=/c/temp/gcc/dest/x86_64-w64-mingw32 --with-sysroot=/c/temp/gcc/dest/x86_64-w64-mingw32 --enable-wildcard \
@@ -26,7 +38,8 @@ cd build
 make $X_MAKE_JOBS all "CFLAGS=-s -O3" || fail_with mingw-w64 2 - EPIC FAIL
 make install || fail_with mingw-w64 3 - EPIC FAIL
 cd /c/temp/gcc
-rm -rf build src
+
+rm -rf build-winpthreads build-mingw-w64 src
 
 # Prepare to build gcc.
 mv gcc-7.2.0 src
@@ -48,7 +61,7 @@ cd build
 ../src/configure --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 \
 --target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest \
 --disable-libstdcxx-pch --disable-libstdcxx-verbose --disable-nls --disable-shared --disable-win32-registry \
---with-tune=haswell || fail_with gcc 1 - EPIC FAIL
+--with-tune=haswell --enable-threads=posix --enable-libgomp || fail_with gcc 1 - EPIC FAIL
 
 # --enable-languages=c,c++        : I want C and C++ only.
 # --build=x86_64-w64-mingw32      : I want a native compiler.
@@ -63,6 +76,8 @@ cd build
 # --disable-shared                : I don't want DLLs.
 # --disable-win32-registry        : I don't want this abomination.
 # --with-tune=haswell             : Tune for Haswell by default.
+# --enable-threads=posix          : Use winpthreads.
+# --enable-libgomp                : Enable OpenMP.
 
 # Build and install.
 make $X_MAKE_JOBS bootstrap "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" \
