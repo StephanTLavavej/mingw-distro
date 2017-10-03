@@ -18,6 +18,8 @@ echo "/* ignore */" > src/lib/idcache.c
 echo "/* ignore */" > src/lib/userspec.c
 
 cd build
+echo "ac_cv_header_pthread_h=no" > config.site
+export CONFIG_SITE=/c/temp/gcc/build/config.site
 
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
 --prefix=/c/temp/gcc/dest
