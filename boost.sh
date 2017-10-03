@@ -18,10 +18,9 @@ cd /c/temp/gcc/dest/lib
 for i in *.a; do mv $i ${i%-mgw*.a}.a; done
 cd /c/temp/gcc
 mv src/boost dest/include
-mv dest boost-1.65.1
-
-cd boost-1.65.1
-7z -mx0 a ../boost-1.65.1.7z *
-
-cd /c/temp/gcc
 rm -rf src
+
+mv dest boost-1.65.1
+cd boost-1.65.1
+
+7z -mx0 a ../boost-1.65.1.7z *
