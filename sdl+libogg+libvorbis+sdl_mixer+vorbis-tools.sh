@@ -2,17 +2,17 @@
 
 source ./0_append_distro_path.sh
 
-untar_file SDL2-2.0.6.tar
-untar_file libogg-1.3.2.tar
+untar_file SDL2-2.0.7.tar
+untar_file libogg-1.3.3.tar
 untar_file libvorbis-1.3.5.tar
-untar_file SDL2_mixer-2.0.1.tar --exclude=SDL2_mixer-2.0.1/Xcode
+untar_file SDL2_mixer-2.0.2.tar --exclude=SDL2_mixer-2.0.2/Xcode
 untar_file vorbis-tools-1.4.0.tar
 
-patch -d /c/temp/gcc/SDL2-2.0.6 -p1 < sdl-clipcursor.patch
+patch -d /c/temp/gcc/SDL2-2.0.7 -p1 < sdl-clipcursor.patch
 
 cd /c/temp/gcc
 
-mv SDL2-2.0.6 src
+mv SDL2-2.0.7 src
 mkdir build dest
 cd build
 
@@ -24,7 +24,7 @@ make install
 cd /c/temp/gcc
 rm -rf build src
 
-mv libogg-1.3.2 src
+mv libogg-1.3.3 src
 mkdir build
 cd build
 
@@ -48,7 +48,7 @@ make install
 cd /c/temp/gcc
 rm -rf build src
 
-mv SDL2_mixer-2.0.1 src
+mv SDL2_mixer-2.0.2 src
 mkdir build
 cd build
 
