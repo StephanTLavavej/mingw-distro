@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-untar_file gdb-8.0.1.tar
+untar_file gdb-8.1.tar
 
 cd /c/temp/gcc
-mv gdb-8.0.1 src
+mv gdb-8.1 src
 mkdir build dest
 cd build
 
@@ -16,8 +16,8 @@ make $X_MAKE_JOBS all "CFLAGS=-O3" "LDFLAGS=-s"
 make install
 cd /c/temp/gcc
 rm -rf build src
-mv dest gdb-8.0.1
-cd gdb-8.0.1
+mv dest gdb-8.1
+cd gdb-8.1
 rm -rf include lib share
 
-7z -mx0 a ../gdb-8.0.1.7z *
+7z -mx0 a ../gdb-8.1.7z *
