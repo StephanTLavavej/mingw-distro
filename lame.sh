@@ -2,12 +2,12 @@
 
 source ./0_append_distro_path.sh
 
-untar_file lame-3.99.5.tar
+untar_file lame-3.100.tar
 
 cd /c/temp/gcc
 mkdir -p dest/bin
 
-mv lame-3.99.5 src
+mv lame-3.100 src
 mkdir build
 cd build
 
@@ -19,7 +19,7 @@ mv frontend/lame.exe ../dest/bin
 cd /c/temp/gcc
 rm -rf build src
 
-mv dest lame-3.99.5
-cd lame-3.99.5
+mv dest lame-3.100
+cd lame-3.100
 
-7z -mx0 a ../lame-3.99.5.7z *
+7z -mx0 a ../lame-3.100.7z *
