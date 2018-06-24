@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-untar_file pcre-8.41.tar
+untar_file pcre-8.42.tar
 
 cd /c/temp/gcc
-mv pcre-8.41 src
+mv pcre-8.42 src
 mkdir build dest
 cd build
 
@@ -17,9 +17,9 @@ make $X_MAKE_JOBS all
 make install
 cd /c/temp/gcc
 rm -rf build src
-mv dest pcre-8.41
-cd pcre-8.41
+mv dest pcre-8.42
+cd pcre-8.42
 rm -rf bin/pcre-config lib/pkgconfig lib/*.la share
 cp include/pcreposix.h include/regex.h
 
-7z -mx0 a ../pcre-8.41.7z *
+7z -mx0 a ../pcre-8.42.7z *
