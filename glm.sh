@@ -2,14 +2,14 @@
 
 source ./0_append_distro_path.sh
 
-untar_file glm-0.9.8.5.tar
+untar_file glm-0.9.9.0.tar
 
 cd /c/temp/gcc
-mv glm-0.9.8.5 src
+mv glm-0.9.9.0 src
 mkdir -p dest/include
 mv src/glm dest/include
 rm -rf src
-mv dest glm-0.9.8.5
-cd glm-0.9.8.5
+mv dest glm-0.9.9.0
+cd glm-0.9.9.0
 
-7z -mx0 a ../glm-0.9.8.5.7z *
+7z -mx0 a ../glm-0.9.9.0.7z *
