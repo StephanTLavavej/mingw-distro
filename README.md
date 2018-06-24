@@ -5,7 +5,7 @@ Here are the build scripts for my MinGW distro.
 You'll need to run them in MSYS2, which you can set up without an installer:
 
 * Go to: https://sourceforge.net/projects/msys2/files/Base/x86_64/
-* Download: `msys2-base-x86_64-20170918.tar.xz`
+* Download: `msys2-base-x86_64-20180531.tar.xz`
 * Extract it to: `C:\Temp\gcc\msys64`
 * Run: `msys2_shell.cmd`
 * RECYCLE MSYS2, which means:
@@ -13,11 +13,6 @@ You'll need to run them in MSYS2, which you can set up without an installer:
   * In Task Manager, terminate `pacman.exe` if it's still running. (Sometimes it will, sometimes it won't.)
   * Restart MSYS2.
 * In MSYS2, run: `pacman -Syuu`
-  * Answer `y` if you see these questions:
-```
-:: msys2-runtime and catgets are in conflict. Remove catgets? [y/N] y
-:: msys2-runtime and libcatgets are in conflict. Remove libcatgets? [y/N] y
-```
 * RECYCLE MSYS2.
 * Repeat the previous two steps until you see this:
 ```
