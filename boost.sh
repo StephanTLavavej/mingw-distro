@@ -2,12 +2,16 @@
 
 source ./0_append_distro_path.sh
 
-untar_file boost_1_66_0.tar
+untar_file boost_1_67_0.tar
 
 cd /c/temp/gcc
-mv boost_1_66_0 src
+mv boost_1_67_0 src
 mkdir -p dest/include
 cd src
+
+# Workaround for https://github.com/StephanTLavavej/mingw-distro/issues/58
+cp -a libs/chrono/stopwatches/include/boost/chrono/. boost/chrono
+
 ./bootstrap.sh
 
 ./b2 $X_B2_JOBS variant=release link=static runtime-link=static threading=multi --stagedir=/c/temp/gcc/dest stage \
@@ -21,7 +25,7 @@ cd /c/temp/gcc
 mv src/boost dest/include
 rm -rf src
 
-mv dest boost-1.66.0
-cd boost-1.66.0
+mv dest boost-1.67.0
+cd boost-1.67.0
 
-7z -mx0 a ../boost-1.66.0.7z *
+7z -mx0 a ../boost-1.67.0.7z *
