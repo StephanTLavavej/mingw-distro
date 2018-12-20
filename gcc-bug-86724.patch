@@ -1,0 +1,12 @@
+diff -aurN gcc-8.2.0/gcc/graphite.h gcc-8.2.0-fixed/gcc/graphite.h
+--- gcc-8.2.0/gcc/graphite.h	2018-01-03 02:03:58.000000000 -0800
++++ gcc-8.2.0-fixed/gcc/graphite.h	2018-12-18 16:26:07.836390500 -0800
+@@ -37,6 +37,8 @@
+ #include <isl/schedule.h>
+ #include <isl/ast_build.h>
+ #include <isl/schedule_node.h>
++#include <isl/id.h>
++#include <isl/space.h>
+ 
+ typedef struct poly_dr *poly_dr_p;
+ 

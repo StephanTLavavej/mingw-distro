@@ -6,20 +6,19 @@ source ./0_append_distro_path.sh
 untar_file gmp-6.1.2.tar
 untar_file mpfr-4.0.1.tar
 untar_file mpc-1.1.0.tar
-untar_file isl-0.19.tar
-untar_file mingw-w64-v5.0.4.tar
-untar_file gcc-8.1.0.tar
+untar_file isl-0.20.tar
+untar_file mingw-w64-v6.0.0.tar
+untar_file gcc-8.2.0.tar
 
-# https://github.com/StephanTLavavej/mingw-distro/issues/60
-# Fixed upstream: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=86048
-patch -d /c/temp/gcc/gcc-8.1.0 -p1 < gcc-bug-86048.patch
+# Fixed upstream: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=86724
+patch -d /c/temp/gcc/gcc-8.2.0 -p1 < gcc-bug-86724.patch
 
-patch -Z -d /c/temp/gcc/mpfr-4.0.1 -p1 < mpfr-4.0.1-p6.patch
+patch -Z -d /c/temp/gcc/mpfr-4.0.1 -p1 < mpfr-4.0.1-p13.patch
 
 cd /c/temp/gcc
 
 # Build winpthreads and mingw-w64.
-mv mingw-w64-v5.0.4 src
+mv mingw-w64-v6.0.0 src
 mkdir build-winpthreads build-mingw-w64 dest
 
 cd build-winpthreads
@@ -38,6 +37,12 @@ cd build-mingw-w64
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-lib32 \
 --prefix=/c/temp/gcc/dest/x86_64-w64-mingw32 --with-sysroot=/c/temp/gcc/dest/x86_64-w64-mingw32 --enable-wildcard
 
+# https://github.com/StephanTLavavej/mingw-distro/issues/64
+cd mingw-w64-headers
+make $X_MAKE_JOBS all "CFLAGS=-s -O3"
+make install
+cd /c/temp/gcc/build-mingw-w64
+
 make $X_MAKE_JOBS all "CFLAGS=-s -O3"
 make install
 cd /c/temp/gcc
@@ -45,11 +50,11 @@ cd /c/temp/gcc
 rm -rf build-winpthreads build-mingw-w64 src
 
 # Prepare to build gcc.
-mv gcc-8.1.0 src
+mv gcc-8.2.0 src
 mv gmp-6.1.2 src/gmp
 mv mpfr-4.0.1 src/mpfr
 mv mpc-1.1.0 src/mpc
-mv isl-0.19 src/isl
+mv isl-0.20 src/isl
 
 # Prepare to build gcc - perform magic directory surgery.
 cp -r dest/x86_64-w64-mingw32/lib dest/x86_64-w64-mingw32/lib64
