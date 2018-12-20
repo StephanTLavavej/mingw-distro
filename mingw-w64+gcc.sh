@@ -33,7 +33,7 @@ make install
 cd /c/temp/gcc/build-mingw-w64
 
 make $X_MAKE_JOBS all "CFLAGS=-s -O3"
-make install
+make $X_MAKE_JOBS install
 cd /c/temp/gcc
 
 rm -rf build-mingw-w64 src
