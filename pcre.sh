@@ -14,7 +14,7 @@ cd build
 --enable-jit --enable-newline-is-anycrlf "CFLAGS=-s -O3" "CXXFLAGS=-s -O3"
 
 make $X_MAKE_JOBS all
-make install
+make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
 mv dest pcre-8.42

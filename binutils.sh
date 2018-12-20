@@ -17,7 +17,7 @@ cd build
 --target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest
 
 make $X_MAKE_JOBS all "CFLAGS=-O3" "LDFLAGS=-s"
-make install
+make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
 mv dest binutils-2.30

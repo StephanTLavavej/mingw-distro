@@ -13,7 +13,7 @@ cd build
 --prefix=/c/temp/gcc/dest "CFLAGS=-s -O3 -DTWO_FILE_COMMANDLINE"
 
 make $X_MAKE_JOBS
-make install
+make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
 mv dest libjpeg-turbo-1.5.3

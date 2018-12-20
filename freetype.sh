@@ -13,7 +13,7 @@ cd build
 --prefix=/c/temp/gcc/dest "CFLAGS=-s -O3"
 
 make $X_MAKE_JOBS all
-make install
+make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
 mv dest freetype-2.9.1

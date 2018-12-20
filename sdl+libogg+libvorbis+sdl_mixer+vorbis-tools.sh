@@ -20,7 +20,7 @@ cd build
 --prefix=/c/temp/gcc/dest --disable-shared
 
 make $X_MAKE_JOBS all "CFLAGS=-s -O3"
-make install
+make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
 
@@ -32,7 +32,7 @@ cd build
 --prefix=/c/temp/gcc/dest --disable-shared
 
 make $X_MAKE_JOBS all "CFLAGS=-s -O3"
-make install
+make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
 
@@ -44,7 +44,7 @@ cd build
 --prefix=/c/temp/gcc/dest --disable-shared
 
 make $X_MAKE_JOBS all "CFLAGS=-s -O3"
-make install
+make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
 
@@ -56,7 +56,7 @@ cd build
 --prefix=/c/temp/gcc/dest --disable-shared
 
 make $X_MAKE_JOBS all "CFLAGS=-s -O3"
-make install
+make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
 
@@ -68,7 +68,7 @@ cd build
 --prefix=/c/temp/gcc/dest --disable-nls
 
 make $X_MAKE_JOBS all "CFLAGS=-s -O3"
-make install
+make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
 

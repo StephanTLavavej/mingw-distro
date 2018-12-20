@@ -29,7 +29,7 @@ cd build-mingw-w64
 # https://github.com/StephanTLavavej/mingw-distro/issues/64
 cd mingw-w64-headers
 make $X_MAKE_JOBS all "CFLAGS=-s -O3"
-make install
+make $X_MAKE_JOBS install
 cd /c/temp/gcc/build-mingw-w64
 
 make $X_MAKE_JOBS all "CFLAGS=-s -O3"
@@ -80,7 +80,7 @@ cd build
 make $X_MAKE_JOBS bootstrap "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" \
 "CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3"
 
-make install
+make $X_MAKE_JOBS install
 
 # Cleanup.
 cd /c/temp/gcc

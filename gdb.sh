@@ -13,7 +13,7 @@ cd build
 --prefix=/c/temp/gcc/dest --disable-nls
 
 make $X_MAKE_JOBS all "CFLAGS=-O3" "LDFLAGS=-s"
-make install
+make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
 mv dest gdb-8.1

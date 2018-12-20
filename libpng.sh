@@ -15,7 +15,7 @@ cd build
 # Adding -P avoids problems with linemarkers. Root cause unknown.
 make $X_MAKE_JOBS all "CFLAGS=-s -O3" "DFNCPP=gcc -E -P"
 
-make install
+make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
 mv dest libpng-1.6.34

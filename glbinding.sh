@@ -21,7 +21,7 @@ cmake \
 -G "Unix Makefiles" /c/temp/gcc/src
 
 make $X_MAKE_JOBS
-make install
+make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
 mv dest glbinding-2.1.4
