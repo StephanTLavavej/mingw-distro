@@ -17,25 +17,14 @@ patch -Z -d /c/temp/gcc/mpfr-4.0.1 -p1 < mpfr-4.0.1-p13.patch
 
 cd /c/temp/gcc
 
-# Build winpthreads and mingw-w64.
+# Build mingw-w64 and winpthreads.
 mv mingw-w64-v6.0.0 src
-mkdir build-winpthreads build-mingw-w64 dest
-
-cd build-winpthreads
-
-../src/mingw-w64-libraries/winpthreads/configure \
---build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
---prefix=/c/temp/gcc/dest/x86_64-w64-mingw32 --with-sysroot=/c/temp/gcc/dest/x86_64-w64-mingw32 \
---disable-shared
-
-make $X_MAKE_JOBS all "CFLAGS=-s -O3"
-make install
-cd /c/temp/gcc
-
+mkdir build-mingw-w64 dest
 cd build-mingw-w64
 
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-lib32 \
---prefix=/c/temp/gcc/dest/x86_64-w64-mingw32 --with-sysroot=/c/temp/gcc/dest/x86_64-w64-mingw32 --enable-wildcard
+--prefix=/c/temp/gcc/dest/x86_64-w64-mingw32 --with-sysroot=/c/temp/gcc/dest/x86_64-w64-mingw32 --enable-wildcard \
+--with-libraries=winpthreads --disable-shared
 
 # https://github.com/StephanTLavavej/mingw-distro/issues/64
 cd mingw-w64-headers
@@ -47,7 +36,7 @@ make $X_MAKE_JOBS all "CFLAGS=-s -O3"
 make install
 cd /c/temp/gcc
 
-rm -rf build-winpthreads build-mingw-w64 src
+rm -rf build-mingw-w64 src
 
 # Prepare to build gcc.
 mv gcc-8.2.0 src
