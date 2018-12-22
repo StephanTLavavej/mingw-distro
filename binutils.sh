@@ -2,14 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-untar_file binutils-2.30.tar
-
-# https://github.com/StephanTLavavej/mingw-distro/issues/51
-# Fixed upstream: https://sourceware.org/bugzilla/show_bug.cgi?id=22762
-patch -d /c/temp/gcc/binutils-2.30 -p1 < binutils-bug-22762.patch
+untar_file binutils-2.31.1.tar
 
 cd /c/temp/gcc
-mv binutils-2.30 src
+mv binutils-2.31.1 src
 mkdir build dest
 cd build
 
@@ -20,8 +16,8 @@ make $X_MAKE_JOBS all "CFLAGS=-O3" "LDFLAGS=-s"
 make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
-mv dest binutils-2.30
-cd binutils-2.30
+mv dest binutils-2.31.1
+cd binutils-2.31.1
 rm -rf lib/*.la share
 
-7z -mx0 a ../binutils-2.30.7z *
+7z -mx0 a ../binutils-2.31.1.7z *
