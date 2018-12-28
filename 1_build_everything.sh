@@ -16,6 +16,7 @@ source ./0_append_distro_path.sh
 ./libpng.sh
 ./make.sh
 ./mingw-w64+gcc.sh
+./optipng.sh
 ./pcre.sh
 ./pcre2.sh
 ./pngcheck.sh
