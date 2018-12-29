@@ -11,10 +11,8 @@ cd src
 
 ./bootstrap.sh
 
-./b2 $X_B2_JOBS variant=release link=static runtime-link=static threading=multi --stagedir=/c/temp/gcc/dest stage \
-address-model=64 \
--sNO_BZIP2 -sBZIP2_BINARY=bz2 -sBZIP2_INCLUDE=$X_DISTRO_INC -sBZIP2_LIBPATH=$X_DISTRO_LIB \
--sNO_ZLIB -sZLIB_BINARY=z -sZLIB_INCLUDE=$X_DISTRO_INC -sZLIB_LIBPATH=$X_DISTRO_LIB
+./b2 $X_B2_JOBS address-model=64 link=static runtime-link=static threading=multi variant=release \
+--stagedir=/c/temp/gcc/dest stage
 
 cd /c/temp/gcc/dest/lib
 for i in *.a; do mv $i ${i%-mgw*.a}.a; done
