@@ -23,3 +23,4 @@ source ./0_append_distro_path.sh
 ./sdl+libogg+libvorbis+sdl_mixer+vorbis-tools.sh
 ./sed.sh
 ./zlib.sh
+./zstd.sh
