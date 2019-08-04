@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-untar_file binutils-2.31.1.tar
+untar_file binutils-2.33.1.tar
 
 cd /c/temp/gcc
-mv binutils-2.31.1 src
+mv binutils-2.33.1 src
 mkdir build dest
 cd build
 
@@ -16,8 +16,8 @@ make $X_MAKE_JOBS all "CFLAGS=-O3" "LDFLAGS=-s"
 make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
-mv dest binutils-2.31.1
-cd binutils-2.31.1
+mv dest binutils-2.33.1
+cd binutils-2.33.1
 rm -rf lib/*.la share
 
-7z -mx0 a ../binutils-2.31.1.7z *
+7z -mx0 a ../binutils-2.33.1.7z *
