@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-untar_file zstd-1.3.8.tar
+untar_file zstd-1.4.4.tar
 
 cd /c/temp/gcc
-mv zstd-1.3.8 src
+mv zstd-1.4.4 src
 mkdir build dest
 cd build
 
@@ -19,9 +19,9 @@ make $X_MAKE_JOBS
 make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
-mv dest zstd-1.3.8
-cd zstd-1.3.8
-rm -rf lib/pkgconfig share
+mv dest zstd-1.4.4
+cd zstd-1.4.4
+rm -rf bin/zstdgrep bin/zstdless lib/pkgconfig share
 for i in bin/unzstd bin/zstdcat bin/zstdmt; do mv $i $i.exe; done
 
-7z -mx0 a ../zstd-1.3.8.7z *
+7z -mx0 a ../zstd-1.4.4.7z *
