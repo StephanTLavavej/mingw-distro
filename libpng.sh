@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-untar_file libpng-1.6.36.tar
+untar_file libpng-1.6.37.tar
 
 cd /c/temp/gcc
-mv libpng-1.6.36 src
+mv libpng-1.6.37 src
 mkdir build dest
 cd build
 
@@ -16,8 +16,8 @@ make $X_MAKE_JOBS all "CFLAGS=-s -O3"
 make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
-mv dest libpng-1.6.36
-cd libpng-1.6.36
+mv dest libpng-1.6.37
+cd libpng-1.6.37
 rm -rf bin include/libpng16 lib/pkgconfig lib/*.la lib/libpng16.a share
 
-7z -mx0 a ../libpng-1.6.36.7z *
+7z -mx0 a ../libpng-1.6.37.7z *
