@@ -4,21 +4,18 @@ source ./0_append_distro_path.sh
 
 # Extract vanilla sources.
 untar_file gmp-6.1.2.tar
-untar_file mpfr-4.0.1.tar
+untar_file mpfr-4.0.2.tar
 untar_file mpc-1.1.0.tar
-untar_file isl-0.20.tar
-untar_file mingw-w64-v6.0.0.tar
-untar_file gcc-8.2.0.tar
+untar_file isl-0.21.tar
+untar_file mingw-w64-v7.0.0.tar
+untar_file gcc-9.2.0.tar
 
-# Fixed upstream: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=86724
-patch -d /c/temp/gcc/gcc-8.2.0 -p1 < gcc-bug-86724.patch
-
-patch -Z -d /c/temp/gcc/mpfr-4.0.1 -p1 < mpfr-4.0.1-p13.patch
+patch -Z -d /c/temp/gcc/mpfr-4.0.2 -p1 < mpfr-4.0.2-p1.patch
 
 cd /c/temp/gcc
 
 # Build mingw-w64 and winpthreads.
-mv mingw-w64-v6.0.0 src
+mv mingw-w64-v7.0.0 src
 mkdir build-mingw-w64 dest
 cd build-mingw-w64
 
@@ -39,11 +36,11 @@ cd /c/temp/gcc
 rm -rf build-mingw-w64 src
 
 # Prepare to build gcc.
-mv gcc-8.2.0 src
+mv gcc-9.2.0 src
 mv gmp-6.1.2 src/gmp
-mv mpfr-4.0.1 src/mpfr
+mv mpfr-4.0.2 src/mpfr
 mv mpc-1.1.0 src/mpc
-mv isl-0.20 src/isl
+mv isl-0.21 src/isl
 
 # Prepare to build gcc - perform magic directory surgery.
 cp -r dest/x86_64-w64-mingw32/lib dest/x86_64-w64-mingw32/lib64
