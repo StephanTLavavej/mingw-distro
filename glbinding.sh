@@ -2,10 +2,13 @@
 
 source ./0_append_distro_path.sh
 
-untar_file glbinding-3.0.2.tar
+untar_file glbinding-3.1.0.tar
+
+# https://github.com/cginternals/glbinding/pull/298 fixes https://github.com/StephanTLavavej/mingw-distro/issues/65
+patch -d /c/temp/gcc/glbinding-3.1.0 -p1 < glbinding-pr-298.patch
 
 cd /c/temp/gcc
-mv glbinding-3.0.2 src
+mv glbinding-3.1.0 src
 mkdir build dest
 cd build
 
@@ -23,9 +26,9 @@ make $X_MAKE_JOBS
 make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
-mv dest glbinding-3.0.2
-cd glbinding-3.0.2
+mv dest glbinding-3.1.0
+cd glbinding-3.1.0
 rm -rf cmake AUTHORS glbinding-config.cmake README.md VERSION
 mv LICENSE include/glbinding
 
-7z -mx0 a ../glbinding-3.0.2.7z *
+7z -mx0 a ../glbinding-3.1.0.7z *
