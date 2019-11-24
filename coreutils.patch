@@ -1,27 +1,32 @@
-diff -aurN coreutils-8.30/configure coreutils-8.30-fixed/configure
---- coreutils-8.30/configure	2018-07-01 17:56:53.000000000 -0700
-+++ coreutils-8.30-fixed/configure	2018-12-23 18:26:29.470403100 -0800
-@@ -43398,17 +43398,7 @@
-   esac
- fi
+diff -aurN coreutils-8.31/configure coreutils-8.31-fixed/configure
+--- coreutils-8.31/configure	2019-03-10 16:35:43.000000000 -0700
++++ coreutils-8.31-fixed/configure	2019-11-24 13:45:19.963326300 -0800
+@@ -43842,17 +43842,7 @@
+     esac
+   fi
  
--if test -z "$ac_list_mounted_fs"; then
--  as_fn_error $? "could not determine how to read list of mounted file systems" "$LINENO" 5
--  # FIXME -- no need to abort building the whole package
--  # Can't build mountlist.c or anything that needs its functions
--fi
+-  if test -z "$ac_list_mounted_fs"; then
+-    as_fn_error $? "could not determine how to read list of mounted file systems" "$LINENO" 5
+-    # FIXME -- no need to abort building the whole package
+-    # Can't build mountlist.c or anything that needs its functions
+-  fi
 -
--if test $ac_list_mounted_fs = found; then :
--  gl_cv_list_mounted_fs=yes
--else
-   gl_cv_list_mounted_fs=no
--fi
+-  if test $ac_list_mounted_fs = found; then
+-    gl_cv_list_mounted_fs=yes
+-  else
+     gl_cv_list_mounted_fs=no
+-  fi
  
+   if test $gl_cv_list_mounted_fs = yes; then
  
- 
-diff -aurN coreutils-8.30/lib/c-strtod.c coreutils-8.30-fixed/lib/c-strtod.c
---- coreutils-8.30/lib/c-strtod.c	2018-05-13 21:20:31.000000000 -0700
-+++ coreutils-8.30-fixed/lib/c-strtod.c	2018-12-23 18:26:29.502396000 -0800
+@@ -72888,4 +72878,3 @@
+   { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: unrecognized options: $ac_unrecognized_opts" >&5
+ $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
+ fi
+-
+diff -aurN coreutils-8.31/lib/c-strtod.c coreutils-8.31-fixed/lib/c-strtod.c
+--- coreutils-8.31/lib/c-strtod.c	2019-02-10 19:25:16.000000000 -0800
++++ coreutils-8.31-fixed/lib/c-strtod.c	2019-11-24 13:47:20.104690100 -0800
 @@ -26,7 +26,7 @@
  #include <stdlib.h>
  #include <string.h>
@@ -31,25 +36,43 @@ diff -aurN coreutils-8.30/lib/c-strtod.c coreutils-8.30-fixed/lib/c-strtod.c
  # define C_STRTOD c_strtold
  # define DOUBLE long double
  # define STRTOD_L strtold_l
-@@ -37,7 +37,7 @@
+@@ -41,7 +41,7 @@
  #endif
  
- /* c_strtold falls back on strtod if strtold doesn't conform to C99.  */
--#if LONG && HAVE_C99_STRTOLD
-+#if LONGCAT && HAVE_C99_STRTOLD
- # define STRTOD strtold
- #else
- # define STRTOD strtod
-diff -aurN coreutils-8.30/lib/c-strtold.c coreutils-8.30-fixed/lib/c-strtold.c
---- coreutils-8.30/lib/c-strtold.c	2017-11-28 22:02:30.000000000 -0800
-+++ coreutils-8.30-fixed/lib/c-strtold.c	2018-12-23 18:26:29.510396100 -0800
+ #if defined LC_ALL_MASK \
+-    && ((LONG ? HAVE_GOOD_STRTOLD_L : HAVE_GOOD_STRTOD_L) \
++    && ((LONGCAT ? HAVE_GOOD_STRTOLD_L : HAVE_GOOD_STRTOD_L) \
+         || HAVE_WORKING_USELOCALE)
+ 
+ /* Cache for the C locale object.
+@@ -67,7 +67,7 @@
+   DOUBLE r;
+ 
+ #if defined LC_ALL_MASK \
+-    && ((LONG ? HAVE_GOOD_STRTOLD_L : HAVE_GOOD_STRTOD_L) \
++    && ((LONGCAT ? HAVE_GOOD_STRTOLD_L : HAVE_GOOD_STRTOD_L) \
+         || HAVE_WORKING_USELOCALE)
+ 
+   locale_t locale = c_locale ();
+@@ -78,7 +78,7 @@
+       return 0; /* errno is set here */
+     }
+ 
+-# if (LONG ? HAVE_GOOD_STRTOLD_L : HAVE_GOOD_STRTOD_L)
++# if (LONGCAT ? HAVE_GOOD_STRTOLD_L : HAVE_GOOD_STRTOD_L)
+ 
+   r = STRTOD_L (nptr, endptr, locale);
+ 
+diff -aurN coreutils-8.31/lib/c-strtold.c coreutils-8.31-fixed/lib/c-strtold.c
+--- coreutils-8.31/lib/c-strtold.c	2017-11-28 22:02:30.000000000 -0800
++++ coreutils-8.31-fixed/lib/c-strtold.c	2019-11-24 13:42:06.273691000 -0800
 @@ -1,2 +1,2 @@
 -#define LONG 1
 +#define LONGCAT 1
  #include "c-strtod.c"
-diff -aurN coreutils-8.30/lib/error.c coreutils-8.30-fixed/lib/error.c
---- coreutils-8.30/lib/error.c	2018-05-13 21:20:31.000000000 -0700
-+++ coreutils-8.30-fixed/lib/error.c	2018-12-23 18:26:29.526398600 -0800
+diff -aurN coreutils-8.31/lib/error.c coreutils-8.31-fixed/lib/error.c
+--- coreutils-8.31/lib/error.c	2019-01-04 08:14:43.000000000 -0800
++++ coreutils-8.31-fixed/lib/error.c	2019-11-24 13:42:06.281690500 -0800
 @@ -176,19 +176,7 @@
  {
    char const *s;
@@ -70,9 +93,9 @@ diff -aurN coreutils-8.30/lib/error.c coreutils-8.30-fixed/lib/error.c
  
  #if !_LIBC
    if (! s)
-diff -aurN coreutils-8.30/lib/ftruncate.c coreutils-8.30-fixed/lib/ftruncate.c
---- coreutils-8.30/lib/ftruncate.c	2018-05-13 21:20:31.000000000 -0700
-+++ coreutils-8.30-fixed/lib/ftruncate.c	2018-12-23 18:26:29.534392100 -0800
+diff -aurN coreutils-8.31/lib/ftruncate.c coreutils-8.31-fixed/lib/ftruncate.c
+--- coreutils-8.31/lib/ftruncate.c	2019-01-04 08:14:43.000000000 -0800
++++ coreutils-8.31-fixed/lib/ftruncate.c	2019-11-24 13:42:06.289691300 -0800
 @@ -14,6 +14,10 @@
     You should have received a copy of the GNU General Public License along
     with this program; if not, see <https://www.gnu.org/licenses/>.  */
@@ -95,9 +118,9 @@ diff -aurN coreutils-8.30/lib/ftruncate.c coreutils-8.30-fixed/lib/ftruncate.c
  /* Get declarations of the native Windows API functions.  */
  #  define WIN32_LEAN_AND_MEAN
  #  include <windows.h>
-diff -aurN coreutils-8.30/lib/gethostname.c coreutils-8.30-fixed/lib/gethostname.c
---- coreutils-8.30/lib/gethostname.c	2018-05-13 21:20:31.000000000 -0700
-+++ coreutils-8.30-fixed/lib/gethostname.c	2018-12-23 18:26:29.558396100 -0800
+diff -aurN coreutils-8.31/lib/gethostname.c coreutils-8.31-fixed/lib/gethostname.c
+--- coreutils-8.31/lib/gethostname.c	2019-01-04 08:14:43.000000000 -0800
++++ coreutils-8.31-fixed/lib/gethostname.c	2019-11-24 13:42:06.297688200 -0800
 @@ -87,8 +87,9 @@
  #undef gethostname
  
@@ -109,9 +132,9 @@ diff -aurN coreutils-8.30/lib/gethostname.c coreutils-8.30-fixed/lib/gethostname
    int r;
  
    if (len > INT_MAX)
-diff -aurN coreutils-8.30/lib/randread.c coreutils-8.30-fixed/lib/randread.c
---- coreutils-8.30/lib/randread.c	2018-05-13 21:20:24.000000000 -0700
-+++ coreutils-8.30-fixed/lib/randread.c	2018-12-23 18:26:29.566397000 -0800
+diff -aurN coreutils-8.31/lib/randread.c coreutils-8.31-fixed/lib/randread.c
+--- coreutils-8.31/lib/randread.c	2019-01-05 02:36:22.000000000 -0800
++++ coreutils-8.31-fixed/lib/randread.c	2019-11-24 13:42:06.305691900 -0800
 @@ -176,9 +176,6 @@
      }
    ISAAC_SEED (struct timeval, gettimeofday (&v, NULL));
@@ -122,10 +145,10 @@ diff -aurN coreutils-8.30/lib/randread.c coreutils-8.30-fixed/lib/randread.c
  
  #ifdef lint
    /* Normally we like having the extra randomness from uninitialized
-diff -aurN coreutils-8.30/lib/unistd.in.h coreutils-8.30-fixed/lib/unistd.in.h
---- coreutils-8.30/lib/unistd.in.h	2018-06-23 21:56:38.000000000 -0700
-+++ coreutils-8.30-fixed/lib/unistd.in.h	2018-12-23 18:26:29.582397300 -0800
-@@ -761,9 +761,9 @@
+diff -aurN coreutils-8.31/lib/unistd.in.h coreutils-8.31-fixed/lib/unistd.in.h
+--- coreutils-8.31/lib/unistd.in.h	2019-02-10 19:31:10.000000000 -0800
++++ coreutils-8.31-fixed/lib/unistd.in.h	2019-11-24 13:42:06.321692200 -0800
+@@ -770,9 +770,9 @@
  #   undef gethostname
  #   define gethostname rpl_gethostname
  #  endif
@@ -137,9 +160,9 @@ diff -aurN coreutils-8.30/lib/unistd.in.h coreutils-8.30-fixed/lib/unistd.in.h
  # else
  #  if !@HAVE_GETHOSTNAME@
  _GL_FUNCDECL_SYS (gethostname, int, (char *name, size_t len)
-diff -aurN coreutils-8.30/lib/xstrtod.c coreutils-8.30-fixed/lib/xstrtod.c
---- coreutils-8.30/lib/xstrtod.c	2018-05-13 21:20:31.000000000 -0700
-+++ coreutils-8.30-fixed/lib/xstrtod.c	2018-12-23 18:26:29.606398200 -0800
+diff -aurN coreutils-8.31/lib/xstrtod.c coreutils-8.31-fixed/lib/xstrtod.c
+--- coreutils-8.31/lib/xstrtod.c	2019-01-04 08:14:43.000000000 -0800
++++ coreutils-8.31-fixed/lib/xstrtod.c	2019-11-24 13:42:06.337691600 -0800
 @@ -26,7 +26,7 @@
  #include <limits.h>
  #include <stdio.h>
@@ -149,16 +172,16 @@ diff -aurN coreutils-8.30/lib/xstrtod.c coreutils-8.30-fixed/lib/xstrtod.c
  # define XSTRTOD xstrtold
  # define DOUBLE long double
  #else
-diff -aurN coreutils-8.30/lib/xstrtold.c coreutils-8.30-fixed/lib/xstrtold.c
---- coreutils-8.30/lib/xstrtold.c	2017-11-28 22:02:30.000000000 -0800
-+++ coreutils-8.30-fixed/lib/xstrtold.c	2018-12-23 18:26:29.614384900 -0800
+diff -aurN coreutils-8.31/lib/xstrtold.c coreutils-8.31-fixed/lib/xstrtold.c
+--- coreutils-8.31/lib/xstrtold.c	2017-11-28 22:02:30.000000000 -0800
++++ coreutils-8.31-fixed/lib/xstrtold.c	2019-11-24 13:42:06.345691300 -0800
 @@ -1,2 +1,2 @@
 -#define LONG 1
 +#define LONGCAT 1
  #include "xstrtod.c"
-diff -aurN coreutils-8.30/src/sort.c coreutils-8.30-fixed/src/sort.c
---- coreutils-8.30/src/sort.c	2018-05-13 21:20:24.000000000 -0700
-+++ coreutils-8.30-fixed/src/sort.c	2018-12-23 18:26:29.630394600 -0800
+diff -aurN coreutils-8.31/src/sort.c coreutils-8.31-fixed/src/sort.c
+--- coreutils-8.31/src/sort.c	2019-02-17 19:24:43.000000000 -0800
++++ coreutils-8.31-fixed/src/sort.c	2019-11-24 13:42:06.361691300 -0800
 @@ -26,7 +26,6 @@
  #include <pthread.h>
  #include <sys/resource.h>
@@ -167,7 +190,7 @@ diff -aurN coreutils-8.30/src/sort.c coreutils-8.30-fixed/src/sort.c
  #include <signal.h>
  #include <assert.h>
  #include "system.h"
-@@ -480,8 +479,6 @@
+@@ -472,8 +471,6 @@
    -c, --check, --check=diagnose-first  check for sorted input; do not sort\n\
    -C, --check=quiet, --check=silent  like -c, but do not report first bad line\
  \n\
@@ -176,7 +199,7 @@ diff -aurN coreutils-8.30/src/sort.c coreutils-8.30-fixed/src/sort.c
  "), stdout);
        fputs (_("\
        --debug               annotate the part of the line used to sort,\n\
-@@ -546,7 +543,6 @@
+@@ -538,7 +535,6 @@
  enum
  {
    CHECK_OPTION = CHAR_MAX + 1,
@@ -184,7 +207,7 @@ diff -aurN coreutils-8.30/src/sort.c coreutils-8.30-fixed/src/sort.c
    DEBUG_PROGRAM_OPTION,
    FILES0_FROM_OPTION,
    NMERGE_OPTION,
-@@ -561,7 +557,6 @@
+@@ -553,7 +549,6 @@
  {
    {"ignore-leading-blanks", no_argument, NULL, 'b'},
    {"check", optional_argument, NULL, CHECK_OPTION},
@@ -192,7 +215,7 @@ diff -aurN coreutils-8.30/src/sort.c coreutils-8.30-fixed/src/sort.c
    {"debug", no_argument, NULL, DEBUG_PROGRAM_OPTION},
    {"dictionary-order", no_argument, NULL, 'd'},
    {"ignore-case", no_argument, NULL, 'f'},
-@@ -721,21 +716,7 @@
+@@ -713,21 +708,7 @@
  static pid_t
  reap (pid_t pid)
  {
@@ -215,7 +238,7 @@ diff -aurN coreutils-8.30/src/sort.c coreutils-8.30-fixed/src/sort.c
  }
  
  /* TEMP represents a new process; add it to the process table.  Create
-@@ -3759,7 +3740,7 @@
+@@ -3764,7 +3745,7 @@
        if (STREQ (files[i], "-"))
          continue;
  
@@ -224,7 +247,7 @@ diff -aurN coreutils-8.30/src/sort.c coreutils-8.30-fixed/src/sort.c
          sort_die (_("cannot read"), files[i]);
      }
  }
-@@ -4252,7 +4233,7 @@
+@@ -4257,7 +4238,7 @@
      static int const sig[] =
        {
          /* The usual suspects.  */
@@ -233,7 +256,7 @@ diff -aurN coreutils-8.30/src/sort.c coreutils-8.30-fixed/src/sort.c
  #ifdef SIGPOLL
          SIGPOLL,
  #endif
-@@ -4298,7 +4279,6 @@
+@@ -4303,7 +4284,6 @@
          }
  #endif
    }
@@ -241,7 +264,7 @@ diff -aurN coreutils-8.30/src/sort.c coreutils-8.30-fixed/src/sort.c
  
    /* The signal mask is known, so it is safe to invoke exit_cleanup.  */
    atexit (exit_cleanup);
-@@ -4423,12 +4403,6 @@
+@@ -4428,12 +4408,6 @@
            checkonly = c;
            break;
  
@@ -254,7 +277,7 @@ diff -aurN coreutils-8.30/src/sort.c coreutils-8.30-fixed/src/sort.c
          case DEBUG_PROGRAM_OPTION:
            debug = true;
            break;
-@@ -4772,8 +4746,8 @@
+@@ -4778,8 +4752,8 @@
      free (files);
  #endif
  
@@ -265,9 +288,9 @@ diff -aurN coreutils-8.30/src/sort.c coreutils-8.30-fixed/src/sort.c
  
    return EXIT_SUCCESS;
  }
-diff -aurN coreutils-8.30/src/uniq.c coreutils-8.30-fixed/src/uniq.c
---- coreutils-8.30/src/uniq.c	2018-05-13 21:20:24.000000000 -0700
-+++ coreutils-8.30-fixed/src/uniq.c	2018-12-23 18:26:29.646400800 -0800
+diff -aurN coreutils-8.31/src/uniq.c coreutils-8.31-fixed/src/uniq.c
+--- coreutils-8.31/src/uniq.c	2019-01-05 02:36:22.000000000 -0800
++++ coreutils-8.31-fixed/src/uniq.c	2019-11-24 13:42:06.377686500 -0800
 @@ -241,7 +241,6 @@
  size_opt (char const *opt, char const *msgid)
  {
