@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-untar_file libjpeg-turbo-2.0.1.tar
+untar_file libjpeg-turbo-2.0.3.tar
 
 cd /c/temp/gcc
-mv libjpeg-turbo-2.0.1 src
+mv libjpeg-turbo-2.0.3 src
 mkdir build dest
 cd build
 
@@ -21,8 +21,8 @@ make $X_MAKE_JOBS
 make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
-mv dest libjpeg-turbo-2.0.1
-cd libjpeg-turbo-2.0.1
+mv dest libjpeg-turbo-2.0.3
+cd libjpeg-turbo-2.0.3
 rm -rf bin/cjpeg.exe bin/djpeg.exe bin/rdjpgcom.exe bin/tjbench.exe bin/wrjpgcom.exe lib/pkgconfig share
 
-7z -mx0 a ../libjpeg-turbo-2.0.1.7z *
+7z -mx0 a ../libjpeg-turbo-2.0.3.7z *
