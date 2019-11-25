@@ -8,6 +8,7 @@ source ./0_append_distro_path.sh
 ./freetype.sh
 ./gdb.sh
 ./glbinding.sh
+./glfw.sh
 ./glm.sh
 ./grep.sh
 ./lame.sh
