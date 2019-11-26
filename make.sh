@@ -9,7 +9,8 @@ mkdir -p dest/bin
 
 mv make-4.2.1 src
 cd src
-cmd /c "build_w32.bat gcc"
+# " /c" works around https://github.com/msys2/MSYS2-packages/issues/1606
+cmd " /c" "build_w32.bat" "gcc"
 strip -s GccRel/gnumake.exe
 mv GccRel/gnumake.exe ../dest/bin/make.exe
 # mingw32-make.exe is for CMake.
