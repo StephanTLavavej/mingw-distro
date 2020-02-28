@@ -31,8 +31,9 @@ $ pacman -Syuu
 
 ### Important Notes
 
-The build scripts assume that they can use `C:\Temp\gcc` as a working directory and that they do not live directly within it.
-They also assume that they live next to the sources. I generally put both of them into `C:\Temp\gcc\sources-VERSION` .
+The build scripts assume that some (e.g. previous) version of the toolchain is present in `C:\MinGW`.
+They also assume that they can use `C:\Temp\gcc` as a working directory and that they do not live directly within it.
+And that they live next to the sources. I generally put both of them into `C:\Temp\gcc\sources-VERSION`.
 
 I **highly** recommend that you execute each build script **by hand** before attempting to run it in one shot.
 
