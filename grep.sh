@@ -2,14 +2,12 @@
 
 source ./0_append_distro_path.sh
 
-untar_file grep-3.3.tar
-
-patch -d /c/temp/gcc/grep-3.3 -p1 < grep-lock.patch
+untar_file grep-3.7.tar
 
 cd /c/temp/gcc
 mkdir -p dest/bin
 
-mv grep-3.3 src
+mv grep-3.7 src
 mkdir build
 cd build
 
@@ -21,7 +19,7 @@ mv src/grep.exe ../dest/bin
 cd /c/temp/gcc
 rm -rf build src
 
-mv dest grep-3.3
-cd grep-3.3
+mv dest grep-3.7
+cd grep-3.7
 
-7z -mx0 a ../grep-3.3.7z *
+7z -mx0 a ../grep-3.7.7z *
