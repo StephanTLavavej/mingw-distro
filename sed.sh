@@ -2,12 +2,12 @@
 
 source ./0_append_distro_path.sh
 
-untar_file sed-4.7.tar
+untar_file sed-4.8.tar
 
 cd /c/temp/gcc
 mkdir -p dest/bin
 
-mv sed-4.7 src
+mv sed-4.8 src
 mkdir build
 cd build
 
@@ -20,7 +20,7 @@ mv sed/sed.exe ../dest/bin
 cd /c/temp/gcc
 rm -rf build src
 
-mv dest sed-4.7
-cd sed-4.7
+mv dest sed-4.8
+cd sed-4.8
 
-7z -mx0 a ../sed-4.7.7z *
+7z -mx0 a ../sed-4.8.7z *
