@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-untar_file glfw-3.3.tar
+untar_file glfw-3.3.4.tar
 
 cd /c/temp/gcc
-mv glfw-3.3 src
+mv glfw-3.3.4 src
 mkdir build dest
 cd build
 
@@ -16,14 +16,14 @@ cmake \
 "-DGLFW_BUILD_DOCS=OFF" \
 "-DGLFW_BUILD_EXAMPLES=OFF" \
 "-DGLFW_BUILD_TESTS=OFF" \
--G "Unix Makefiles" /c/temp/gcc/src
+-G Ninja /c/temp/gcc/src
 
-make $X_MAKE_JOBS
-make $X_MAKE_JOBS install
+ninja
+ninja install
 cd /c/temp/gcc
 rm -rf build src
-mv dest glfw-3.3
-cd glfw-3.3
+mv dest glfw-3.3.4
+cd glfw-3.3.4
 rm -rf lib/cmake lib/pkgconfig
 
-7z -mx0 a ../glfw-3.3.7z *
+7z -mx0 a ../glfw-3.3.4.7z *
