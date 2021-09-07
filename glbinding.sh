@@ -20,10 +20,10 @@ cmake \
 "-DOPTION_BUILD_TESTS=OFF" \
 "-DOPTION_BUILD_TOOLS=OFF" \
 "-DOPTION_BUILD_WITH_BOOST_THREAD=ON" \
--G "Unix Makefiles" /c/temp/gcc/src
+-G Ninja /c/temp/gcc/src
 
-make $X_MAKE_JOBS
-make $X_MAKE_JOBS install
+ninja
+ninja install
 cd /c/temp/gcc
 rm -rf build src
 mv dest glbinding-3.1.0
