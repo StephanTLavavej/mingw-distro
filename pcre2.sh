@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-untar_file pcre2-10.34.tar
+untar_file pcre2-10.37.tar
 
 cd /c/temp/gcc
-mv pcre2-10.34 src
+mv pcre2-10.37 src
 mkdir build dest
 cd build
 
@@ -17,10 +17,10 @@ make $X_MAKE_JOBS all
 make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
-mv dest pcre2-10.34
-cd pcre2-10.34
+mv dest pcre2-10.37
+cd pcre2-10.37
 rm -rf bin/pcre2-config lib/pkgconfig lib/*.la share
 # Avoid colliding with the original PCRE library.
 # cp include/pcre2posix.h include/regex.h
 
-7z -mx0 a ../pcre2-10.34.7z *
+7z -mx0 a ../pcre2-10.37.7z *
