@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-untar_file freetype-2.10.1.tar
+untar_file freetype-2.11.0.tar
 
 cd /c/temp/gcc
-mv freetype-2.10.1 src
+mv freetype-2.11.0 src
 mkdir build dest
 cd build
 
@@ -16,8 +16,8 @@ make $X_MAKE_JOBS all
 make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
-mv dest freetype-2.10.1
-cd freetype-2.10.1
+mv dest freetype-2.11.0
+cd freetype-2.11.0
 rm -rf lib/pkgconfig lib/*.la share
 
-7z -mx0 a ../freetype-2.10.1.7z *
+7z -mx0 a ../freetype-2.11.0.7z *
