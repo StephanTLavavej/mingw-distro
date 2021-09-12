@@ -9,17 +9,23 @@ mv pcre2-10.37 src
 mkdir build dest
 cd build
 
-../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
---prefix=/c/temp/gcc/dest --disable-shared --enable-pcre2-16 --enable-pcre2-32 \
---enable-jit --enable-newline-is-anycrlf "CFLAGS=-s -O3"
+cmake \
+"-DCMAKE_C_FLAGS=-s -O3" \
+"-DCMAKE_INSTALL_PREFIX=/c/temp/gcc/dest" \
+"-DPCRE2_BUILD_PCRE2_16=ON" \
+"-DPCRE2_BUILD_PCRE2_32=ON" \
+"-DPCRE2_BUILD_TESTS=OFF" \
+"-DPCRE2_NEWLINE=ANYCRLF" \
+"-DPCRE2_SUPPORT_JIT=ON" \
+-G Ninja /c/temp/gcc/src
 
-make $X_MAKE_JOBS all
-make $X_MAKE_JOBS install
+ninja
+ninja install
 cd /c/temp/gcc
 rm -rf build src
 mv dest pcre2-10.37
 cd pcre2-10.37
-rm -rf bin/pcre2-config lib/pkgconfig lib/*.la share
+rm -rf bin/pcre2-config lib/pkgconfig man share
 # Avoid colliding with the original PCRE library.
 # cp include/pcre2posix.h include/regex.h
 
