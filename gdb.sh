@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-untar_file gdb-8.3.1.tar
+untar_file gdb-10.2.tar
 
 cd /c/temp/gcc
-mv gdb-8.3.1 src
+mv gdb-10.2 src
 mkdir build dest
 cd build
 
@@ -17,8 +17,8 @@ make $X_MAKE_JOBS all "CFLAGS=-O3 -D_FORTIFY_SOURCE=0" "CXXFLAGS=-O3 -D_FORTIFY_
 make $X_MAKE_JOBS install
 cd /c/temp/gcc
 rm -rf build src
-mv dest gdb-8.3.1
-cd gdb-8.3.1
+mv dest gdb-10.2
+cd gdb-10.2
 rm -rf bin/gdb-add-index include lib share
 
-7z -mx0 a ../gdb-8.3.1.7z *
+7z -mx0 a ../gdb-10.2.7z *
