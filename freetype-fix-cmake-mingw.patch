@@ -1,0 +1,21 @@
+diff -aurN freetype-2.11.0/CMakeLists.txt freetype-2.11.0-fixed/CMakeLists.txt
+--- freetype-2.11.0/CMakeLists.txt	2021-07-17 22:47:31.000000000 -0700
++++ freetype-2.11.0-fixed/CMakeLists.txt	2021-09-12 17:04:58.517113200 -0700
+@@ -240,7 +240,7 @@
+ endif ()
+ 
+ # Create the configuration file
+-if (UNIX)
++if (UNIX AND NOT MINGW)
+   check_include_file("unistd.h" HAVE_UNISTD_H)
+   check_include_file("fcntl.h" HAVE_FCNTL_H)
+ 
+@@ -359,7 +359,7 @@
+   src/winfonts/winfnt.c
+ )
+ 
+-if (UNIX)
++if (UNIX AND NOT MINGW)
+   list(APPEND BASE_SRCS "builds/unix/ftsystem.c")
+ elseif (WIN32)
+   list(APPEND BASE_SRCS "builds/windows/ftsystem.c")
