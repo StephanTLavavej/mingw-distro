@@ -2,15 +2,15 @@
 
 source ./0_append_distro_path.sh
 
-untar_file pngcheck-2.3.0.tar
+untar_file pngcheck-3.0.3.tar
 
 cd /c/temp/gcc
-mv pngcheck-2.3.0 src
+mv pngcheck-3.0.3 src
 mkdir -p dest/bin
 
 gcc -s -O3 src/pngcheck.c -o dest/bin/pngcheck.exe
 rm -rf src
-mv dest pngcheck-2.3.0
-cd pngcheck-2.3.0
+mv dest pngcheck-3.0.3
+cd pngcheck-3.0.3
 
-7z -mx0 a ../pngcheck-2.3.0.7z *
+7z -mx0 a ../pngcheck-3.0.3.7z *
