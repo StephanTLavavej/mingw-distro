@@ -2,12 +2,12 @@
 
 source ./0_append_distro_path.sh
 
-untar_file make-4.2.1.tar
+untar_file make-4.3.tar
 
 cd /c/temp/gcc
 mkdir -p dest/bin
 
-mv make-4.2.1 src
+mv make-4.3 src
 cd src
 # " /c" works around https://github.com/msys2/MSYS2-packages/issues/1606
 cmd " /c" "build_w32.bat" "gcc"
@@ -18,7 +18,7 @@ cp ../dest/bin/make.exe ../dest/bin/mingw32-make.exe
 cd /c/temp/gcc
 rm -rf src
 
-mv dest make-4.2.1
-cd make-4.2.1
+mv dest make-4.3
+cd make-4.3
 
-7z -mx0 a ../make-4.2.1.7z *
+7z -mx0 a ../make-4.3.7z *
