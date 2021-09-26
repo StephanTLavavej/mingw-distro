@@ -22,7 +22,7 @@ You'll need to run them in MSYS2, which you can set up without an installer:
   :: Starting full system upgrade...
    there is nothing to do
   ```
-* In MSYS2, run: `pacman -Su cmake diffutils make nasm ninja patch tar texinfo`
+* In MSYS2, run: `pacman -Su cmake diffutils m4 make nasm ninja patch tar texinfo`
 * In MSYS2, repeatedly run `pacman -Syuu` again. Answer `Y` if you're asked:
   ```
   :: Replace pkg-config with msys/pkgconf? [Y/n]
