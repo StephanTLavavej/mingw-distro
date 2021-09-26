@@ -11,6 +11,7 @@ cd build
 
 # -DTOO_FAR=32767 : http://optipng.sourceforge.net/pngtech/too_far.html
 cmake \
+"-DCMAKE_BUILD_TYPE=Release" \
 "-DCMAKE_C_FLAGS=-s -O3 -DTOO_FAR=32767" \
 "-DCMAKE_INSTALL_PREFIX=/c/temp/gcc/dest" \
 -G Ninja /c/temp/gcc/src

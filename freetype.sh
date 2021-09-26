@@ -12,6 +12,7 @@ mkdir build dest
 cd build
 
 cmake \
+"-DCMAKE_BUILD_TYPE=Release" \
 "-DCMAKE_C_FLAGS=-s -O3" \
 "-DCMAKE_INSTALL_PREFIX=/c/temp/gcc/dest" \
 -G Ninja /c/temp/gcc/src
