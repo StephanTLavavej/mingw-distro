@@ -31,11 +31,16 @@ You'll need to run them in MSYS2, which you can set up without an installer:
   + Text: Consolas, 16pt
   + Window: 120 Columns, 50 Rows
 
-### Important Notes
+## Important Notes
 
-The build scripts assume that they can use `C:\Temp\gcc` as a working directory and
-that they do not live directly within it. They also assume that they live next
-to the sources. I generally put both of them into `C:\Temp\gcc\sources-VERSION`.
+The build scripts assume that:
+
+* `C:\MinGW` contains the previous version of the distro.
+  + This assumption is centralized in `0_append_distro_path.sh`, where it says `export X_DISTRO_ROOT=/c/mingw`.
+* `C:\Temp\gcc` is usable as a working directory.
+  + This assumption isn't centralized.
+* The build scripts live next to the sources, *not* directly within `C:\Temp\gcc`.
+  + I put the build scripts and the sources into `C:\Temp\gcc\sources-VERSION`.
 
 I **highly** recommend that you execute each build script **by hand** before attempting to run it in one shot.
 
