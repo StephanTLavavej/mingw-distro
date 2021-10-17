@@ -55,7 +55,7 @@ cd build
 ../src/configure --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 \
 --target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest \
 --disable-libstdcxx-pch --disable-libstdcxx-verbose --disable-nls --disable-shared --disable-win32-registry \
---enable-threads=posix --enable-libgomp --with-zstd=$X_DISTRO_ROOT
+--enable-threads=posix --enable-libgomp --with-zstd=$X_DISTRO_ROOT --disable-bootstrap
 
 # --enable-languages=c,c++        : I want C and C++ only.
 # --build=x86_64-w64-mingw32      : I want a native compiler.
@@ -72,9 +72,10 @@ cd build
 # --enable-threads=posix          : Use winpthreads.
 # --enable-libgomp                : Enable OpenMP.
 # --with-zstd=$X_DISTRO_ROOT      : zstd is needed for LTO bytecode compression.
+# --disable-bootstrap             : Significantly accelerate the build, and work around bootstrap comparison failures.
 
 # Build and install.
-make $X_MAKE_JOBS bootstrap "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" \
+make $X_MAKE_JOBS "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" \
 "CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3"
 
 make $X_MAKE_JOBS install
