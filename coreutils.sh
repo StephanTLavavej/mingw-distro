@@ -29,7 +29,8 @@ export CONFIG_SITE=/c/temp/gcc/build/config.site
 
 touch src/make-prime-list
 # -D_FORTIFY_SOURCE=0 works around https://github.com/StephanTLavavej/mingw-distro/issues/71
-make $X_MAKE_JOBS -k "CFLAGS=-O3 -D_FORTIFY_SOURCE=0" "LDFLAGS=-s" || true
+# -lbcrypt provides BCryptGenRandom
+make $X_MAKE_JOBS -k "CFLAGS=-O3 -D_FORTIFY_SOURCE=0" "LDFLAGS=-s" "LIBS=-lbcrypt" || true
 cd src
 mv sort.exe uniq.exe wc.exe ../../dest/bin
 cd /c/temp/gcc
