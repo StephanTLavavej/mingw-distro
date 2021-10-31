@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-untar_file glfw-3.3.4.tar
+untar_file glfw-3.3.5.tar
 
 cd /c/temp/gcc
-mv glfw-3.3.4 src
+mv glfw-3.3.5 src
 mkdir build dest
 cd build
 
@@ -23,8 +23,8 @@ ninja
 ninja install
 cd /c/temp/gcc
 rm -rf build src
-mv dest glfw-3.3.4
-cd glfw-3.3.4
+mv dest glfw-3.3.5
+cd glfw-3.3.5
 rm -rf lib/cmake lib/pkgconfig
 
-7z -mx0 a ../glfw-3.3.4.7z *
+7z -mx0 a ../glfw-3.3.5.7z *
