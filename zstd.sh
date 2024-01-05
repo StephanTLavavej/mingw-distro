@@ -4,7 +4,7 @@ source ./0_append_distro_path.sh
 
 untar_file zstd-1.5.0.tar
 
-cd /c/temp/gcc
+cd $X_WORK_DIR
 mv zstd-1.5.0 src
 mkdir build dest
 cd build
@@ -12,13 +12,13 @@ cd build
 cmake \
 "-DCMAKE_BUILD_TYPE=Release" \
 "-DCMAKE_C_FLAGS=-s -O3" \
-"-DCMAKE_INSTALL_PREFIX=/c/temp/gcc/dest" \
+"-DCMAKE_INSTALL_PREFIX=$X_WORK_DIR/dest" \
 "-DZSTD_BUILD_SHARED=OFF" \
--G Ninja /c/temp/gcc/src/build/cmake
+-G Ninja $X_WORK_DIR/src/build/cmake
 
 ninja
 ninja install
-cd /c/temp/gcc
+cd $X_WORK_DIR
 rm -rf build src
 mv dest zstd-1.5.0
 cd zstd-1.5.0

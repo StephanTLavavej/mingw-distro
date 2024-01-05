@@ -36,10 +36,10 @@ The build scripts assume that:
 
 * `C:\MinGW` contains the previous version of the distro.
   + This assumption is centralized in `0_append_distro_path.sh`, where it says `export X_DISTRO_ROOT=/c/mingw`.
-* `C:\Temp\gcc` is usable as a working directory.
-  + This assumption isn't centralized.
-* The build scripts live next to the sources, *not* directly within `C:\Temp\gcc`.
-  + I put the build scripts and the sources into `C:\Temp\gcc\sources-VERSION`.
+* `E:\Temp\gcc` is usable as a working directory.
+  + This assumption is centralized in `0_append_distro_path.sh`, where it says `export X_WORK_DIR=/e/temp/gcc`.
+* The build scripts live next to the sources, *not* directly within `E:\Temp\gcc`.
+  + I put the build scripts and the sources into `E:\Temp\gcc\sources-VERSION`.
 
 I **highly** recommend that you execute each build script **by hand** before attempting to run it in one shot.
 

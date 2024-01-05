@@ -10,9 +10,9 @@ untar_file isl-0.24.tar
 untar_file mingw-w64-v9.0.0.tar
 untar_file gcc-11.2.0.tar
 
-patch -Z -d /c/temp/gcc/mpfr-4.1.0 -p1 < mpfr-4.1.0-p13.patch
+patch -Z -d $X_WORK_DIR/mpfr-4.1.0 -p1 < mpfr-4.1.0-p13.patch
 
-cd /c/temp/gcc
+cd $X_WORK_DIR
 
 # Build mingw-w64 and winpthreads.
 mv mingw-w64-v9.0.0 src
@@ -20,18 +20,18 @@ mkdir build-mingw-w64 dest
 cd build-mingw-w64
 
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-lib32 \
---prefix=/c/temp/gcc/dest/x86_64-w64-mingw32 --with-sysroot=/c/temp/gcc/dest/x86_64-w64-mingw32 --enable-wildcard \
+--prefix=$X_WORK_DIR/dest/x86_64-w64-mingw32 --with-sysroot=$X_WORK_DIR/dest/x86_64-w64-mingw32 --enable-wildcard \
 --with-libraries=winpthreads --disable-shared
 
 # The headers must be built first. See: https://github.com/StephanTLavavej/mingw-distro/issues/64
 cd mingw-w64-headers
 make $X_MAKE_JOBS all "CFLAGS=-s -O3"
 make $X_MAKE_JOBS install
-cd /c/temp/gcc/build-mingw-w64
+cd $X_WORK_DIR/build-mingw-w64
 
 make $X_MAKE_JOBS all "CFLAGS=-s -O3"
 make $X_MAKE_JOBS install
-cd /c/temp/gcc
+cd $X_WORK_DIR
 
 rm -rf build-mingw-w64 src
 
@@ -53,7 +53,7 @@ mkdir build
 cd build
 
 ../src/configure --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 \
---target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest \
+--target=x86_64-w64-mingw32 --disable-multilib --prefix=$X_WORK_DIR/dest --with-sysroot=$X_WORK_DIR/dest \
 --disable-libstdcxx-pch --disable-libstdcxx-verbose --disable-nls --disable-shared --disable-win32-registry \
 --enable-threads=posix --enable-libgomp --with-zstd=$X_DISTRO_ROOT --disable-bootstrap
 
@@ -62,8 +62,8 @@ cd build
 # --host=x86_64-w64-mingw32       : Ditto.
 # --target=x86_64-w64-mingw32     : Ditto.
 # --disable-multilib              : I want 64-bit only.
-# --prefix=/c/temp/gcc/dest       : I want the compiler to be installed here.
-# --with-sysroot=/c/temp/gcc/dest : Ditto. (This one is important!)
+# --prefix=$X_WORK_DIR/dest       : I want the compiler to be installed here.
+# --with-sysroot=$X_WORK_DIR/dest : Ditto. (This one is important!)
 # --disable-libstdcxx-pch         : I don't use this, and it takes up a ton of space.
 # --disable-libstdcxx-verbose     : Reduce generated executable size. This doesn't affect the ABI.
 # --disable-nls                   : I don't want Native Language Support.
@@ -81,7 +81,7 @@ make $X_MAKE_JOBS "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3
 make $X_MAKE_JOBS install
 
 # Cleanup.
-cd /c/temp/gcc
+cd $X_WORK_DIR
 rm -rf build src
 mv dest mingw-w64+gcc
 cd mingw-w64+gcc

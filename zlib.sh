@@ -4,7 +4,7 @@ source ./0_append_distro_path.sh
 
 untar_file zlib-1.2.11.tar
 
-cd /c/temp/gcc
+cd $X_WORK_DIR
 mv zlib-1.2.11 src
 mkdir build dest
 cd build
@@ -13,12 +13,12 @@ cd build
 cmake \
 "-DCMAKE_BUILD_TYPE=Release" \
 "-DCMAKE_C_FLAGS=-s -O3 -DTOO_FAR=32767" \
-"-DCMAKE_INSTALL_PREFIX=/c/temp/gcc/dest" \
--G Ninja /c/temp/gcc/src
+"-DCMAKE_INSTALL_PREFIX=$X_WORK_DIR/dest" \
+-G Ninja $X_WORK_DIR/src
 
 ninja
 ninja install
-cd /c/temp/gcc
+cd $X_WORK_DIR
 rm -rf build src
 mv dest zlib-1.2.11
 cd zlib-1.2.11
