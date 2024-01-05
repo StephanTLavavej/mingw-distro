@@ -4,17 +4,20 @@ Here are the build scripts for my MinGW distro.
 
 You'll need to run them in MSYS2, which you can set up without an installer:
 
-* Go to: https://github.com/msys2/msys2-installer/releases/latest
-* Download: `msys2-base-x86_64-<RELEASE_DATE>.tar.xz`
-* Extract it to: `C:\Temp\msys64`
+* Go to: https://github.com/msys2/msys2-installer/releases/tag/nightly-x86_64
+* Download: `msys2-base-x86_64-latest.tar.xz`
+* Extract it to: `E:\Temp\msys64`
+  + You can choose a different location.
 * Run: `msys2_shell.cmd`
-* Restart MSYS2 when you're instructed to.
+* Restart MSYS2 if you're instructed to.
 * In MSYS2, repeatedly run `pacman -Syuu` until you see:
   ```
   :: Synchronizing package databases...
+   clangarm64 is up to date
    mingw32 is up to date
    mingw64 is up to date
    ucrt64 is up to date
+   clang32 is up to date
    clang64 is up to date
    msys is up to date
   :: Starting core system upgrade...
@@ -23,10 +26,6 @@ You'll need to run them in MSYS2, which you can set up without an installer:
    there is nothing to do
   ```
 * In MSYS2, run: `pacman -Su cmake diffutils m4 make nasm ninja patch tar texinfo`
-* In MSYS2, repeatedly run `pacman -Syuu` again. Answer `Y` if you're asked:
-  ```
-  :: Replace pkg-config with msys/pkgconf? [Y/n]
-  ```
 * You can customize the terminal's appearance with **Right Click > Options...**. I prefer:
   + Text: Consolas, 16pt
   + Window: 120 Columns, 50 Rows
