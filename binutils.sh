@@ -2,13 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-untar_file binutils-2.37.tar
-
-# https://sourceware.org/git/?p=binutils-gdb.git;a=commit;h=999566402e3d7c69032bbf47e28b44fc0926fe62
-patch -d $X_WORK_DIR/binutils-2.37 -p1 < binutils-fix-uint.patch
+untar_file binutils-2.41.tar
 
 cd $X_WORK_DIR
-mv binutils-2.37 src
+mv binutils-2.41 src
 mkdir build dest
 cd build
 
@@ -19,8 +16,8 @@ make $X_MAKE_JOBS all "CFLAGS=-O3" "LDFLAGS=-s"
 make $X_MAKE_JOBS install
 cd $X_WORK_DIR
 rm -rf build src
-mv dest binutils-2.37
-cd binutils-2.37
+mv dest binutils-2.41
+cd binutils-2.41
 rm -rf lib/*.la share
 
-7z -mx0 a ../binutils-2.37.7z *
+7z -mx0 a ../binutils-2.41.7z *
