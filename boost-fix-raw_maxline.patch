@@ -1,0 +1,18 @@
+diff -aurN boost_1_84_0/tools/build/src/engine/execnt.cpp boost_1_84_0-fixed/tools/build/src/engine/execnt.cpp
+--- boost_1_84_0/tools/build/src/engine/execnt.cpp	2023-12-06 13:03:08.000000000 -0800
++++ boost_1_84_0-fixed/tools/build/src/engine/execnt.cpp	2024-01-06 17:19:36.275485900 -0800
+@@ -582,9 +582,11 @@
+ 
+ static int32_t raw_maxline()
+ {
+-    if ( IsWindowsVersionOrGreater(5,0,0) == TRUE ) return 8191;  /* XP       */
+-    if ( IsWindowsVersionOrGreater(4,0,0) == TRUE ) return 2047;  /* NT 4.x   */
+-    return 996;                                      /* NT 3.5.1 */
++#ifdef _MSC_VER
++    return 8191;
++#else
++    return 32000;
++#endif
+ }
+ 
+ static int32_t maxline()
