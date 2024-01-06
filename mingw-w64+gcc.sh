@@ -3,19 +3,17 @@
 source ./0_append_distro_path.sh
 
 # Extract vanilla sources.
-untar_file gmp-6.2.1.tar
-untar_file mpfr-4.1.0.tar
-untar_file mpc-1.2.1.tar
+untar_file gmp-6.3.0.tar
+untar_file mpfr-4.2.1.tar
+untar_file mpc-1.3.1.tar
 untar_file isl-0.24.tar
-untar_file mingw-w64-v9.0.0.tar
-untar_file gcc-11.2.0.tar
-
-patch -Z -d $X_WORK_DIR/mpfr-4.1.0 -p1 < mpfr-4.1.0-p13.patch
+untar_file mingw-w64-v11.0.1.tar
+untar_file gcc-13.2.0.tar
 
 cd $X_WORK_DIR
 
 # Build mingw-w64 and winpthreads.
-mv mingw-w64-v9.0.0 src
+mv mingw-w64-v11.0.1 src
 mkdir build-mingw-w64 dest
 cd build-mingw-w64
 
@@ -36,10 +34,10 @@ cd $X_WORK_DIR
 rm -rf build-mingw-w64 src
 
 # Prepare to build gcc.
-mv gcc-11.2.0 src
-mv gmp-6.2.1 src/gmp
-mv mpfr-4.1.0 src/mpfr
-mv mpc-1.2.1 src/mpc
+mv gcc-13.2.0 src
+mv gmp-6.3.0 src/gmp
+mv mpfr-4.2.1 src/mpfr
+mv mpc-1.3.1 src/mpc
 mv isl-0.24 src/isl
 
 # Prepare to build gcc - perform magic directory surgery.
@@ -55,7 +53,7 @@ cd build
 ../src/configure --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 \
 --target=x86_64-w64-mingw32 --disable-multilib --prefix=$X_WORK_DIR/dest --with-sysroot=$X_WORK_DIR/dest \
 --disable-libstdcxx-pch --disable-libstdcxx-verbose --disable-nls --disable-shared --disable-win32-registry \
---enable-threads=posix --enable-libgomp --with-zstd=$X_DISTRO_ROOT --disable-bootstrap
+--enable-threads=posix --enable-libgomp --with-zstd=$X_DISTRO_ROOT
 
 # --enable-languages=c,c++        : I want C and C++ only.
 # --build=x86_64-w64-mingw32      : I want a native compiler.
@@ -72,7 +70,6 @@ cd build
 # --enable-threads=posix          : Use winpthreads.
 # --enable-libgomp                : Enable OpenMP.
 # --with-zstd=$X_DISTRO_ROOT      : zstd is needed for LTO bytecode compression.
-# --disable-bootstrap             : Significantly accelerate the build, and work around bootstrap comparison failures.
 
 # Build and install.
 make $X_MAKE_JOBS "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" \
