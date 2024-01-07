@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-untar_file pcre2-10.37.tar
+untar_file pcre2-10.42.tar
 
 cd $X_WORK_DIR
-mv pcre2-10.37 src
+mv pcre2-10.42 src
 mkdir build dest
 cd build
 
@@ -24,10 +24,10 @@ ninja
 ninja install
 cd $X_WORK_DIR
 rm -rf build src
-mv dest pcre2-10.37
-cd pcre2-10.37
-rm -rf bin/pcre2-config lib/pkgconfig man share
+mv dest pcre2-10.42
+cd pcre2-10.42
+rm -rf bin/pcre2-config cmake lib/pkgconfig man share
 # Avoid colliding with the original PCRE library.
 # cp include/pcre2posix.h include/regex.h
 
-7z -mx0 a ../pcre2-10.37.7z *
+7z -mx0 a ../pcre2-10.42.7z *
