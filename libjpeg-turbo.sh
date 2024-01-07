@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-untar_file libjpeg-turbo-2.1.1.tar
+untar_file libjpeg-turbo-3.0.1.tar
 
 cd $X_WORK_DIR
-mv libjpeg-turbo-2.1.1 src
+mv libjpeg-turbo-3.0.1 src
 mkdir build dest
 cd build
 
@@ -22,8 +22,8 @@ ninja
 ninja install
 cd $X_WORK_DIR
 rm -rf build src
-mv dest libjpeg-turbo-2.1.1
-cd libjpeg-turbo-2.1.1
+mv dest libjpeg-turbo-3.0.1
+cd libjpeg-turbo-3.0.1
 rm -rf bin/cjpeg.exe bin/djpeg.exe bin/rdjpgcom.exe bin/tjbench.exe bin/wrjpgcom.exe lib/cmake lib/pkgconfig share
 
-7z -mx0 a ../libjpeg-turbo-2.1.1.7z *
+7z -mx0 a ../libjpeg-turbo-3.0.1.7z *
