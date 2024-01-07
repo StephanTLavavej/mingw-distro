@@ -2,10 +2,12 @@
 
 source ./0_append_distro_path.sh
 
-untar_file zstd-1.5.0.tar
+# Work around https://github.com/msys2/MSYS2-packages/issues/1216 by excluding the directory
+# that contains the affected symlink. We don't need it, as ZSTD_BUILD_TESTS defaults to OFF.
+untar_file zstd-1.5.5.tar --exclude=zstd-1.5.5/tests
 
 cd $X_WORK_DIR
-mv zstd-1.5.0 src
+mv zstd-1.5.5 src
 mkdir build dest
 cd build
 
@@ -20,9 +22,9 @@ ninja
 ninja install
 cd $X_WORK_DIR
 rm -rf build src
-mv dest zstd-1.5.0
-cd zstd-1.5.0
+mv dest zstd-1.5.5
+cd zstd-1.5.5
 rm -rf bin/zstdgrep bin/zstdless lib/cmake lib/pkgconfig share
 for i in bin/unzstd bin/zstdcat bin/zstdmt; do mv $i $i.exe; done
 
-7z -mx0 a ../zstd-1.5.0.7z *
+7z -mx0 a ../zstd-1.5.5.7z *
