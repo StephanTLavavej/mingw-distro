@@ -2,12 +2,12 @@
 
 source ./0_append_distro_path.sh
 
-untar_file sed-4.8.tar
+untar_file sed-4.9.tar
 
 cd $X_WORK_DIR
 mkdir -p dest/bin
 
-mv sed-4.8 src
+mv sed-4.9 src
 mkdir build
 cd build
 
@@ -15,12 +15,14 @@ cd build
 --prefix=$X_WORK_DIR/dest
 
 # -D_FORTIFY_SOURCE=0 works around https://github.com/StephanTLavavej/mingw-distro/issues/71
-make $X_MAKE_JOBS "CFLAGS=-O3 -D_FORTIFY_SOURCE=0" "LDFLAGS=-s" sed/sed.exe
+# -lbcrypt provides BCryptGenRandom
+make $X_MAKE_JOBS "CFLAGS=-O3 -D_FORTIFY_SOURCE=0" "LDFLAGS=-s" "LIBS=-lbcrypt" sed/sed.exe
+
 mv sed/sed.exe ../dest/bin
 cd $X_WORK_DIR
 rm -rf build src
 
-mv dest sed-4.8
-cd sed-4.8
+mv dest sed-4.9
+cd sed-4.9
 
-7z -mx0 a ../sed-4.8.7z *
+7z -mx0 a ../sed-4.9.7z *
