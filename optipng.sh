@@ -2,10 +2,10 @@
 
 source ./0_append_distro_path.sh
 
-untar_file optipng-0.7.7.tar
+untar_file optipng-0.7.8.tar
 
 cd $X_WORK_DIR
-mv optipng-0.7.7 src
+mv optipng-0.7.8 src
 mkdir dest
 cd src
 
@@ -16,8 +16,8 @@ make $X_MAKE_JOBS all "CFLAGS=-O3" "LDFLAGS=-s"
 make $X_MAKE_JOBS install
 cd $X_WORK_DIR
 rm -rf src
-mv dest optipng-0.7.7
-cd optipng-0.7.7
+mv dest optipng-0.7.8
+cd optipng-0.7.8
 rm -rf man
 
-7z -mx0 a ../optipng-0.7.7.7z *
+7z -mx0 a ../optipng-0.7.8.7z *
