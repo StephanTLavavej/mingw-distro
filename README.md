@@ -25,7 +25,7 @@ You'll need to run them in MSYS2, which you can set up without an installer:
   :: Starting full system upgrade...
    there is nothing to do
   ```
-* In MSYS2, run: `pacman -Su cmake diffutils m4 make nasm ninja patch tar texinfo`
+* In MSYS2, run: `pacman -Su cmake diffutils m4 make nasm ninja patch tar texinfo mingw-w64-clang-x86_64-rust`
 * You can customize the terminal's appearance with **Right Click > Options...**. I prefer:
   + Text: Consolas, 16pt
   + Window: 120 Columns, 50 Rows

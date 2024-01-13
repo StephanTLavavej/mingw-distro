@@ -20,5 +20,6 @@ source ./0_append_distro_path.sh
 ./pngcheck.sh
 ./sdl+libogg+libvorbis+sdl_mixer+vorbis-tools.sh
 ./sed.sh
+./uutils-coreutils.sh
 ./zlib.sh
 ./zstd.sh
