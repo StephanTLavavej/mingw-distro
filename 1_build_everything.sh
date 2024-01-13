@@ -4,7 +4,6 @@ source ./0_append_distro_path.sh
 
 ./binutils.sh
 ./boost.sh
-./coreutils.sh
 ./freetype.sh
 ./gdb.sh
 ./glbinding.sh
