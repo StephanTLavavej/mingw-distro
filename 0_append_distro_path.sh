@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# Idempotency.
-if [[ -v X_DISTRO_ROOT ]]; then return; fi
-
 # Reject expansion of unset variables.
 set -u
 
@@ -17,11 +14,9 @@ export X_DISTRO_LIB=$X_DISTRO_ROOT/lib
 
 export X_WORK_DIR=/e/temp/gcc
 
-# Add the distro to the PATH.
-export PATH=$PATH:$X_DISTRO_BIN
-
-# Add 7z to the PATH.
-export PATH=$PATH:"/c/Program Files/7-Zip"
+# Add the distro and 7z to the PATH.
+if [[ ! -v X_PATH_MODIFIED ]]; then export PATH=$PATH:$X_DISTRO_BIN:"/c/Program Files/7-Zip"; fi
+export X_PATH_MODIFIED=meow
 
 export C_INCLUDE_PATH=$X_DISTRO_INC
 export CPLUS_INCLUDE_PATH=$X_DISTRO_INC
