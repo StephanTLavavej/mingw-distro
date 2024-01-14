@@ -17,7 +17,11 @@ export X_DISTRO_LIB=$X_DISTRO_ROOT/lib
 
 export X_WORK_DIR=/e/temp/gcc
 
+# Add the distro to the PATH.
 export PATH=$PATH:$X_DISTRO_BIN
+
+# Add 7z to the PATH.
+export PATH=$PATH:"/c/Program Files/7-Zip"
 
 export C_INCLUDE_PATH=$X_DISTRO_INC
 export CPLUS_INCLUDE_PATH=$X_DISTRO_INC
