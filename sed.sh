@@ -14,9 +14,8 @@ cd build
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
 --prefix=$X_WORK_DIR/dest
 
-# -D_FORTIFY_SOURCE=0 works around https://github.com/StephanTLavavej/mingw-distro/issues/71
 # -lbcrypt provides BCryptGenRandom
-make $X_MAKE_JOBS "CFLAGS=-O3 -D_FORTIFY_SOURCE=0" "LDFLAGS=-s" "LIBS=-lbcrypt" sed/sed.exe
+make $X_MAKE_JOBS "CFLAGS=-O3" "LDFLAGS=-s" "LIBS=-lbcrypt" sed/sed.exe
 
 mv sed/sed.exe ../dest/bin
 cd $X_WORK_DIR

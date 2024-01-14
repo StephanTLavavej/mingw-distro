@@ -44,10 +44,9 @@ cd build
 ../src/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
 --prefix=$X_WORK_DIR/dest --disable-nls --with-gmp=$X_WORK_DIR/dest-gmp --with-mpfr=$X_WORK_DIR/dest-mpfr
 
-# -D_FORTIFY_SOURCE=0 works around https://github.com/StephanTLavavej/mingw-distro/issues/71
 make $X_MAKE_JOBS all \
-"CFLAGS=-O3 -D_FORTIFY_SOURCE=0" \
-"CXXFLAGS=-O3 -D_FORTIFY_SOURCE=0" \
+"CFLAGS=-O3" \
+"CXXFLAGS=-O3" \
 "LDFLAGS=-s"
 
 make $X_MAKE_JOBS install
