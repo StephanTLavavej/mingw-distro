@@ -18,6 +18,7 @@ source ./0_append_distro_path.sh
 ./optipng.sh
 ./pcre2.sh
 ./pngcheck.sh
+./ripgrep.sh
 ./sdl+libogg+libvorbis+sdl_mixer+vorbis-tools.sh
 ./sed.sh
 ./uutils-coreutils.sh
