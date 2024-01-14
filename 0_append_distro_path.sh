@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Idempotency.
+if [[ -v X_DISTRO_ROOT ]]; then return; fi
+
 # Reject expansion of unset variables.
 set -u
 
