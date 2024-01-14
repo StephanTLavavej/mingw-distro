@@ -11,7 +11,6 @@ mkdir dest
 cd src
 
 export PATH=$PATH:/clang64/bin
-cargo build --release
 cargo install --path . --locked --root $X_WORK_DIR/dest
 
 cd $X_WORK_DIR
