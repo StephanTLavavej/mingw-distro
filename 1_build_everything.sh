@@ -15,7 +15,6 @@ source ./0_append_distro_path.sh
 ./make.sh
 ./mingw-w64+gcc.sh
 ./optipng.sh
-./pcre2.sh
 ./pngcheck.sh
 ./ripgrep.sh
 ./sdl+libogg+libvorbis+sdl_mixer+vorbis-tools.sh
