@@ -9,7 +9,6 @@ source ./0_append_distro_path.sh
 ./glbinding.sh
 ./glfw.sh
 ./glm.sh
-./lame.sh
 ./libjpeg-turbo.sh
 ./libpng.sh
 ./make.sh
