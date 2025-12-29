@@ -2,22 +2,36 @@
 
 source ./0_append_distro_path.sh
 
-untar_file optipng-0.7.8.tar
+untar_file optipng-7.9.1.tar
 
 cd $X_WORK_DIR
-mv optipng-0.7.8 src
-mkdir dest
-cd src
+mv optipng-7.9.1 src
+mkdir build dest
+cd build
 
-# "note: building outside the source directory tree is not supported"
-./configure --prefix=$X_WORK_DIR/dest --with-system-libs
+export PATH=$PATH:/mingw64/bin
+# Set OPTIPNG_USE_SYSTEM_LIBS to avoid picking up potentially older "vendored" versions.
+# Set ZLIB_ROOT and PNG_ROOT to pick them up from the distro instead of /mingw64/bin.
+cmake \
+"-DCMAKE_BUILD_TYPE=Release" \
+"-DCMAKE_C_FLAGS=-s -O3" \
+"-DCMAKE_INSTALL_PREFIX=$X_WORK_DIR/dest" \
+"-DOPTIPNG_USE_SYSTEM_LIBS=ON" \
+"-DZLIB_ROOT=$X_DISTRO_ROOT" \
+"-DPNG_ROOT=$X_DISTRO_ROOT" \
+-G Ninja $X_WORK_DIR/src
 
-make $X_MAKE_JOBS all "CFLAGS=-O3" "LDFLAGS=-s"
-make $X_MAKE_JOBS install
+ninja
+# Work around https://github.com/StephanTLavavej/mingw-distro/issues/112
+mv optipng.exe optipng
+ninja install
+
 cd $X_WORK_DIR
-rm -rf src
-mv dest optipng-0.7.8
-cd optipng-0.7.8
-rm -rf man
+rm -rf build src
+mv dest optipng-7.9.1
+cd optipng-7.9.1
+rm -rf share
+# Work around https://github.com/StephanTLavavej/mingw-distro/issues/112
+mv bin/optipng bin/optipng.exe
 
-7z -mx0 a ../optipng-0.7.8.7z *
+7z -mx0 a ../optipng-7.9.1.7z *
