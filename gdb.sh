@@ -2,9 +2,9 @@
 
 source ./0_append_distro_path.sh
 
-untar_file gdb-14.1.tar
+untar_file gdb-17.1.tar
 untar_file gmp-6.3.0.tar
-untar_file mpfr-4.2.1.tar
+untar_file mpfr-4.2.2.tar
 
 cd $X_WORK_DIR
 
@@ -13,8 +13,10 @@ mv gmp-6.3.0 src-gmp
 mkdir build-gmp dest-gmp
 cd build-gmp
 
+# Configure with "CFLAGS=-std=gnu17" to work around https://github.com/StephanTLavavej/mingw-distro/issues/117
+# which has been fixed upstream.
 ../src-gmp/configure --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 \
---prefix=$X_WORK_DIR/dest-gmp --disable-shared
+--prefix=$X_WORK_DIR/dest-gmp --disable-shared "CFLAGS=-std=gnu17"
 
 make $X_MAKE_JOBS all "CFLAGS=-O3" "LDFLAGS=-s"
 make $X_MAKE_JOBS install
@@ -23,7 +25,7 @@ rm -rf build-gmp src-gmp
 rm -rf dest-gmp/lib/*.la dest-gmp/lib/pkgconfig dest-gmp/share
 
 # Build mpfr.
-mv mpfr-4.2.1 src-mpfr
+mv mpfr-4.2.2 src-mpfr
 mkdir build-mpfr dest-mpfr
 cd build-mpfr
 
@@ -37,7 +39,7 @@ rm -rf build-mpfr src-mpfr
 rm -rf dest-mpfr/lib/*.la dest-mpfr/lib/pkgconfig dest-mpfr/share
 
 # Build gdb.
-mv gdb-14.1 src
+mv gdb-17.1 src
 mkdir build dest
 cd build
 
@@ -52,8 +54,8 @@ make $X_MAKE_JOBS all \
 make $X_MAKE_JOBS install
 cd $X_WORK_DIR
 rm -rf build src dest-gmp dest-mpfr
-mv dest gdb-14.1
-cd gdb-14.1
-rm -rf bin/gdb-add-index include lib share
+mv dest gdb-17.1
+cd gdb-17.1
+rm -rf bin/gdb-add-index bin/gstack include lib share
 
-7z -mx0 a ../gdb-14.1.7z *
+7z -mx0 a ../gdb-17.1.7z *
