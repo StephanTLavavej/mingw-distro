@@ -1,0 +1,14 @@
+diff -aurN --ignore-trailing-space vorbis-tools-1.4.3/share/utf8.c vorbis-tools-1.4.3-fixed/share/utf8.c
+--- vorbis-tools-1.4.3/share/utf8.c	2025-04-12 23:11:18.000000000 -0700
++++ vorbis-tools-1.4.3-fixed/share/utf8.c	2025-12-30 09:26:51.226113600 -0800
+@@ -219,6 +219,10 @@
+     return 0;
+ }
+ 
++void convert_free_charset(void)
++{
++}
++
+ #else /* End win32. Rest is for real operating systems */
+ 
+ 
