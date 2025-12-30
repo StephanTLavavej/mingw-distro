@@ -4,11 +4,11 @@ source ./0_append_distro_path.sh
 
 # Extract vanilla sources.
 untar_file gmp-6.3.0.tar
-untar_file mpfr-4.2.1.tar
+untar_file mpfr-4.2.2.tar
 untar_file mpc-1.3.1.tar
 untar_file isl-0.24.tar
 untar_file mingw-w64-v11.0.1.tar
-untar_file gcc-13.2.0.tar
+untar_file gcc-15.2.0.tar
 
 cd $X_WORK_DIR
 
@@ -34,13 +34,13 @@ cd $X_WORK_DIR
 rm -rf build-mingw-w64 src
 
 # Prepare to build gcc.
-mv gcc-13.2.0 src
+mv gcc-15.2.0 src
 mv gmp-6.3.0 src/gmp
-mv mpfr-4.2.1 src/mpfr
+mv mpfr-4.2.2 src/mpfr
 mv mpc-1.3.1 src/mpc
 mv isl-0.24 src/isl
 
-# Prepare to build gcc - perform magic directory surgery.
+# Magic directory surgery. See: https://github.com/StephanTLavavej/mingw-distro/issues/7
 cp -r dest/x86_64-w64-mingw32/lib dest/x86_64-w64-mingw32/lib64
 cp -r dest/x86_64-w64-mingw32 dest/mingw
 mkdir -p src/gcc/winsup/mingw
